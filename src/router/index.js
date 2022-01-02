@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 // 导入子组件
 import SubComp from '@/components/sub/SubComp.vue';
+import NeedImp from '@/components/webpack/NeedImp.vue';
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,10 @@ const routes = [
         path: '/home/sub',
         component: SubComp,
       },
+      {
+        path:'/home/need',
+        component:NeedImp
+      }
     ],
   },
   {
