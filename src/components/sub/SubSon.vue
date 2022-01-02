@@ -6,9 +6,8 @@
 <style lang="less" scoped>
 .subson_container {
   span {
-    color: pink;
-    font-size: larger;
-    font-style: italic;
+    color: greenyellow;
+    font: italic 700 36px '华文隶书';
   }
 }
 </style>

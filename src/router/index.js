@@ -7,8 +7,10 @@ import SubComp from '@/components/sub/SubComp.vue';
 Vue.use(VueRouter);
 
 const routes = [
+  // 路由的自动跳转
+  { path: '/', redirect: '/home' },
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
     component: Home,
     // 声明子路由
