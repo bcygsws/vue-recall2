@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <router-link to="/home/sub">子组件的用法</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
