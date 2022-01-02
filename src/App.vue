@@ -24,8 +24,8 @@
     font-weight: bold;
     font-style: italic;
     color: black;
-
-    &.router-link-exact-active {
+    // myClass是自己定义的当前激活的路由的类名；在VueRouter实例中声明；默认值为：router-link-exact-active
+    &.myClass {
       color: #42b983;
     }
   }
