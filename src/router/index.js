@@ -8,7 +8,7 @@ Vue.use(VueRouter);
 
 const routes = [
   // 路由的自动跳转
-  { path: '/', redirect: '/home' },
+  // { path: '/', redirect: '/home' },
   {
     path: '/home',
     name: 'Home',
@@ -34,6 +34,8 @@ const routes = [
 
 const router = new VueRouter({
   routes,
+  // 当前选中的路由；不声明linkExactActiveClass属性，这个值默认为："router-link-exact-active".
+  linkExactActiveClass:'myClass'
 });
 
 export default router;
