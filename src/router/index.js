@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 // 导入子组件
 import SubComp from '@/components/sub/SubComp.vue';
 import NeedImp from '@/components/webpack/NeedImp.vue';
+import Keep from '@/components/keep/KeepAlive.vue';
 
 Vue.use(VueRouter);
 
@@ -23,6 +24,10 @@ const routes = [
       {
         path: '/home/need',
         component: NeedImp,
+      },
+      {
+        path: '/home/keep_alive',
+        component: Keep,
       },
     ],
   },
