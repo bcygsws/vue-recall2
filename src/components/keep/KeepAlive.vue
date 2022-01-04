@@ -1,6 +1,12 @@
 <template>
   <div class="keep_container">
     <h3>这是keep-alive组件</h3>
+    <keep-alive :include="/Coma|Comb|Comc/" max="10">
+      <component :is="componentId"></component>
+    </keep-alive>
+    <input type="button" value="缓存coma" @click="select('a')" />&nbsp;&nbsp;
+    <input type="button" value="缓存comb" @click="select('b')" />&nbsp;&nbsp;
+    <input type="button" value="缓存comc" @click="select('c')" />
   </div>
 </template>
 <script>
@@ -38,7 +44,14 @@ import Comc from './Comc.vue';
 export default {
   name: 'Keep',
   data() {
-    return {};
+    return {
+      componentId: 'Coma',
+    };
+  },
+  methods: {
+    select(id) {
+      this.componentId = 'Com' + id;
+    },
   },
   created() {
     console.log(1);
@@ -59,3 +72,10 @@ export default {
   },
 };
 </script>
+<style lang="less" scoped>
+.keep_container {
+  input[type='button'] {
+    margin-top: 20px;
+  }
+}
+</style>
