@@ -7,6 +7,16 @@
     <input type="button" value="缓存coma" @click="select('a')" />&nbsp;&nbsp;
     <input type="button" value="缓存comb" @click="select('b')" />&nbsp;&nbsp;
     <input type="button" value="缓存comc" @click="select('c')" />
+    <hr />
+    <router-link to="/home/keep_alive/cache">缓存的路由</router-link
+    >&nbsp;&nbsp;
+    <router-link to="/home/keep_alive/no_cache">不缓存的路由</router-link>
+    <!-- 需要缓存的视图组件 -->
+    <keep-alive>
+      <router-view v-if="$route.meta.isAlive"></router-view>
+    </keep-alive>
+    <!-- 不需要缓存的视图组件 -->
+    <router-view v-if="$route.meta.isAlive"></router-view>
   </div>
 </template>
 <script>
@@ -17,6 +27,7 @@ import Comc from './Comc.vue';
 /**
  * 定义：keep-alive是Vue的一个内置组件
  * 功能：用来对组件进行缓存，节省性能
+        缓存的组件仍然保存在内存中，防止重复渲染DOM
  * 注意：包裹一个动态组件时，注意是动态组件（keep-alive不能用于v-for循环的组件中，只能缓存其中的一个直属子组件）
          而且keep-alive是一个成抽象组件，所以它不会渲染成一个DOM元素
  * 三个属性+两个钩子
@@ -38,6 +49,7 @@ import Comc from './Comc.vue';
  * keep-alive拓展理解，参考文档：https://segmentfault.com/a/1190000015727279
  *
  *
+ * 面试官说：keep-alive https://mp.weixin.qq.com/s?__biz=MzU1OTgxNDQ1Nw==&mid=2247484446&idx=1&sn=80d5a4a15c88f4d6fd878095101601e8&chksm=fc10c648cb674f5efbdad8222de6cd607870e44d5870480a229bfeefd6a78c3ba3b9d372ab37&scene=21#wechat_redirect
  *
  *
  */
@@ -55,6 +67,7 @@ export default {
   },
   created() {
     console.log(1);
+    console.log(this.$route);
   },
   mounted() {
     console.log(2);
