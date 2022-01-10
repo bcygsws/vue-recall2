@@ -46,4 +46,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 1. 内置组件，所有不会渲染成 DOM 元素
 2. 三属性：include、exclude(优先级大于 include，且两属性如果使用:exclude="/a|b/"或['a','b'],include 或 exclude 需要动态绑定，v-bind(:))、max;两个钩子函数：activated、deactivated
-3. 缓存组件第一次渲染时，会依次执行 created、mounted、activated，退出时执行 deactivated;当再次进入时，只触发 activated（created 和 mounted 由于 keep-alive 的缓存作用，页面没有重新渲染，因此只触发 activated）
+3. 缓存组件第一次渲染时，会依次执行 created、mounted、activated，退出时执行 deactivated;当再次进入时，只触发 activated（created 和 mounted 由于 keep-alive 的缓存作用，页面没有重新渲染，因此只触发
+4. 组件定义的注意事项
+
+- 组件中 data 必须是函数，包括全局组件和私有组件
+- 组件模板中的顶层标签必须是单个根元素
+- 组件中模板除了引号，也可以使用模板字符串的形式（模板字符串中引入子组件时，子组件可以是驼峰命名法的组件，例如：<HelloWorld></HelloWorld>，可以将 HelloWorld 引入到另一个组件中
+- 当使用驼峰命名法命名组件时，只有在全局组件定义和模板字符串中引入子组件才能使用驼峰的方式；普通标签中只能使用短横线的方式
