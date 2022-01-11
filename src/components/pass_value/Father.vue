@@ -8,8 +8,8 @@
   </div>
 </template>
 <script>
-import BSon from './BSon.vue';
-import CSon from './CSon.vue';
+import CSon from './SonC.vue';
+import BSon from './SonB.vue';
 export default {
   name: 'Father',
   data() {
