@@ -5,6 +5,9 @@
     <router-link to="/home/keep_alive"
       >功能三：内置组件keep-alive对组件进行缓冲</router-link
     >
+    <router-link to="/home/pass_value"
+      >功能四：父子元素之间相互传值</router-link
+    >
     <router-view></router-view>
   </div>
 </template>

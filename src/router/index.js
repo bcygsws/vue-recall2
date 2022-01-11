@@ -7,6 +7,7 @@ import NeedImp from '@/components/webpack/NeedImp.vue';
 import Keep from '@/components/keep/KeepAlive.vue';
 import Cache from '@/components/keep/Cache.vue';
 import NoCache from '@/components/keep/NoCache.vue';
+import Father from '@/components/pass_value/Father.vue';
 
 Vue.use(VueRouter);
 
@@ -42,6 +43,10 @@ const routes = [
             meta: { isAlive: false },
           },
         ],
+      },
+      {
+        path: '/home/pass_value',
+        component: Father,
       },
     ],
   },
