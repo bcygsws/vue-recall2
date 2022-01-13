@@ -14,10 +14,16 @@
     </button>
     <button @click="$emit('text-small', 2)">点击子组件，父组件字体变小</button>
     <son-son>SonB的子组件</son-son>
+    <!-- $emit和$on中央事件总线，实现各级别传值 -->
+    <!-- SonB传给子组件SonSon -->
+    <button @click="handle">SonB向SonSon传值</button>
+    <!-- SonB向同级子组件SonC传递数据 -->
+    <button @click="handle1">SonB传值给SonC</button>
   </div>
 </template>
 <script>
 import SonSon from './SonSon.vue';
+import { Event } from '@/main';
 export default {
   name: 'BSon',
   // props: ['rec', 'rv', 'fru'],
@@ -33,16 +39,26 @@ export default {
     },
     rv: { type: String },
     fru: { type: Array },
+    son: { type: String, default: '中央事件总线方法实现SonB向SonSon传值' },
+    bval: { type: String, default: 'SonB向同级的SonC传值' },
   },
   components: {
     SonSon,
+  },
+  methods: {
+    handle() {
+      Event.$emit('toSon', this.son);
+    },
+    handle1() {
+      Event.$emit('toC', this.bval);
+    },
   },
 };
 </script>
 <style lang="less" scoped>
 .b_container {
   background-color: pink;
-  
+
   h3 {
     u {
       color: orange;
