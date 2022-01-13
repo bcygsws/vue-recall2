@@ -20,6 +20,26 @@
 <script>
 import CSon from './SonC.vue';
 import BSon from './SonB.vue';
+/**
+ *
+ * @ 一：父子组件传值
+ * 父->子 在父组件中，引用子组件处，添加属性，:attr="父组件data";在子组件中，引入父组件数据，两种方法：数组和对象
+ * ['attr'] {attr:{
+ *  type:String,
+ *  default:"默认值",
+ *  required:true,// 父组件必须向子组件传值，否则报错
+ *  validate:(value)=>{
+ *     return value;}
+ * }}
+ * 子->父 在子组件中，在子组件汇中，@事件="$emit('toFat',attr)";
+ *        在父组件中，引用子组件的标签，绑定事件@toFat="handle"
+ *        handle(value){
+ *        attr就是这里的value
+ * }
+ * 
+ * 
+ *
+ */
 export default {
   name: 'Father',
   data() {
@@ -57,5 +77,6 @@ export default {
 </script>
 <style lang="less" scoped>
 .pass_container {
+  background-color: salmon;
 }
 </style>

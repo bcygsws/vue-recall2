@@ -13,9 +13,11 @@
       点击子组件，父组件字体变大
     </button>
     <button @click="$emit('text-small', 2)">点击子组件，父组件字体变小</button>
+    <son-son>SonB的子组件</son-son>
   </div>
 </template>
 <script>
+import SonSon from './SonSon.vue';
 export default {
   name: 'BSon',
   // props: ['rec', 'rv', 'fru'],
@@ -32,10 +34,15 @@ export default {
     rv: { type: String },
     fru: { type: Array },
   },
+  components: {
+    SonSon,
+  },
 };
 </script>
 <style lang="less" scoped>
 .b_container {
+  background-color: pink;
+  
   h3 {
     u {
       color: orange;
@@ -43,6 +50,11 @@ export default {
   }
   button {
     margin-left: 10px;
+  }
+  ul {
+    li {
+      list-style-type: none;
+    }
   }
 }
 </style>
