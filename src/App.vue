@@ -8,26 +8,20 @@
   </div>
 </template>
 
-<style lang="less">
+<script>
+export default {
+  name: 'app',
+  components: {},
+};
+</script>
+
+<style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    font-style: italic;
-    color: black;
-    // myClass是自己定义的当前激活的路由的类名；在VueRouter实例中声明；默认值为：router-link-exact-active
-    &.myClass {
-      color: #42b983;
-    }
-  }
+  margin-top: 60px;
 }
 </style>

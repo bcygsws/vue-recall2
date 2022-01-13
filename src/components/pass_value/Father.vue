@@ -17,6 +17,11 @@
     <c-son :rev="info"></c-son>
     <!-- 跨级传值Father传值给SonSon -->
     <button @click="handle_fat">点击Father向SonSon传值</button>
+    <hr />
+    <router-link to="/home/pass_value/hello"
+      >hello页面体验vuex的使用</router-link
+    >
+    <router-view></router-view>
   </div>
 </template>
 <script>

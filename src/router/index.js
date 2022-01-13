@@ -8,6 +8,7 @@ import Keep from '@/components/keep/KeepAlive.vue';
 import Cache from '@/components/keep/Cache.vue';
 import NoCache from '@/components/keep/NoCache.vue';
 import Father from '@/components/pass_value/Father.vue';
+import Hello from '@/components/pass_value/Hello.vue';
 
 Vue.use(VueRouter);
 
@@ -47,6 +48,12 @@ const routes = [
       {
         path: '/home/pass_value',
         component: Father,
+        children: [
+          {
+            path: '/home/pass_value/hello',
+            component: Hello,
+          },
+        ],
       },
     ],
   },
