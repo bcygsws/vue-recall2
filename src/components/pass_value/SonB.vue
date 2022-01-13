@@ -9,9 +9,10 @@
       <li v-for="(item, index) in fru" :key="index">{{ item }}</li>
     </ul>
     <!-- 子组件向父组件传值 -->
-    <button @click="$emit('text-enlarged', 5)">
-      点击子组件SonB，父组件字体变大
+    <button @click="$emit('text-enlarged', 2)">
+      点击子组件，父组件字体变大
     </button>
+    <button @click="$emit('text-small', 2)">点击子组件，父组件字体变小</button>
   </div>
 </template>
 <script>
@@ -39,6 +40,9 @@ export default {
     u {
       color: orange;
     }
+  }
+  button {
+    margin-left: 10px;
   }
 }
 </style>
