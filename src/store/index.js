@@ -2,10 +2,19 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 Vue.use(Vuex);
-
+let defaultCount = 0;
+// 加一个try---catch语句，防止浏览器关闭了本地存储功能
+try {
+  if (!defaultCount) {
+    defaultCount = JSON.parse(localStorage.getItem('defaultCount'));
+  }
+} catch (e) {
+  // 语句含义是：在命令行打印异常信息在程序中出现的位置及原因
+  e.printStackTrace();
+}
 export default new Vuex.Store({
   state: {
-    count: 0,
+    count: defaultCount,
     showChange: true,
   },
   getters: {
@@ -21,11 +30,23 @@ export default new Vuex.Store({
       if (state.count >= 20) {
         state.count = 20;
       }
+      // 每当数据改变完成后，将数据以字符串的形式存储在localStorage中
+      try {
+        localStorage.setItem('defaultCount', state.count);
+      } catch (e) {
+        e.printStackTrace();
+      }
     },
     dec(state, props) {
       state.count -= props;
       if (state.count <= 0) {
         state.count = 0;
+      }
+      // 每当数据改变完成后，将数据以字符串的形式存储在localStorage中
+      try {
+        localStorage.setItem('defaultCount', state.count);
+      } catch (e) {
+        e.printStackTrace();
       }
     },
   },
