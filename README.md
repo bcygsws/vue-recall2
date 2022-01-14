@@ -78,7 +78,7 @@ return value;}
 
 #### 1.2 子组件向父组件传值
 
-在子组件中，在子组件汇中，@事件="$emit('toFat',attr)";
+在子组件中，在子组件汇中，@事件="\$emit('toFat',attr)";
 在父组件中，引用子组件的标签，绑定事件@toFat="handle"
 handle(value){
 attr 就是这里的 value
@@ -86,11 +86,11 @@ attr 就是这里的 value
 
 ### 二、中央事件总线法，实现父子、同级和跨级组件传值（小型的 vuex）
 
-#### 2.1 $emit和$on，中央事件总线（事件中心），实现父子、兄弟和跨级组件之间的数据传递
+#### 2.1 \$emit 和\$on，中央事件总线（事件中心），实现父子、兄弟和跨级组件之间的数据传递
 
-#### 2.2 在$on接收数据之前，如果出现多次触发的情况，可以进行先解绑事件（Event.$off('事件名称')），再使用$on 接收
+#### 2.2 在\$on 接收数据之前，如果出现多次触发的情况，可以进行先解绑事件（Event.\$off('事件名称')），再使用\$on 接收
 
-- main.js 中空实例必须声明在 new Vue({})前面，否则引出$on和$off 就会报出 TypeError
+- main.js 中空实例必须声明在 new Vue({})前面，否则引出\$on 和\$off 就会报出 TypeError
 - 父子传值 SonB 到其子组件 SonSon
 - 同级传值，SonB 向 SonC
 - 跨级，Father 传给孙子组件 SonSon
@@ -117,3 +117,13 @@ attr 就是这里的 value
 - @click-"inc(props)"传递的参数也不要做任何修饰
 
 8. vuex 进行状态管理的数据，刷新页面后，数据又还原到操作前状态，在项目中配合各个接口进行操作（后端），在浏览器中测试时，可以先借助本地存储（localStorage），非常方便
+
+### \$attrs 和\$listeners 跨级组件之间的通信
+
+#### vue 2.4 以后新增的功能：
+
+#### \$attrs 和\$listeners 是两个对象
+
+1.  分别存储的是父组件中的非 props 中声明的属性（当然也不包括 style 和 class 属性），以及父组件中绑定的非.native 事件
+2.  $attrs 是 v-bind="\$attrs"，适用于父级向子级和孙子级等等，高级向低级
+3.  $listeners 中包含的是父组件中的非 native 事件(v-on="\$listeners")，类比子组件向父组件传值
