@@ -114,7 +114,7 @@ attr 就是这里的 value
 
 - 注意操作时，函数名的双关性。如：@click="inc(props)" 用以通过...mapMutations 的方法改变数据，那么在 mutations:{
   inc(state,props){ // 方法名必须是 inc }}
-- @click-"inc(props)"传递的参数也不要做任何修饰
+- @click="inc(props)"传递的参数也不要做任何修饰
 
 8. vuex 进行状态管理的数据，刷新页面后，数据又还原到操作前状态，在项目中配合各个接口进行操作（后端），在浏览器中测试时，可以先借助本地存储（localStorage），非常方便
 
