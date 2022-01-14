@@ -9,6 +9,7 @@ import Cache from '@/components/keep/Cache.vue';
 import NoCache from '@/components/keep/NoCache.vue';
 import Father from '@/components/pass_value/Father.vue';
 import Hello from '@/components/pass_value/Hello.vue';
+import Attr from '@/components/pass_value/Attr.vue';
 
 Vue.use(VueRouter);
 
@@ -52,6 +53,10 @@ const routes = [
           {
             path: '/home/pass_value/hello',
             component: Hello,
+          },
+          {
+            path: '/home/pass_value/attrs_lis',
+            component: Attr,
           },
         ],
       },

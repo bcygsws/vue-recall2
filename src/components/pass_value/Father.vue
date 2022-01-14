@@ -21,6 +21,8 @@
     <router-link to="/home/pass_value/hello"
       >hello页面体验vuex的使用</router-link
     >
+    <hr />
+    <router-link to="/home/pass_value/attrs_lis">attrs页面体会$attrs和$listeners跨级传值</router-link>
     <router-view></router-view>
   </div>
 </template>
@@ -66,6 +68,9 @@ import { Event } from '@/main';
  * a.注意操作时，函数名的双关性。如：@click="inc(props)" 用以通过...mapMutations的方法改变数据，那么在mutations:{
  * inc(state,props){ // 方法名必须是inc }}
  * b.@click-"inc(props)"传递的参数也不要做任何修饰
+ *
+ * @四、跨级组件之间的通信
+ *
  *
  *
  *
