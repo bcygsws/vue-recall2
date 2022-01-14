@@ -1,18 +1,32 @@
 <template>
   <div class="c2_container">
-    <h3>这是AttrCom2第2级子组件</h3>
+    <h4>这是AttrCom2第2级子组件</h4>
+    <span class="attr2">{{ $attrs }}</span>
+    <attr-com3 v-bind="$attrs"></attr-com3>
   </div>
 </template>
 <script>
 import AttrCom3 from './AttrCom3.vue';
 export default {
   name: 'AttrCom2',
-  data() {},
+  inheritAttrs: false,
+  props: {
+    boo: String,
+  },
+  created() {
+    console.log(this.$attrs);
+  },
+  data() {
+    return {};
+  },
   methods: {},
   components: { AttrCom3 },
 };
 </script>
 <style lang="less" scoped>
 .c2_container {
+  .attr2 {
+    background-color: #fff;
+  }
 }
 </style>

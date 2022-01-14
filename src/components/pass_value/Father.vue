@@ -22,7 +22,9 @@
       >hello页面体验vuex的使用</router-link
     >
     <hr />
-    <router-link to="/home/pass_value/attrs_lis">attrs页面体会$attrs和$listeners跨级传值</router-link>
+    <router-link to="/home/pass_value/attrs_lis"
+      >attrs页面体会$attrs和$listeners跨级传值</router-link
+    >
     <router-view></router-view>
   </div>
 </template>
