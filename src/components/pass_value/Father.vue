@@ -52,6 +52,21 @@ import { Event } from '@/main';
  *  跨级，Father传给孙子组件SonSon
  *
  * @三、vuex状态管理器
+ * 1.VueComponent组件：视图
+ * 2.actions:操作行为处理模块，actions中可以处理同步/异步数据，如：从后端接口中获取数据和批量操作同步数据
+ *         内部多个同步处理函数可以同名，会按照书写的顺序先后触发
+ * 3.dispatch：触发操作行为，是唯一可以提交actions的方法
+ * 4.actions提交后（commit），交由mutations改变状态
+ * 5.mutations改变状态管理对象值的对象，使用commit进行提交。与actions中不同之处在于：
+ * a.mutations中方法只能处理同步数据
+ * b.mutations不能有同名的方法
+ * 6.state和getters中即时侦测数据变化，可以获取值。类似computed这个侦听属性
+ * 7.vuex提供了一套简化模板import {mapState,mapGetters,mapMutations,mapActions} from 'vuex';可以简化状态管理
+ * 的代码。注意：
+ * a.注意操作时，函数名的双关性。如：@click="inc(props)" 用以通过...mapMutations的方法改变数据，那么在mutations:{
+ * inc(state,props){ // 方法名必须是inc }}
+ * b.@click-"inc(props)"传递的参数也不要做任何修饰
+ *
  *
  *
  *
