@@ -71,7 +71,12 @@ import { Event } from '@/main';
  * inc(state,props){ // 方法名必须是inc }}
  * b.@click-"inc(props)"传递的参数也不要做任何修饰
  *
- * @四、跨级组件之间的通信
+ * @四、$attrs和$listeners跨级组件之间的通信
+ * vue 2.4以后新增的功能：
+ * $attrs和$listeners是两个对象
+ * 1.分别存储的是父组件中的非props中声明的属性（当然也不包括style和class属性），以及父组件中绑定的非.native事件
+ * 2.$attrs是v-bind="$attrs"，适用于父级向子级和孙子级等等，高级向低级
+ * 3.$listeners中包含的是父组件中的非native事件(v-on="$listeners")，类比子组件向父组件传值
  *
  *
  *

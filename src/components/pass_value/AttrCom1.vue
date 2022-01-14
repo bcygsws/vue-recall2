@@ -2,7 +2,11 @@
   <div class="c1_container">
     <h3>这是AttrCom1第1级子组件</h3>
     <span class="attr1">{{ $attrs }}</span>
-    <attr-com2 v-bind="$attrs"></attr-com2>
+    <attr-com2
+      v-bind="$attrs"
+      v-on="$listeners"
+      @pass_val="handle1"
+    ></attr-com2>
   </div>
 </template>
 <script>
@@ -19,7 +23,11 @@ export default {
   created() {
     console.log(this.$attrs);
   },
-  methods: {},
+  methods: {
+    handle1(val) {
+      console.log(val);
+    },
+  },
   components: { AttrCom2 },
 };
 </script>
