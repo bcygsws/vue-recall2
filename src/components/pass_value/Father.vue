@@ -82,6 +82,23 @@ import { Event } from '@/main';
  * 2.$attrs是v-bind="$attrs"，适用于父级向子级和孙子级等等，高级向低级
  * 3.$listeners中包含的是父组件中的非native事件(v-on="$listeners")，类比子组件向父组件传值
  *
+ * @五、provide/inject 可以跨级传递数据，不能组件之间层级有多深，但这种方式不是响应式的，这是刻意为之的；如果传入一个
+ * 可监听的对象，其属性是响应式的
+ *
+ * 传入监听的对象，解决响应式:分两步
+ * 一、在provide声明所在组件，provide提供函数式参数
+ * provide(){
+ * return {
+ *  getReactiveInfo: () => this.info,
+ *  }
+ * }
+ *
+ * 二、在inject所在的接收组件
+ * inject:['getReactiveInfo']
+ * 同时要使用侦听属性，侦听一个第三方变量
+ * changedGetReactiveInfo(){
+ *    return this.getReactiveInfo();
+ * }
  *
  *
  *
