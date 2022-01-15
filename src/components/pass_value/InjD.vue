@@ -1,6 +1,6 @@
 <template>
   <div class="injd_container">
-    <h3>这是Inject组件</h3>
+    <h3>这是InjectD组件</h3>
   </div>
 </template>
 <script>

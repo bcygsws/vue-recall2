@@ -1,6 +1,7 @@
 <template>
   <div class="injc_container">
-    <h2>这是Inject组件</h2>
+    <h2>这是InjectC组件</h2>
+    <div>{{ notReactiveData }}</div>
     <inj-f></inj-f>
   </div>
 </template>
@@ -11,6 +12,7 @@ export default {
   data() {
     return {};
   },
+  inject: ['notReactiveData'],
   methods: {},
   components: { InjF },
 };

@@ -36,15 +36,17 @@ export default {
   //     default: () => {},
   //   },
   // },
-  inject: {
-    theme: {
-      // 函数式组件取值不一样
-      default: () => {},
-    },
-    getReactiveInfo: {
-      default: () => {},
-    },
-  },
+  // inject: {
+  //   theme: {
+  //     // 函数式组件取值不一样
+  //     default: () => {},
+  //   },
+  //   getReactiveInfo: {
+  //     default: () => {},
+  //   },
+  // },
+  // 等效的inject方式
+  inject: ['theme', 'getReactiveInfo'],
   // 为了实现响应式，需要队getReactiveInfo数据进行侦听
   computed: {
     changedGetReactiveInfo() {
@@ -53,11 +55,11 @@ export default {
   },
   mounted() {
     console.log(this.theme.color);
-    console.log(this.changedGetReactiveInfo);// 我是传递给孙子组件InjF的数据
+    console.log(this.changedGetReactiveInfo); // 我是传递给孙子组件InjF的数据
   },
   // 这个阶段数据已经是新的了，只是新数据还没有应用到页面上
   beforeUpdate() {
-    console.log(this.changedGetReactiveInfo);// 传到孙子组件的值被修改
+    console.log(this.changedGetReactiveInfo); // 传到孙子组件的值被修改
   },
   methods: {},
   components: {},

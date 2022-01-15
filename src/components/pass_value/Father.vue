@@ -86,22 +86,23 @@ import { Event } from '@/main';
  * 可监听的对象，其属性是响应式的
  *
  * 传入监听的对象，解决响应式:分两步
- * 一、在provide声明所在组件，provide提供函数式参数
+ * 1、在provide声明所在组件，provide提供函数式参数
  * provide(){
  * return {
  *  getReactiveInfo: () => this.info,
  *  }
  * }
  *
- * 二、在inject所在的接收组件
+ * 2、在inject所在的接收组件
  * inject:['getReactiveInfo']
  * 同时要使用侦听属性，侦听一个第三方变量
  * changedGetReactiveInfo(){
  *    return this.getReactiveInfo();
  * }
  *
- *
- *
+ * 六、ref $parent 和$children为第六种组件通信方式：
+ * 简单了解，常用ref="标识->this.$refs.标识获取原生对象
+ * 举例：InjA中获取了子组件InjB
  *
  *
  */

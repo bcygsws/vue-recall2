@@ -3,8 +3,11 @@
     <h1>这是InjectA组件</h1>
     <!-- 改变color -->
     <button @click="changeColor">改变color</button>
+    <button @click="changeNotReactive">
+      改变msg,看InjB和InjC中的值是否改变
+    </button>
     <button @click="changeInfo">改变info值，测试是否响应式</button>
-    <inj-b></inj-b>
+    <inj-b ref="injb"></inj-b>
     <inj-c></inj-c>
   </div>
 </template>
@@ -55,7 +58,9 @@ export default {
       getReactiveInfo: () => this.info,
     };
   },
-
+  mounted() {
+    console.log(this.$refs.injb);
+  },
   methods: {
     // 2.非响应方式，时改变color值的事件处理函数
     // changeColor(val) {
@@ -72,6 +77,9 @@ export default {
       } else {
         this.theme.color = this.theme.color === 'blue' ? 'red' : 'blue';
       }
+    },
+    changeNotReactive() {
+      this.msg = 'InjA传递给B和C的数据';
     },
     // 传到孙子组件的值被修改
     changeInfo() {

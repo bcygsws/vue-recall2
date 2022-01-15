@@ -1,6 +1,7 @@
 <template>
   <div class="injb_container">
-    <h2>这是Inject组件</h2>
+    <h2>这是InjectB组件</h2>
+    <div>{{ notReactiveData }}</div>
     <inj-d></inj-d>
     <inj-e></inj-e>
   </div>
@@ -13,6 +14,7 @@ export default {
   data() {
     return {};
   },
+  inject: ['notReactiveData'],
   methods: {},
   components: { InjD, InjE },
 };
