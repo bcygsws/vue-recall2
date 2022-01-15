@@ -130,7 +130,9 @@ inc(state,props){ // 方法名必须是 inc }}
 #### \$attrs 和\$listeners 是两个对象
 
 4.1. 分别存储的是父组件中的非 props 中声明的属性（当然也不包括 style 和 class 属性），以及父组件中绑定的非.native 事件
+
 4.2. $attrs 是 v-bind="\$attrs"，适用于父级向子级和孙子级等等，高级向低级
+
 4.3. $listeners 中包含的是父组件中的非 native 事件(v-on="\$listeners")，类比子组件向父组件传值
 
 ### 五、provide/inject 可以跨级传递数据，不能组件之间层级有多深，但这种方式不是响应式的，这是刻意为之的；如果传入一个可监听的对象，其属性是响应式的
