@@ -10,6 +10,7 @@ import NoCache from '@/components/keep/NoCache.vue';
 import Father from '@/components/pass_value/Father.vue';
 import Hello from '@/components/pass_value/Hello.vue';
 import Attr from '@/components/pass_value/Attr.vue';
+import InjectA from '@/components/pass_value/InjA.vue';
 
 Vue.use(VueRouter);
 
@@ -57,6 +58,10 @@ const routes = [
           {
             path: '/home/pass_value/attrs_lis',
             component: Attr,
+          },
+          {
+            path: '/home/pass_value/pro_inject',
+            component: InjectA,
           },
         ],
       },

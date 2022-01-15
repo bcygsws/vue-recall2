@@ -25,6 +25,10 @@
     <router-link to="/home/pass_value/attrs_lis"
       >attrs页面体会$attrs和$listeners跨级传值</router-link
     >
+    <hr />
+    <router-link to="/home/pass_value/pro_inject"
+      >provide和inject实现跨级通信</router-link
+    >
     <router-view></router-view>
   </div>
 </template>
