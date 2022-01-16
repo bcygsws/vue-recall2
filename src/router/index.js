@@ -11,6 +11,9 @@ import Father from '@/components/pass_value/Father.vue';
 import Hello from '@/components/pass_value/Hello.vue';
 import Attr from '@/components/pass_value/Attr.vue';
 import InjectA from '@/components/pass_value/InjA.vue';
+import Guard from '@/components/route_guard/Guard.vue';
+import Login from '@/components/route_guard/Login.vue';
+import NotLogin from '@/components/route_guard/NotLogin.vue';
 
 Vue.use(VueRouter);
 
@@ -62,6 +65,20 @@ const routes = [
           {
             path: '/home/pass_value/pro_inject',
             component: InjectA,
+          },
+        ],
+      },
+      {
+        path: '/home/guard',
+        component: Guard,
+        children: [
+          {
+            path: '/home/guard/login',
+            component: Login,
+          },
+          {
+            path: '/home/guard/not_login',
+            component: NotLogin,
           },
         ],
       },

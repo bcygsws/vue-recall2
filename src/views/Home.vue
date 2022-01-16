@@ -8,6 +8,9 @@
     <router-link to="/home/pass_value"
       >功能四：父子元素之间相互传值</router-link
     >
+    <router-link to="/home/guard"
+      >功能五：路由导航守卫，模拟token登录验证</router-link
+    >
     <router-view></router-view>
   </div>
 </template>
