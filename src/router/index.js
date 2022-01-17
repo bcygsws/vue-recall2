@@ -14,6 +14,7 @@ import InjectA from '@/components/pass_value/InjA.vue';
 import Guard from '@/components/route_guard/Guard.vue';
 import Login from '@/components/route_guard/Login.vue';
 import NotLogin from '@/components/route_guard/NotLogin.vue';
+import Ind from '@/components/route_guard/Ind.vue';
 
 Vue.use(VueRouter);
 
@@ -79,6 +80,12 @@ const routes = [
           {
             path: '/home/guard/not_login',
             component: NotLogin,
+            children: [
+              {
+                path: '/home/guard/not_login/index',
+                component: Ind,
+              },
+            ],
           },
         ],
       },
@@ -100,5 +107,28 @@ const router = new VueRouter({
   // 当前选中的路由；不声明linkExactActiveClass属性，这个值默认为："router-link-exact-active".
   linkExactActiveClass: 'myClass',
 });
-
+// 定义一个产生随机子串的函数
+// 参数e:是产生的随机串位数，默认e=32
+function generateStr(e) {
+  e = e || 32;
+  const t = 'ABCDEDFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let n = '';
+  for (let i = 0; i < e; i++) {
+    n += t.charAt(Math.floor(Math.random() * t.length));
+  }
+  return n;
+}
+// console.log(generateStr(32));
+// 路全局导航守卫
+router.beforeEach((to, from, next) => {
+  if (to.path === '/home/guard/login') {
+    localStorage.setItem('x-token', generateStr(32));
+    next();
+  }
+  // 如果是非login页面，验证是否有x-token令牌
+  let xToken = localStorage.getItem('x-token');
+  if (!xToken) next('/home/guard/login');
+  // 非login路由，xToken存在，自动跳转
+  next();
+});
 export default router;
