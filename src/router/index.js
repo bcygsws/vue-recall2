@@ -15,6 +15,7 @@ import InjectA from '@/components/pass_value/InjA.vue';
 import Guard from '@/components/route_guard/Guard.vue';
 import NotLogin from '@/components/route_guard/NotLogin.vue';
 import Ind from '@/components/route_guard/Ind.vue';
+import UseNew from '@/components/stylus_jade/UseNew.vue';
 
 Vue.use(VueRouter);
 
@@ -85,6 +86,10 @@ const routes = [
             ],
           },
         ],
+      },
+      {
+        path: '/home/use_new',
+        component: UseNew,
       },
     ],
   },

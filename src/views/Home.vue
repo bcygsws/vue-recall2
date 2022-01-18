@@ -11,6 +11,9 @@
     <router-link to="/home/guard"
       >功能五：路由导航守卫，模拟token登录验证</router-link
     >
+    <router-link to="/home/use_new"
+      >功能六：使用stylus书写样式，以及jade模板引擎</router-link
+    >
     <router-view></router-view>
   </div>
 </template>
