@@ -134,7 +134,7 @@ export default {
           console.log('Error Submit');
           return false;
         }
-        alert('恭喜你登录成功');
+        this.$message({ message: '恭喜你登录成功', type: 'success' });
         // 登录成功后，添加x-token随机字符串
         localStorage.setItem('x-token', this.generateStr(32));
         // 登录成功后，编程式导航，进入/home界面
