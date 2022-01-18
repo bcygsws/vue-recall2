@@ -13,7 +13,7 @@ export default {
       // 清除token
       localStorage.clear();
       // 编程式导航进入login页面
-      this.$router.push({ name: 'Login' });
+      this.$router.push({ name: 'User' });
     },
   },
 };

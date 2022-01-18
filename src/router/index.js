@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 // 导入子组件
+import User from '@/views/User.vue';
 import SubComp from '@/components/sub/SubComp.vue';
 import NeedImp from '@/components/webpack/NeedImp.vue';
 import Keep from '@/components/keep/KeepAlive.vue';
@@ -12,7 +13,6 @@ import Hello from '@/components/pass_value/Hello.vue';
 import Attr from '@/components/pass_value/Attr.vue';
 import InjectA from '@/components/pass_value/InjA.vue';
 import Guard from '@/components/route_guard/Guard.vue';
-import Login from '@/components/route_guard/Login.vue';
 import NotLogin from '@/components/route_guard/NotLogin.vue';
 import Ind from '@/components/route_guard/Ind.vue';
 
@@ -20,7 +20,8 @@ Vue.use(VueRouter);
 
 const routes = [
   // 路由的自动跳转
-  // { path: '/', redirect: '/home' },
+  { path: '/', redirect: '/user' },
+  { path: '/user', name: 'User', component: User },
   {
     path: '/home',
     name: 'Home',
@@ -74,10 +75,6 @@ const routes = [
         component: Guard,
         children: [
           {
-            path: '/home/guard/login',
-            component: Login,
-          },
-          {
             path: '/home/guard/not_login',
             component: NotLogin,
             children: [
@@ -91,15 +88,15 @@ const routes = [
       },
     ],
   },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue'),
-  },
+  // {
+  //   path: '/about',
+  //   name: 'About',
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () =>
+  //     import(/* webpackChunkName: "about" */ '../views/About.vue'),
+  // },
 ];
 
 const router = new VueRouter({
@@ -110,12 +107,12 @@ const router = new VueRouter({
 
 // 路全局导航守卫
 router.beforeEach((to, from, next) => {
-  if (to.path === '/home/guard/login') {
+  if (to.path === '/user') {
     next();
   }
   // 如果是非/home/guard/login页面，验证是否有x-token令牌
   let xToken = localStorage.getItem('x-token');
-  if (!xToken) next('/home/guard/login');
+  if (!xToken) next('/user');
   // 非login路由，xToken存在，自动跳转
   next();
 });
