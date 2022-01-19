@@ -173,19 +173,24 @@ inc(state,props){ // 方法名必须是 inc }}
 
 ### 七、stylus 和 jade 的基本使用
 
+#### stylus 的使用
+
+- 安装 stylus 和 stylus-loader（注意版本的搭配）。"stylus": "^0.54.8";stylus-loader": "^3.0.2"
+- 安装方式可以使用 cnpm install stylus stylus-loader --save-dev，也可以使用 vue ui 安装依赖
+  在.vue 文件中声明，lang="stylus"
+
+#### 全局使用 stylus 样式，在 ./assets/style/index.styl 文件
+
+- 最好在终端添加 vue add style-resources-loader,可以实现在 vue.config.js 自动配置
+  pluginOptions: { 'style-resources-loader': { preProcessor: 'stylus', patterns: [path.resolve(__dirname, './src/assets/style/index.styl')], // 默认 patterns 中是空的，路径自己手动配置 }, },
+  > > > > > > > dir
+
 ##### stylus 的使用
 
 - 安装 stylus 和 stylus-loader（注意版本的搭配）。"stylus": "^0.54.8";stylus-loader": "^3.0.2"
 - 安装方式可以使用 cnpm install stylus stylus-loader --save-dev，也可以使用 vue ui 安装依赖
 - 在.vue 文件中声明，lang="stylus"
 
-#### 全局使用 stylus 样式，在 ./assets/style/index.styl 文件
+#### 自定义指令的五个钩子
 
-- 最好在终端添加 vue add style-resources-loader,可以实现在 vue.config.js 自动配置
-- pluginOptions: {
-  'style-resources-loader': {
-  preProcessor: 'stylus',
-  patterns: [path.resolve(__dirname, './src/assets/style/index.styl')], // 默认 patterns 中是空的，路径自己手动配置
-  },
-  },
-
+> > > > > > > dir
