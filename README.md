@@ -171,16 +171,21 @@ inc(state,props){ // 方法名必须是 inc }}
   ##### 学习文档
   - [导航守卫学习](https://segmentfault.com/a/1190000015727279)
 
-### 七、stylus 和 jade 的使用
+### 七、stylus 和 jade 的基本使用
 
-### 八、自定义指令
+##### stylus 的使用
 
-#### 语法：在 script 逻辑代码中声明：directives:{'str':{}} ;在 template 中需要绑定指定的标签，增加一个属性：v-str=""
+- 安装 stylus 和 stylus-loader（注意版本的搭配）。"stylus": "^0.54.8";stylus-loader": "^3.0.2"
+- 安装方式可以使用 cnpm install stylus stylus-loader --save-dev，也可以使用 vue ui 安装依赖
+- 在.vue 文件中声明，lang="stylus"
 
-#### 自定义指令的钩子
+#### 全局使用 stylus 样式，在 ./assets/style/index.styl 文件
 
-- bind:表示指令第一次绑定到元素时调用；这个钩子也执行一次
-- inserted:绑定指令的标签被插入到父元素时调用（仅保证父节点存在，但不一定被插入文档中）。这个钩子只执行一次
-- update:所有虚拟节点 VNode 更新时调用，更新发生在所有子 VNode 更新前。value 值可能变化，也可能没变化；这个钩子可以执行多次
-- componentUpdated:所有 VNode 和子 VNode 更新后调用
-- unbind：指令解绑时调用，该钩子只执行一次
+- 最好在终端添加 vue add style-resources-loader,可以实现在 vue.config.js 自动配置
+- pluginOptions: {
+  'style-resources-loader': {
+  preProcessor: 'stylus',
+  patterns: [path.resolve(__dirname, './src/assets/style/index.styl')], // 默认 patterns 中是空的，路径自己手动配置
+  },
+  },
+
