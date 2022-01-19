@@ -184,7 +184,13 @@ inc(state,props){ // 方法名必须是 inc }}
 - 最好在终端添加 vue add style-resources-loader,可以实现在 vue.config.js 自动配置
   pluginOptions: { 'style-resources-loader': { preProcessor: 'stylus', patterns: [path.resolve(__dirname, './src/assets/style/index.styl')], // 默认 patterns 中是空的，路径自己手动配置 }, },
 
-### 八、自定义指令
+##### stylus 的使用
+
+- 安装 stylus 和 stylus-loader（注意版本的搭配）。"stylus": "^0.54.8";stylus-loader": "^3.0.2"
+- 安装方式可以使用 cnpm install stylus stylus-loader --save-dev，也可以使用 vue ui 安装依赖
+- 在.vue 文件中声明，lang="stylus"
+
+### 八、自定义指令和五个钩子函数
 
 #### 语法：在 script 逻辑代码中声明：directives:{'str':{}} ;在 template 中需要绑定指定的标签，增加一个属性：v-str=""
 
