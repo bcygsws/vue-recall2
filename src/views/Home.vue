@@ -14,6 +14,7 @@
     <router-link to="/home/use_new"
       >功能六：使用stylus书写样式，以及jade模板引擎</router-link
     >
+    <router-link to="/home/dir"> 功能七：自定义指令的使用 </router-link>
     <router-view></router-view>
   </div>
 </template>

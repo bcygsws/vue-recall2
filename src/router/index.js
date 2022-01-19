@@ -16,6 +16,7 @@ import Guard from '@/components/route_guard/Guard.vue';
 import NotLogin from '@/components/route_guard/NotLogin.vue';
 import Ind from '@/components/route_guard/Ind.vue';
 import UseNew from '@/components/stylus_jade/UseNew.vue';
+import Dir from '@/components/dir/Dir.vue';
 
 Vue.use(VueRouter);
 
@@ -90,6 +91,10 @@ const routes = [
       {
         path: '/home/use_new',
         component: UseNew,
+      },
+      {
+        path: '/home/dir',
+        component: Dir,
       },
     ],
   },
