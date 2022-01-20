@@ -17,6 +17,7 @@ import NotLogin from '@/components/route_guard/NotLogin.vue';
 import Ind from '@/components/route_guard/Ind.vue';
 import UseNew from '@/components/stylus_jade/UseNew.vue';
 import Dir from '@/components/dir/Dir.vue';
+import VFor from '@/components/key_prop/VFor.vue';
 
 Vue.use(VueRouter);
 
@@ -95,6 +96,10 @@ const routes = [
       {
         path: '/home/dir',
         component: Dir,
+      },
+      {
+        path: '/home/key_prop',
+        component: VFor,
       },
     ],
   },
