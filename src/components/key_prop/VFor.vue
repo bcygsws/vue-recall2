@@ -9,8 +9,8 @@
       v-model="fru"
     />
     <input type="button" value="添加一条数据" @click="addItem" />
-    <ul>
-      <li v-for="item in list" :key="item.id">
+    <ul ref="ul">
+      <li v-for="item in list" :key="item.id" :ref="'myRef' + item.id">
         <input type="checkbox" name="" id="" />
         {{ item.id }}---{{ item.name }}
         <a href="javascript:;" @click="delItem(item.id)">删除</a>
@@ -40,6 +40,16 @@ export default {
   methods: {
     // 添加一条数据
     addItem() {
+      /**
+       *
+       * some方法是至少一个通过测试，并不遍历所有元素。返回值：true ，没有则返回false
+       * every 方法测试一个数组内的所有元素是否都能通过某个指定函数的测试。它返回一个布尔值,true或者false
+       * map 每个元素调用一次测试函数，返回一个新数组。和every的区别在于map callback函数体是一个操作语句(x=>x*2)，而非布尔值
+       * filter,数组的过滤器函数，遍历所有元素。返回值：满足条件的，返回满足条件组成的新数组。没有任何一个满足条件，返回空数组
+       * find,不会遍历所有元素，返回满足条件的第一个元素。所有都不满足，返回undefined
+       * includes 某数组是否包含某个值，会对数组中所有元素进行遍历，有，返回true。没有返回false
+       *
+       */
       // 检查一下新添加的id是否在list对象数据中已经声明过
       // 至少有一个通过了提供的函数测试，则返回true;否则返回false
       console.log(typeof this.id); // string
@@ -58,6 +68,24 @@ export default {
       if (!flag) {
         this.list.push({ id: parseInt(this.id), name: this.fru });
       }
+    },
+    // 删除一条数据
+    delItem(val) {
+      console.log(typeof val);
+      // 拼接好删除li的ref名称
+      let rf = 'myRef' + val;
+      console.log(rf);
+      console.log(this.$refs[rf][0]);
+      // this.$refs[ref]，其中ref为变量。取回的结果是数组；
+      // 结果是一个数组,取索引[0]，才是一个对象，才能成为节点
+      console.log(this.$refs['ul']);
+      this.$refs['ul'].removeChild(this.$refs[rf][0]);
+      // 同时该id的元素，也应该从list数组汇中删除。遍历获取等于val的item的索引值，从数组中删除元素splice方法
+      this.list.forEach((item, index) => {
+        if (val === item.id) {
+          this.list.splice(index, 1);
+        }
+      });
     },
   },
 };
