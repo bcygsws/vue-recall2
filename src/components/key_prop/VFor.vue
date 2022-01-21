@@ -21,6 +21,15 @@
         <a href="javascript:;" @click="delItem(item.id)">删除</a>
       </li>
     </ul>
+    <!-- 正则表达式案例 -->
+    <p class="reg" ref="t1">str245</p>
+    <!-- 点击按钮得到数字 -->
+    <button @click="toggle1">点击按钮，正则表达式作用后的</button>
+    <p class="reg">{{ num1 }}</p>
+    <p class="reg" ref="t2">245str</p>
+    <!-- 点击按钮得到数字 -->
+    <button @click="toggle2">点击按钮，正则表达式作用后的</button>
+    <p class="reg">{{ num2 }}</p>
   </div>
 </template>
 <script>
@@ -52,6 +61,10 @@ export default {
         { name: '桃子', id: 4 },
         { name: '西瓜', id: 5 },
       ],
+      // 正则表达式转换后的num
+      num1: '',
+      // 正则表达式转换后的num1
+      num2: '',
     };
   },
   methods: {
@@ -172,6 +185,35 @@ export default {
         type: 'success',
         message: '当前li由id=' + index + '那条数据渲染得到',
       });
+    },
+    // 正则表达式转换后
+    toggle1() {
+      // str字母在数字前面，不能直接使用parseInt转换
+      // 方法1：借助String的截取子串的方法subStr(start[,end])
+      let str1 = this.$refs.t1.innerText;
+      // this.num1 = parseInt(str1.substring(3));
+      // console.log(this.num1);
+      // 方法2：正则表达式，把非数字的使用空字符串代替
+      // i忽略大小写，g全局匹配，匹配所有项
+      // let numx = str1.replace(/[^0-9]/gi, '');
+      // 若要查找不在列表或范围内的所有字符，请将插入符号 (^)
+      //  放在列表的开头,非0到9的数字构成的字符，替换成空字符，就只剩下数字了
+      let numx = str1.replace(/[^0-9]/gi, '');
+      console.log(numx);
+      this.num1 = numx;
+      console.log(this.num1);
+    },
+    toggle2() {
+      let str2 = this.$refs.t2.innerText;
+      // 数字全部在字符前，可以直接 使用parseInt
+      // this.num2 = parseInt(str2);
+      // 当然使用正则表达式，[^0-9]以数字之外的字符开头的，
+      // 替换成空字符。非数字字符就没有了
+      this.num2 = parseInt(str2.replace(/[^0-9]/gi), '');
+      console.log(this.num2);
+      // 参考链接：https://www.cnblogs.com/xiaochongchong/p/5304909.html
+      // 正则的前瞻后顾https://www.jianshu.com/p/bf1fe73beed2
+      // https://blog.csdn.net/fuhanghang/article/details/96480351
     },
   },
 };
