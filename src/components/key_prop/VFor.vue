@@ -9,9 +9,14 @@
       v-model="fru"
     />
     <input type="button" value="添加一条数据" @click="addItem" />
-    <ul ref="ul">
-      <li v-for="item in list" :key="item.id" :ref="'myRef' + item.id">
-        <input type="checkbox" name="" id="" />
+    <ul ref="ul" @click="showId">
+      <li
+        v-for="item in list"
+        :key="item.id"
+        :ref="'myRef' + item.id"
+        :data-index="item.id"
+      >
+        <input type="checkbox" name="box" id="" @click="selected(item.id)" />
         {{ item.id }}---{{ item.name }}
         <a href="javascript:;" @click="delItem(item.id)">删除</a>
       </li>
@@ -19,6 +24,18 @@
   </div>
 </template>
 <script>
+/**
+ *
+ * 案例功能：模拟每个li的点击事件的事件委托，点击每个li，显示对应的id值
+ * 如果为v-for循环中每个li都绑定一个事件，能实现功能。但是，当v-for渲染的列表长度极度长时，每个li都绑定事件
+ *
+ * 何不将事件都绑定到li的唯一父元素上，这就是事件委托
+ * 事件委托
+ * 1.将事件处理程序代理到父节点上，减少内存占有率
+ * 2.当动态增加子节点时，子节点自动将事件绑定到父节点上
+ *
+ *
+ */
 export default {
   name: 'VFor',
   data() {
@@ -87,6 +104,75 @@ export default {
         }
       });
     },
+    // checkbox选中，可以看着是一次点击事件
+    /**
+     *
+     * checkbox被选中与否的判断,3种方法:
+     * 原生
+     * a. obj.checked  布尔值
+     * jQuery
+     * a. $('li:first').prop('checked', true)
+     * b. $('li:first').is(':checked')
+     *
+     */
+    selected(id) {
+      console.log(typeof id);
+      let li = this.$refs['ul'].children;
+      console.log(li); // 数据集合，打印结果显示，其原型不是Array，而是[object HTMLCollection]
+      // Array.from(li)将其转化成正常数组
+      console.log(Array.from(li));
+      // 根据id值，算出这个li在数组中的索引位置，找到即可结束，使用some测试方法
+      /**
+       * @ substring(startIndex[,endIndex])
+       * 返回一个从start到end的子字符串，区间前闭后开[start,end)
+       * end不声明，则表示截取到末尾，start和end其中有一个为负数或者NaN,则都将其视为0
+       * start和end顺序可以自己解析，substring（3,1）会解析成substring（1,3）
+       *
+       * 从myRef3中获取数组3
+       * 方法：
+       * 1.parseInt(item.getAttribute("ref").substring(5))
+       * parseInt 只能从形如：4str提取到数字4。如果字符串是str4,使用parseInt是没有作用的
+       *
+       * 2.正则表达式匹配
+       *
+       *
+       */
+      // 报错：Error in v-on handler: "TypeError: li.some is not a function"
+      // 解决方案：使用Array的from方法，将HTML Collection转换成正常的数组
+      Array.from(li).some((item, index) => {
+        console.log(item);
+        // data- 系列自定义属性值，可以使用obj.dataset.名称获取，也可以通过通用方式getAttribute('属性名')来获取
+        console.log(item.getAttribute('data-index'));
+        // console.log(item.dataset.index);
+        if (id === parseInt(item.dataset.index)) {
+          li[index].checked = !li[index].checked;
+          if (li[index].checked) {
+            alert('选中了li' + index);
+          } else {
+            alert('取消选中了' + index);
+          }
+        }
+      });
+    },
+    showId(event) {
+      // event.target引起触发事件的那个对象
+      // event.currentTarget 当事件执行时，停留的那个对象；当前对象，ul（li委托事件给他）
+      console.log(event);
+      console.log(event.target); // li
+      console.log(event.currentTarget); // ul
+      console.log(event.target.dataset.index);
+      // 使用nodeName区分掉委托的元素ul,和li
+      if (event.target.nodeName.toLowerCase() === 'li') {
+        this.doSomething(event.target.dataset.index);
+      }
+    },
+    // doSomething函数，点击某个li显示当前li的key值（item.id值）
+    doSomething(index) {
+      this.$message({
+        type: 'success',
+        message: '当前li由id=' + index + '那条数据渲染得到',
+      });
+    },
   },
 };
 </script>
@@ -95,6 +181,8 @@ export default {
   ul {
     li {
       list-style-type: none;
+      background-color: hotpink;
+      margin-bottom: 20px;
       a {
         margin-left: 30px;
       }
