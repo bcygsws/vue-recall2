@@ -212,3 +212,4 @@ inc(state,props){ // 方法名必须是 inc }}
   <input id="chk2" type="checkbox" checked="checked" />是否可见。\$("#chk1").prop("checked") == false
   \$("#chk2").prop("checked") == true；强行使用 attr,得到错误的结果；\$("#chk1").attr("checked") == undefined
   \$("#chk2").attr("checked") == "checked"
+  ### 十、动态绑定 class 的 6 种方式

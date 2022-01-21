@@ -18,6 +18,7 @@ import Ind from '@/components/route_guard/Ind.vue';
 import UseNew from '@/components/stylus_jade/UseNew.vue';
 import Dir from '@/components/dir/Dir.vue';
 import VFor from '@/components/key_prop/VFor.vue';
+import DyClass from '@/components/dynamic_class/DyClass.vue';
 
 Vue.use(VueRouter);
 
@@ -100,6 +101,10 @@ const routes = [
       {
         path: '/home/key_prop',
         component: VFor,
+      },
+      {
+        path: '/home/dy_class',
+        component: DyClass,
       },
     ],
   },
