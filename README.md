@@ -1,9 +1,3 @@
----
-tags: []
-created: 2022-01-14T19:12:32.817Z
-modified: 2022-01-14T19:14:58.883Z
----
-
 # vue-recall2
 
 ## Project setup
@@ -183,11 +177,38 @@ inc(state,props){ // 方法名必须是 inc }}
 
 - 最好在终端添加 vue add style-resources-loader,可以实现在 vue.config.js 自动配置
   pluginOptions: { 'style-resources-loader': { preProcessor: 'stylus', patterns: [path.resolve(__dirname, './src/assets/style/index.styl')], // 默认 patterns 中是空的，路径自己手动配置 }, },
+
 ### 八、自定义指令和五个钩子函数
+
 #### 语法：在 script 逻辑代码中声明：directives:{'str':{}} ;在 template 中需要绑定指定的标签，增加一个属性：v-str=""
+
 #### 自定义指令的五个钩子
+
 - bind:表示指令第一次绑定到元素时调用；这个钩子也执行一次
 - inserted:绑定指令的标签被插入到父元素时调用（仅保证父节点存在，但不一定被插入文档中）。这个钩子只执行一次
 - update:所有虚拟节点 VNode 更新时调用，更新发生在所有子 VNode 更新前。value 值可能变化，也可能没变化；这个钩子可以执行多次
 - componentUpdated:所有 VNode 和子 VNode 更新后调用
 - unbind：指令解绑时调用，该钩子只执行一次
+
+### 九、事件委托与获取属性值的方法
+
+#### 事件委托
+
+- 背景：如在 v-for 循环中渲染列表时，需要为每个列表绑定一个事件。但是，若列表数组的长度值很大。这就使得创建的事件的数量剧增。解决方案：使用委托，将每个 li 上绑定的事件委托给其父元素
+- 子节点事件处理程序代理给父节点，可以减少内存占有率
+- 当动态增加子节点时，子节点会将事件自动绑定到父节点上
+
+#### 属性值方法的获取
+
+##### 原生环境下
+
+- getAttribute('属性名')，一些特殊的，比如 data-index 属性，可以使用原生 obj.dataset.index 获取；clss 属性值，可以使用原生
+  obj.className 获取
+
+##### jQuery 环境下
+
+- \$(选择器).attr() 使用场景：队友 html 的自定义属性，处理时使用 attr
+- \$(选择器).prop() 使用场景：对于 html 的固有属性，处理时使用 prop 方法。如果固有属性强行使用 attr 方法获取，可能得到 undefined 或非期望值。[固有属性强行属性 attr 方法，未得到期望值的案例](https://www.cnblogs.com/Showshare/p/different-between-attr-and-prop.html)例如：<input id="chk1" type="checkbox" />是否可见
+  <input id="chk2" type="checkbox" checked="checked" />是否可见。\$("#chk1").prop("checked") == false
+  \$("#chk2").prop("checked") == true；强行使用 attr,得到错误的结果；\$("#chk1").attr("checked") == undefined
+  \$("#chk2").attr("checked") == "checked"
