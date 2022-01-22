@@ -16,9 +16,6 @@
     >
     <router-link to="/home/dir"> 功能七：自定义指令的使用 </router-link>
     <router-link to="/home/key_prop">功能八：v-for渲染列表相关</router-link>
-    <router-link to="/home/dy_class"
-      >功能十：动态绑定class的6种方式</router-link
-    >
     <router-view></router-view>
   </div>
 </template>
