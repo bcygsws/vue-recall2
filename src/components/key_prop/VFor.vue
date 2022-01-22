@@ -214,6 +214,44 @@ export default {
       // 参考链接：https://www.cnblogs.com/xiaochongchong/p/5304909.html
       // 正则的前瞻后顾https://www.jianshu.com/p/bf1fe73beed2
       // https://blog.csdn.net/fuhanghang/article/details/96480351
+      /**
+       * @ js提取数字的方式：
+       * 1.parseInt或parseFloat,有局限性，字符串必须以连续的数字开始
+       * 2.普遍使用的方式，正则表达式：[^列表项1，列表项2] 表示不是列表中的任何一个
+       * a. str.replace(/[^0-9]/gi,"")
+       * b. reg=/\d+(.\d+)?/gi,str.match(reg)  案例如下：
+       * c. reg.exec(str)方法和str.match(reg)方法的区别和联系：
+       * 区别主要在于全局匹配时：
+       * str.match全局匹配的结果，是一个数组，所有结果都是数组中
+       * 的一个元素，而且一次性输出。
+       * 然而，reg.exec(str)每次都只匹配一个结果，从前到后，直至所有结果都匹配完了，
+       * 输出null
+       * 
+       * 参考链接：
+       * 正则表达式中的exec和match方法的区别 https://www.cnblogs.com/heshan1992/p/6259171.html
+       * 正则表达式精讲：https://www.cnblogs.com/libin-1/p/7004546.html
+       *
+       *
+       */
+      // let menu = '玉米3.65元/斤，白菜6.4元/斤，胡萝卜5元/斤';
+      // let res = menu.match(/\d+(.\d+)?/g);
+      // console.log(res); // (3) ['3.65', '6.4', '5']
+      // let res1 = menu.match(/\d+(.\d+)?/);
+      // console.log(res1); // 不带全局g，只会匹配第一个
+      // // 打印结果：['3.65', '.65', index: 2, input: '玉米3.65元/斤，白菜6.4元/斤，胡萝卜5元/斤', groups: undefined]
+      let menu1 = '玉米3.65元/斤，白菜6.4元/斤，胡萝卜5元/斤';
+      const reg = /\d+(.\d+)?/gi; // ?表示0或者一次，0时匹配整数
+      let res2 = reg.exec(menu1);
+      console.log(res2); // exec方法全局，也只匹配到了第一个，类似match非全局的情况
+      // 打印结果：(2) ['3.65', '.65', index: 2, input: '玉米3.65元/斤，白菜6.4元/斤，胡萝卜5元/斤', groups: undefined]
+      console.log(reg.exec(menu1)); // (2) ['6.4', '.4', index: 12, input: '玉米3.65元/斤，白菜6.4元/斤，胡萝卜5元/斤', groups: undefined]
+      console.log(reg.exec(menu1)); // ['5', undefined, index: 22, input: '玉米3.65元/斤，白菜6.4元/斤，胡萝卜5元/斤', groups: undefined]
+      console.log(reg.exec(menu1)); // null
+      const reg1 = /\d+(.\d+)?/;
+      console.log(reg1.exec(menu1));
+      console.log(reg1.exec(menu1));
+      console.log(reg1.exec(menu1));
+      console.log(reg1.exec(menu1));
     },
   },
 };
