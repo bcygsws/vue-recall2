@@ -1,9 +1,16 @@
 <template>
   <div class="reg_container">
     <h3>正则表达式演示组件</h3>
-    <h4>正则表达式前瞻后顾</h4>
-    <button @click="startMatching">开始匹配前瞻或负前瞻</button>
-    <button @click="startBehind">开始匹配后顾或者负后顾</button>
+    <h5>一、正则表达式的前瞻和后顾</h5>
+    <div class="ahead">
+      <button @click="startMatching">开始匹配前瞻或负前瞻</button>
+      <button @click="startBehind">开始匹配后顾或者负后顾</button>
+    </div>
+    <h5>二、正则表达式的exec和match的区别与联系</h5>
+    <div class="exec">
+      <button @click="matchHandle">match方法</button>
+      <button @click="execHandle">exec方法</button>
+    </div>
   </div>
 </template>
 <script>
@@ -64,13 +71,35 @@ export default {
       let str4 = '456abc';
       console.log(str4.match(reg)); // ['abc']
     },
+    matchHandle() {},
+    execHandle() {
+      // 说到底，非捕获分组功能和()一样的，不同的是，(?: )匹配的子配项不会返回在数组中了
+      // 参考链接：https://lihefei.blog.csdn.net/article/details/53022253?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_default&utm_relevant_index=1
+      // 多了个(?:) 剔除了.41646ass.sss'
+      // let a = /^([^.]*)(?:\.(.+))$/;
+      // 第一个分组中捕获到'click'，第二个分组中捕获到41646ass.sss（?: 的限制，.41646ass.sss不会显示
+      let a = /^([^.]*)(\.(.+))$/; // // ['click.41646ass.sss', 'click', '.41646ass.sss', '41646ass.sss', index: 0, input: 'click.41646ass.sss', groups: undefined]
+      let str = 'click.41646ass.sss';
+      let b = a.exec(str);
+      console.log(b);
+      // (3) ['click.41646ass.sss', 'click', '41646ass.sss', index: 0, input: 'click.41646ass.sss', groups: undefined]
+    },
   },
 };
 </script>
 <style lang="less" scoped>
 .reg_container {
-  button {
-    margin-right: 50px;
+  .ahead {
+    background-color: orange;
+    button {
+      margin-right: 50px;
+    }
+  }
+  .exec {
+    background-color: greenyellow;
+    button {
+      margin-right: 50px;
+    }
   }
 }
 </style>

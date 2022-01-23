@@ -61,6 +61,7 @@ export default {
     };
     let validPass = (rule, value, callback) => {
       // 密码必须为:1.数字和字母的组合，既不能是纯数字也不能是纯字母2.长度为3到16位
+      // 总共就三种情况：纯数字，纯字母，数字和字母混合。前两种通过负前瞻作为条件排除掉了
       // ?!表示负前瞻，以为前面能是，https://blog.csdn.net/csm0912/article/details/81206848
       const regExp = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9a-zA-Z]{3,16}$/;
       // let regExp = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{3,16}$/;
