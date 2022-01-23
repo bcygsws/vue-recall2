@@ -30,6 +30,9 @@
     <!-- 点击按钮得到数字 -->
     <button @click="toggle2">点击按钮，正则表达式作用后的</button>
     <p class="reg">{{ num2 }}</p>
+    <!-- 进入正则表达式演示组件 -->
+    <router-link to="/home/key_prop/reg">正则表达式演示案例</router-link>
+    <router-view></router-view>
   </div>
 </template>
 <script>
@@ -226,7 +229,7 @@ export default {
        * 的一个元素，而且一次性输出。
        * 然而，reg.exec(str)每次都只匹配一个结果，从前到后，直至所有结果都匹配完了，
        * 输出null
-       * 
+       *
        * 参考链接：
        * 正则表达式中的exec和match方法的区别 https://www.cnblogs.com/heshan1992/p/6259171.html
        * 正则表达式精讲：https://www.cnblogs.com/libin-1/p/7004546.html

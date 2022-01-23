@@ -18,6 +18,7 @@ import Ind from '@/components/route_guard/Ind.vue';
 import UseNew from '@/components/stylus_jade/UseNew.vue';
 import Dir from '@/components/dir/Dir.vue';
 import VFor from '@/components/key_prop/VFor.vue';
+import Reg from '@/components/key_prop/Reg.vue';
 
 Vue.use(VueRouter);
 
@@ -100,6 +101,13 @@ const routes = [
       {
         path: '/home/key_prop',
         component: VFor,
+        // 正则表达式
+        children: [
+          {
+            path: '/home/key_prop/reg',
+            component: Reg,
+          },
+        ],
       },
     ],
   },
