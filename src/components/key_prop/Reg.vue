@@ -11,6 +11,10 @@
       <button @click="matchHandle">match方法</button>
       <button @click="execHandle">exec方法</button>
     </div>
+    <h5>三、正则表达式综合案例</h5>
+    <div class="total">
+      <button @click="total">正则表达式综合案例</button>
+    </div>
   </div>
 </template>
 <script>
@@ -83,6 +87,61 @@ export default {
       let b = a.exec(str);
       console.log(b);
       // (3) ['click.41646ass.sss', 'click', '41646ass.sss', index: 0, input: 'click.41646ass.sss', groups: undefined]
+    },
+    // 正则表达式综合
+    // 参考文档：https://www.cnblogs.com/libin-1/p/7004546.html
+    total() {
+      // 一、正则表达式声明的两种方式
+      // a.字面量方式，推荐
+      // b.实例化RegExp对象
+      // RegExp(arg1,arg2)
+      // arg1:匹配的字符串，需要用到转义符号 "\\d{2,3}" 匹配一个长度为2到3位的数字
+      // arg2："gim" g全局匹配，i忽略大小写，m多行匹配
+      let reg = new RegExp('\\d+$', 'g');
+      console.log(reg.exec('a456')); // ['456',]
+      // 如果前面加一个 ^，则表示要以数字开始，数字结束
+      // let reg = new RegExp('^\\d+$', 'g');
+      // console.log(reg.exec('34abc56')); // null
+      // 二、search方法用于检索字符串中指定字符串的第一个索引位置，或检索与正则表达式匹配的字符串
+      // 语法：str.search(regExp) 对全局g不起作用，但是对i其作用，忽略大小写
+      // 返回值是：子串在字符串中的首个出现位置的索引，找不到或匹配不到，返回-1
+      let str = 'hello world abdhello world';
+      console.log(str.search(/hello/)); // 0
+      console.log(str.search(/hello/g)); // 0
+      console.log(str.search(/Hello/)); // -1
+      //  对i起作用，忽略大小写来匹配
+      console.log(str.search(/HELLO/i)); // 0
+      // 三、match用于检索字符串中指定的值，匹配到一个或者多个。类似indexOf()或者lastIndexOf()
+      // 语法：str.match(reg)或者str.match(子串str1)
+      let str1 = 'abchello';
+      console.log(str1.match('hel')); // ['hel', index: 3, input: 'abchello', groups: undefined]
+      console.log(str1.match(/hel/)); // ['hel', index: 3, input: 'abchello', groups: undefined]
+      let str2 = '2st4trert6';
+      console.log(str2.match(/\d+/g)); // ['2', '4', '6']
+      // 四、replace方法 用后面的字符替换前面的字符（或者正则表达式匹配的字符）
+      let name1 = 'longen , yunyi';
+      let res = name1.replace(/(\w+)\s*,\s*(\w+)/, '$2 $1');
+      console.log(res); //  yunyi longen
+      // var name = 'longen,yunxi';
+      //  /(\w+)\s*,\s*(\w+)/能匹配到整个字符串，所以replace方法作用后，整个字符串变成了$2 $1的形式，原来字符中的逗号，就不见了
+      // var s4 = name.replace(/(\w+)\s*,\s*(\w+)/, '$2 $1');
+      // console.log(s4); // "yunxi longen"
+      let str$ = 'hello,I am a Chinese people';
+      let reg1 = /am/g;
+      if (reg1.test(str$)) {
+        // 只做了解，RegExp的这些属性都已经弃用了
+        // 1. (RegExp['$&']返回正则表达式已经匹配的字符，已经弃用了
+        // console.log(RegExp['$&']);// am
+        // 2. RegExp["$'"]返回被搜索的字符串从最后一个匹配位置到字符串结束的字符串
+        // console.log(RegExp["$'"]);// a chinese people
+        // 3. RegExp["$`"] 返回的是从字符串开始，到最后匹配位置之前的字符
+        // console.log(RegExp['$`']);
+        // 4. RegExp["$+"]返回任何字符串搜索过程中，最后括号的子匹配
+        // console.log(RegExp['$+']);
+        //返回任何正则表达式搜索过程中的最后匹配的字符。
+        // console.log(RegExp['$_']); // hello I am a chinese people
+        console.log(reg1.exec(str$));
+      }
     },
   },
 };
