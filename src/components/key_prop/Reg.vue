@@ -142,6 +142,15 @@ export default {
         // console.log(RegExp['$_']); // hello I am a chinese people
         console.log(reg1.exec(str$));
       }
+      // 五、  . 可以匹配任意的单个字符，换行符除外
+      let namex = 'adsffgawf23434';
+      let Reg = /.+/;
+      console.log(Reg.exec(namex)); // ['adsffgawf23434', index: 0, input: 'adsffgawf23434', groups: undefined]
+      // 六、贪婪模式和非贪婪模式
+      // 贪婪模式是尽可能多的匹配
+      // 非贪婪模式是尽可能少的匹配，在量词后面加?,就是非贪婪模式
+      // 注意点：单个?表示{0,1}，量词后面+?(本身也是一个量词)才是非贪婪模式
+      
     },
   },
 };
@@ -159,6 +168,9 @@ export default {
     button {
       margin-right: 50px;
     }
+  }
+  .total {
+    background-color: hotpink;
   }
 }
 </style>
