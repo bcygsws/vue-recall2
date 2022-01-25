@@ -143,6 +143,7 @@ export default {
         console.log(reg1.exec(str$));
       }
       // 五、  . 可以匹配任意的单个字符，换行符除外
+      // 注意要输出的.,一定要做 \. 。没有转义符\的.才是单个字符通配符
       let namex = 'adsffgawf23434';
       let Reg = /.+/;
       console.log(Reg.exec(namex)); // ['adsffgawf23434', index: 0, input: 'adsffgawf23434', groups: undefined]
