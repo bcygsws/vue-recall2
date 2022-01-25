@@ -147,10 +147,19 @@ export default {
       let Reg = /.+/;
       console.log(Reg.exec(namex)); // ['adsffgawf23434', index: 0, input: 'adsffgawf23434', groups: undefined]
       // 六、贪婪模式和非贪婪模式
-      // 贪婪模式是尽可能多的匹配
-      // 非贪婪模式是尽可能少的匹配，在量词后面加?,就是非贪婪模式
+      // a.贪婪模式是尽可能多的匹配,贪婪模式的量词：都是常规的? + * {m,n} {m,}
+      // b.非贪婪模式是尽可能少的匹配，在量词后面加?,就是非贪婪模式
+      // 非贪婪模式的量词：都是常规的? + * {m,n} {m,}后面再加一个?
       // 注意点：单个?表示{0,1}，量词后面+?(本身也是一个量词)才是非贪婪模式
-      
+      let html =
+        '<p>这是一点文本</p>text2<p>text2ing</p>text2ing<p>一身转战三千里，一剑曾当百万师</p>';
+      // 贪婪模式正则，常规情况下，表达式就是这么写的，单字符通配符（换行符除外），量词是*
+      let _reg = /<p>.*<\/p>text2/;
+      // 非贪婪模式正则
+      // let _reg = /<p>.*?<\/p>text2/;
+      console.log(html.match(_reg));
+      // 贪婪模式打印：['<p>这是一点文本</p>text2<p>text2ing</p>text2', index: 0, input: '<p>这是一点文本</p>text2<p>text2ing</p>text2ing<p>一身转战三千里，一剑曾当百万师</p>', groups: undefined]
+      // 非贪婪模式打印：['<p>这是一点文本</p>text2', index: 0, input: '<p>这是一点文本</p>text2<p>text2ing</p>text2ing<p>一身转战三千里，一剑曾当百万师</p>', groups: undefined]
     },
   },
 };
