@@ -129,13 +129,22 @@ export default {
       // this.$refs[ref]，其中ref为变量。取回的结果是数组；
       // 结果是一个数组,取索引[0]，才是一个对象，才能成为节点
       console.log(this.$refs['ul']);
+      // vue不提倡操作DOM,操作DOM需要很高的性能消耗，这里只是举例
       this.$refs['ul'].removeChild(this.$refs[rf][0]);
       // 同时该id的元素，也应该从list数组汇中删除。遍历获取等于val的item的索引值，从数组中删除元素splice方法
-      this.list.forEach((item, index) => {
+      // this.list.forEach((item, index) => {
+      //   if (val === item.id) {
+      //     this.list.splice(index, 1);
+      //   }
+      // });
+      // find方法用于找到数组中第一个满足条件的元素，找到返回那个元素，找不到返回undefined
+      // let res;
+      this.list.find((item, index) => {
         if (val === item.id) {
           this.list.splice(index, 1);
         }
       });
+      // console.log(res);
     },
     // checkbox选中，可以看着是一次点击事件
     /**
@@ -146,6 +155,7 @@ export default {
      * jQuery
      * a. $('li:first').prop('checked', true)
      * b. $('li:first').is(':checked')
+     * $().is()方法用于查看，某个元素是否匹配另外一个选择器
      *
      */
     selected(id) {
