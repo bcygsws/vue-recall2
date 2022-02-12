@@ -239,6 +239,9 @@ export default {
       // this.num2 = parseInt(str2);
       // 当然使用正则表达式，[^0-9]以数字之外的字符开头的，
       // 替换成空字符。非数字字符就没有了
+      // 测试：正则表达式中/[^0-9]/gi匹配的结果
+      let reg_test = /[^0-9]/gi;
+      console.log('a4f5b7'.match(reg_test));// (3) ['a', 'f', 'b']
       this.num2 = parseInt(str2.replace(/[^0-9]/gi), '');
       console.log(this.num2);
       // 参考链接：https://www.cnblogs.com/xiaochongchong/p/5304909.html
@@ -256,6 +259,7 @@ export default {
        * 的一个元素，而且一次性输出。
        * 然而，reg.exec(str)每次都只匹配一个结果，从前到后，直至所有结果都匹配完了，
        * 输出null
+       * 
        *
        * 参考链接：
        * 正则表达式中的exec和match方法的区别 https://www.cnblogs.com/heshan1992/p/6259171.html
