@@ -86,20 +86,37 @@ export default {
       // 检查一下新添加的id是否在list对象数据中已经声明过
       // 至少有一个通过了提供的函数测试，则返回true;否则返回false
       console.log(typeof this.id); // string
-      let flag = this.list.some((item) => {
-        if (item.id === parseInt(this.id)) {
-          // 你添加的数据id已经存在，请重新输入id数值
-          this.$message({
-            type: 'warn',
-            message: '你添加的id已经存在，请重新输入id值',
-          });
-          return true;
+      // parseInt将字符串转化成了number类型，无论字符串中是什么？比如输入了'addfa',typeof检查其仍然为number类型
+      console.log(typeof parseInt(this.id));
+      let reg = /^\d+$/g;
+      // console.log(reg.test(this.id));
+      let flag = true;
+      //  判断输入的是否为纯数字
+      if (reg.test(this.id)) {
+        // 检查新输入的id是否已存在的id重复
+        flag = this.list.some((item) => {
+          if (item.id === parseInt(this.id)) {
+            // 你添加的数据id已经存在，请重新输入id数值
+            this.$message({
+              type: 'warn',
+              message: '你添加的id已经存在，请重新输入id值',
+            });
+            this.id = '';
+            return true;
+          }
+        });
+        // id值为重复，往list数组的末尾追加一条数据
+        // flag为true, 表示输入的id有和数组list中某个元素的id重复;期望：不重复，没有任何一个元素通过测试；flag=false
+        if (!flag) {
+          this.list.push({ id: parseInt(this.id), name: this.fru });
         }
-      });
-      // id值为重复，往list数组的末尾追加一条数据
-      // flag为true, 表示输入的id有和数组list中某个元素的id重复;期望：不重复，没有任何一个元素通过测试；flag=false
-      if (!flag) {
-        this.list.push({ id: parseInt(this.id), name: this.fru });
+      } else {
+        // 你输入的id非数字提醒
+        this.$message({
+          type: 'warn',
+          message: '你添加的id不是数字，请重新输入id',
+        });
+        this.id = '';
       }
     },
     // 删除一条数据
@@ -112,13 +129,22 @@ export default {
       // this.$refs[ref]，其中ref为变量。取回的结果是数组；
       // 结果是一个数组,取索引[0]，才是一个对象，才能成为节点
       console.log(this.$refs['ul']);
+      // vue不提倡操作DOM,操作DOM需要很高的性能消耗，这里只是举例
       this.$refs['ul'].removeChild(this.$refs[rf][0]);
       // 同时该id的元素，也应该从list数组汇中删除。遍历获取等于val的item的索引值，从数组中删除元素splice方法
-      this.list.forEach((item, index) => {
+      // this.list.forEach((item, index) => {
+      //   if (val === item.id) {
+      //     this.list.splice(index, 1);
+      //   }
+      // });
+      // find方法用于找到数组中第一个满足条件的元素，找到返回那个元素，找不到返回undefined
+      // let res;
+      this.list.find((item, index) => {
         if (val === item.id) {
           this.list.splice(index, 1);
         }
       });
+      // console.log(res);
     },
     // checkbox选中，可以看着是一次点击事件
     /**
@@ -129,6 +155,7 @@ export default {
      * jQuery
      * a. $('li:first').prop('checked', true)
      * b. $('li:first').is(':checked')
+     * $().is()方法用于查看，某个元素是否匹配另外一个选择器
      *
      */
     selected(id) {
@@ -212,6 +239,9 @@ export default {
       // this.num2 = parseInt(str2);
       // 当然使用正则表达式，[^0-9]以数字之外的字符开头的，
       // 替换成空字符。非数字字符就没有了
+      // 测试：正则表达式中/[^0-9]/gi匹配的结果
+      let reg_test = /[^0-9]/gi;
+      console.log('a4f5b7'.match(reg_test));// (3) ['a', 'f', 'b']
       this.num2 = parseInt(str2.replace(/[^0-9]/gi), '');
       console.log(this.num2);
       // 参考链接：https://www.cnblogs.com/xiaochongchong/p/5304909.html
@@ -229,6 +259,7 @@ export default {
        * 的一个元素，而且一次性输出。
        * 然而，reg.exec(str)每次都只匹配一个结果，从前到后，直至所有结果都匹配完了，
        * 输出null
+       * 
        *
        * 参考链接：
        * 正则表达式中的exec和match方法的区别 https://www.cnblogs.com/heshan1992/p/6259171.html
