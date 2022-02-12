@@ -86,20 +86,37 @@ export default {
       // 检查一下新添加的id是否在list对象数据中已经声明过
       // 至少有一个通过了提供的函数测试，则返回true;否则返回false
       console.log(typeof this.id); // string
-      let flag = this.list.some((item) => {
-        if (item.id === parseInt(this.id)) {
-          // 你添加的数据id已经存在，请重新输入id数值
-          this.$message({
-            type: 'warn',
-            message: '你添加的id已经存在，请重新输入id值',
-          });
-          return true;
+      // parseInt将字符串转化成了number类型，无论字符串中是什么？比如输入了'addfa',typeof检查其仍然为number类型
+      console.log(typeof parseInt(this.id));
+      let reg = /^\d+$/g;
+      // console.log(reg.test(this.id));
+      let flag = true;
+      //  判断输入的是否为纯数字
+      if (reg.test(this.id)) {
+        // 检查新输入的id是否已存在的id重复
+        flag = this.list.some((item) => {
+          if (item.id === parseInt(this.id)) {
+            // 你添加的数据id已经存在，请重新输入id数值
+            this.$message({
+              type: 'warn',
+              message: '你添加的id已经存在，请重新输入id值',
+            });
+            this.id = '';
+            return true;
+          }
+        });
+        // id值为重复，往list数组的末尾追加一条数据
+        // flag为true, 表示输入的id有和数组list中某个元素的id重复;期望：不重复，没有任何一个元素通过测试；flag=false
+        if (!flag) {
+          this.list.push({ id: parseInt(this.id), name: this.fru });
         }
-      });
-      // id值为重复，往list数组的末尾追加一条数据
-      // flag为true, 表示输入的id有和数组list中某个元素的id重复;期望：不重复，没有任何一个元素通过测试；flag=false
-      if (!flag) {
-        this.list.push({ id: parseInt(this.id), name: this.fru });
+      } else {
+        // 你输入的id非数字提醒
+        this.$message({
+          type: 'warn',
+          message: '你添加的id不是数字，请重新输入id',
+        });
+        this.id = '';
       }
     },
     // 删除一条数据
