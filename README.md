@@ -215,4 +215,13 @@ inc(state,props){ // 方法名必须是 inc }}
 
 ### 十、动态绑定 class 的 6 种方式
 
+### 十一、this.$nextTick(callback)的两个使用场景
+
+#### 在 vue 生命周期的 created 阶段，操作 DOM，要是用 this.$nextTick(callback)
+
+#### 在数据变化后要执行某个操作，这个操作要使用随着数据变化的 DOM 结构时，要使用 nextTick
+
+- 官方解析：vue 异步更新 dom
+  当数据变化时，组件不会立即渲染。当刷新队列时，组件在事件循环清空时的下一个 tick 更新
+
 #### 结合案例理解（\/dynamic_class）
