@@ -115,6 +115,7 @@ export default {
         this.$message({
           type: 'warn',
           message: '你添加的id不是数字，请重新输入id',
+          showClose: true, // 可选属性，意为：是否显示关闭按钮
         });
         this.id = '';
       }
@@ -139,6 +140,14 @@ export default {
       // });
       // find方法用于找到数组中第一个满足条件的元素，找到返回那个元素，找不到返回undefined
       // let res;
+      /**
+       * JavaScript操作DOM详解见文档：https://www.cnblogs.com/dalaoban/p/9498218.html
+       * 重磅总结-插入子节点的方法
+       * a.父节点.appendChild(新创建的子节点)
+       * b.父节点.insertBefore(新创建的子节点，参考节点)，注意：如果参考节点为null.
+       * 那么将在父节点的最后插入一个子节点
+       *
+       */
       this.list.find((item, index) => {
         if (val === item.id) {
           this.list.splice(index, 1);
@@ -241,7 +250,7 @@ export default {
       // 替换成空字符。非数字字符就没有了
       // 测试：正则表达式中/[^0-9]/gi匹配的结果
       let reg_test = /[^0-9]/gi;
-      console.log('a4f5b7'.match(reg_test));// (3) ['a', 'f', 'b']
+      console.log('a4f5b7'.match(reg_test)); // (3) ['a', 'f', 'b']
       this.num2 = parseInt(str2.replace(/[^0-9]/gi), '');
       console.log(this.num2);
       // 参考链接：https://www.cnblogs.com/xiaochongchong/p/5304909.html
@@ -259,7 +268,7 @@ export default {
        * 的一个元素，而且一次性输出。
        * 然而，reg.exec(str)每次都只匹配一个结果，从前到后，直至所有结果都匹配完了，
        * 输出null
-       * 
+       *
        *
        * 参考链接：
        * 正则表达式中的exec和match方法的区别 https://www.cnblogs.com/heshan1992/p/6259171.html
