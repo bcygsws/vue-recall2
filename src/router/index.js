@@ -20,6 +20,7 @@ import Dir from '@/components/dir/Dir.vue';
 import VFor from '@/components/key_prop/VFor.vue';
 import DyClass from '@/components/dynamic_class/DyClass.vue';
 import Reg from '@/components/key_prop/Reg.vue';
+import NextTick from '@/components/tick/NextTick.vue';
 
 Vue.use(VueRouter);
 
@@ -113,6 +114,10 @@ const routes = [
       {
         path: '/home/dy_class',
         component: DyClass,
+      },
+      {
+        path: '/home/tick',
+        component: NextTick,
       },
     ],
   },
