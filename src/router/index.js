@@ -17,10 +17,7 @@ import NotLogin from '@/components/route_guard/NotLogin.vue';
 import Ind from '@/components/route_guard/Ind.vue';
 import UseNew from '@/components/stylus_jade/UseNew.vue';
 import Dir from '@/components/dir/Dir.vue';
-import VFor from '@/components/key_prop/VFor.vue';
-import DyClass from '@/components/dynamic_class/DyClass.vue';
-import Reg from '@/components/key_prop/Reg.vue';
-import NextTick from '@/components/tick/NextTick.vue';
+import Dir1 from '@/components/dir/Dir1.vue';
 
 Vue.use(VueRouter);
 
@@ -99,6 +96,13 @@ const routes = [
       {
         path: '/home/dir',
         component: Dir,
+        children: [
+          {
+            path: '/home/dir/dy_dir',
+            name: 'Dir1',
+            component: Dir1,
+          },
+        ],
       },
       {
         path: '/home/key_prop',
