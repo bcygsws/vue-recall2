@@ -221,6 +221,7 @@ inc(state,props){ // 方法名必须是 inc }}
 
 #### 在数据变化后要执行某个操作，这个操作要使用随着数据变化的 DOM 结构时，要使用 nextTick
 
+- 参考文档：[nextTick 详解](https://www.cnblogs.com/qhantime/p/11379826.html)
 - 官方解析：vue 异步更新 dom
   当数据变化时，组件不会立即渲染。当刷新队列时，组件在事件循环清空时的下一个 tick 更新
 
