@@ -18,6 +18,10 @@ import Ind from '@/components/route_guard/Ind.vue';
 import UseNew from '@/components/stylus_jade/UseNew.vue';
 import Dir from '@/components/dir/Dir.vue';
 import Dir1 from '@/components/dir/Dir1.vue';
+import VFor from '@/components/key_prop/VFor.vue';
+import Reg from '@/components/key_prop/Reg.vue';
+import DyClass from '@/components/dynamic_class/DyClass.vue';
+import NextTick from '@/components/tick/NextTick.vue';
 
 Vue.use(VueRouter);
 
