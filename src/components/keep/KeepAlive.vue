@@ -16,7 +16,7 @@
       <router-view v-if="$route.meta.isAlive"></router-view>
     </keep-alive>
     <!-- 不需要缓存的视图组件 -->
-    <router-view v-if="$route.meta.isAlive"></router-view>
+    <router-view v-if="!$route.meta.isAlive"></router-view>
   </div>
 </template>
 <script>
@@ -47,7 +47,7 @@ import Comc from './Comc.vue';
  * 2.两个钩子的注意点：https://www.jianshu.com/p/42429f4d8f9e
  * 3.第一次触发时，执行顺序是created mounted activated,退出时触发deactivated。再次触发时，只会执行activated钩子了
  * keep-alive拓展理解，参考文档：https://segmentfault.com/a/1190000015727279
- *
+ * 
  *
  * 面试官说：keep-alive https://mp.weixin.qq.com/s?__biz=MzU1OTgxNDQ1Nw==&mid=2247484446&idx=1&sn=80d5a4a15c88f4d6fd878095101601e8&chksm=fc10c648cb674f5efbdad8222de6cd607870e44d5870480a229bfeefd6a78c3ba3b9d372ab37&scene=21#wechat_redirect
  *
