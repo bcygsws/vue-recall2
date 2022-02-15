@@ -148,7 +148,18 @@ const routes = [
 const router = new VueRouter({
   routes,
   // 当前选中的路由；不声明linkExactActiveClass属性，这个值默认为："router-link-exact-active".
-  linkExactActiveClass: 'myClass',
+  // linkExactActiveClass: 'myClass',
+  /**
+   *
+   * @ 一、激活的路由，使用linkActiveClass来全局声明。linkActiveClass和linkExactActiveClass这两个属性最好不要同时声明，
+   * 同时声明时，只能看到linkActiveClass重命名的类名
+   *
+   * 二、个别声明，与linkActiveClass功能类似，可以在router-link标签中直接声明。但是，这种为router-link单独添加active-class
+   * 属性的方式，只作用域当前router-link,对其他没有设置该属性的router-link没有任何影响（仍然显示默认的router-link-active）。
+   * <router-link to="/home/dir" active-class="lac-class"></router-link>
+   *
+   */
+  linkActiveClass: 'lac-class',
 });
 
 // 路全局导航守卫

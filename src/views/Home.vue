@@ -14,7 +14,14 @@
     <router-link to="/home/use_new"
       >功能六：使用stylus书写样式，以及jade模板引擎</router-link
     >
-    <router-link to="/home/dir"> 功能七：自定义指令的使用 </router-link>
+    <!-- 与在router对象中添加一个linkActiveClass属性不同的是，这种方式只能更改当前路由选中的类名，其他没有设置
+    active-class属性的router-link仍然会显示默认类名 -->
+    <!-- <router-link to="/home/dir" active-class="lac-class">
+      功能七：自定义指令的使用
+    </router-link> -->
+    <router-link to="/home/dir" active-class="lac-class">
+      功能七：自定义指令的使用
+    </router-link>
     <router-link to="/home/key_prop">功能八：v-for渲染列表相关</router-link>
     <router-link to="/home/tick">功能九：nextTick的理解</router-link>
     <router-link to="/home/el_ref"
