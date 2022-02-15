@@ -16,7 +16,7 @@
       <router-view v-if="$route.meta.isAlive"></router-view>
     </keep-alive>
     <!-- 不需要缓存的视图组件 -->
-    <router-view v-if="$route.meta.isAlive"></router-view>
+    <router-view v-if="!$route.meta.isAlive"></router-view>
   </div>
 </template>
 <script>
@@ -39,7 +39,8 @@ import Comc from './Comc.vue';
  *  c. :include="/c1|c2|c3/"
  * exclude属性值写法相同；但注意如果使用数组时（数组中组件名称单引号引起来）。同时，使用数组和正则表达式的方式时，include
  * 应该使用v-bind动态绑定
- * 3. vue 2.5.0版本后，keep-alive又增加了一个属性，是第三个属性。为max,max的作用是最多缓存的组件个数
+ * 3. vue 2.5.0版本后，keep-alive又增加了一个属性，是第三个属性。为max,max的作用是最多缓存的组件实例
+ * 一旦组件实例达到了max属性值，将优先清除那个缓存最久，没有被访问的实例
  *
  * 两个钩子：activated 和deactivated
  * 1.keep-alive缓存的组件，不会执行beforeDestroy和destroyed生命周期钩子了。原因很简单：keep-alive本意为缓存组件，而不是将其
@@ -47,7 +48,7 @@ import Comc from './Comc.vue';
  * 2.两个钩子的注意点：https://www.jianshu.com/p/42429f4d8f9e
  * 3.第一次触发时，执行顺序是created mounted activated,退出时触发deactivated。再次触发时，只会执行activated钩子了
  * keep-alive拓展理解，参考文档：https://segmentfault.com/a/1190000015727279
- *
+ * 
  *
  * 面试官说：keep-alive https://mp.weixin.qq.com/s?__biz=MzU1OTgxNDQ1Nw==&mid=2247484446&idx=1&sn=80d5a4a15c88f4d6fd878095101601e8&chksm=fc10c648cb674f5efbdad8222de6cd607870e44d5870480a229bfeefd6a78c3ba3b9d372ab37&scene=21#wechat_redirect
  *
