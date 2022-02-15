@@ -45,7 +45,8 @@ export default {
       // 用户名比较简单，设置为字母或数字，但位数在3到16位即可
       const regExp = /^[a-zA-Z0-9]{3,16}$/;
       if (value === '') {
-        callback(new Error('请输入用户名'));
+        // callback(new Error('请输入用户名'));
+        callback('请输入用户名');
       } else {
         if (this.ruleForm.user !== '') {
           // 注意：当前版本的element-ui为2.4.5，并不识别在其他高版本中的validateField('user')方法，
@@ -132,7 +133,11 @@ export default {
       // 注意区分：在规则中使用的是validator这个单词，而不是validate
       this.$refs[formName].validate((valid) => {
         if (!valid) {
-          console.log('Error Submit');
+          this.$message({
+            type: 'error',
+            message: '用户名或密码错误，请输入正确的用户名和密码',
+            showClose: true,
+          });
           return false;
         }
         this.$message({ message: '恭喜你登录成功', type: 'success' });
