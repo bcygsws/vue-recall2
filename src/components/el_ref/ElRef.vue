@@ -29,14 +29,14 @@ export default {
   methods: {
     // 由于当前环境为vue2.6.11,因此没有按照预期打印对象
     // 报错[Vue warn]: Failed to resolve directive: el
-    getCom() {
-      console.log(this.$els.mycom);
-    },
-    // 由于当前环境为vue2.6.11,因此没有按照预期打印对象
+    // getCom() {
+    //   console.log(this.$els.mycom);
+    // },
+    // 由于当前环境为vue2.6.11,因此没有按照预期打g..0印对象
     // 报错[Vue warn]: Failed to resolve directive: el
-    getSonObj() {
-      console.log(this.$refs.myson);
-    },
+    // getSonObj() {
+    //   console.log(this.$refs.myson);
+    // },
   },
   components: {
     // Son,
