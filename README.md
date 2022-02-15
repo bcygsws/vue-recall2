@@ -226,3 +226,10 @@ inc(state,props){ // 方法名必须是 inc }}
 - 参考文档：[nextTick 详解](https://www.cnblogs.com/qhantime/p/11379826.html)
 - 官方解析：vue 异步更新 dom
   当数据变化时，组件不会立即渲染。当刷新队列时，组件在事件循环清空时的下一个 tick 更新
+
+### 十二、低版本 vue1.0 和 vue2.0 分别获取对象的方式 v-el:名称和 v-ref:名称
+
+#### 注意问题
+
+- 参考文档：[弃用的 v-el 和 v-ref](https://blog.csdn.net/qq_26642611/article/details/104493828)
+- 注意大小写的转换问题，在标签或者子组件中使用了大写 v-el:myCom 或者 v-ref:mySon。后面引用的时候，需要转换成小写 this\.\$els.mycom 和 this\.\$refs.myson

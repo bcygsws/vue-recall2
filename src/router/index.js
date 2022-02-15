@@ -22,6 +22,7 @@ import VFor from '@/components/key_prop/VFor.vue';
 import Reg from '@/components/key_prop/Reg.vue';
 import DyClass from '@/components/dynamic_class/DyClass.vue';
 import NextTick from '@/components/tick/NextTick.vue';
+import ElRef from '@/components/el_ref/ElRef.vue';
 
 Vue.use(VueRouter);
 
@@ -126,6 +127,10 @@ const routes = [
       {
         path: '/home/tick',
         component: NextTick,
+      },
+      {
+        path: '/home/el_ref',
+        component: ElRef,
       },
     ],
   },

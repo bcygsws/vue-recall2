@@ -17,6 +17,9 @@
     <router-link to="/home/dir"> 功能七：自定义指令的使用 </router-link>
     <router-link to="/home/key_prop">功能八：v-for渲染列表相关</router-link>
     <router-link to="/home/tick">功能九：nextTick的理解</router-link>
+    <router-link to="/home/el_ref"
+      >功能十：演示vue1.0弃用的v-el和vue2.0弃用的v-ref</router-link
+    >
     <router-view></router-view>
   </div>
 </template>
