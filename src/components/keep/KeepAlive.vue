@@ -39,7 +39,8 @@ import Comc from './Comc.vue';
  *  c. :include="/c1|c2|c3/"
  * exclude属性值写法相同；但注意如果使用数组时（数组中组件名称单引号引起来）。同时，使用数组和正则表达式的方式时，include
  * 应该使用v-bind动态绑定
- * 3. vue 2.5.0版本后，keep-alive又增加了一个属性，是第三个属性。为max,max的作用是最多缓存的组件个数
+ * 3. vue 2.5.0版本后，keep-alive又增加了一个属性，是第三个属性。为max,max的作用是最多缓存的组件实例
+ * 一旦组件实例达到了max属性值，将优先清除那个缓存最久，没有被访问的实例
  *
  * 两个钩子：activated 和deactivated
  * 1.keep-alive缓存的组件，不会执行beforeDestroy和destroyed生命周期钩子了。原因很简单：keep-alive本意为缓存组件，而不是将其
