@@ -23,6 +23,9 @@ import Reg from '@/components/key_prop/Reg.vue';
 import DyClass from '@/components/dynamic_class/DyClass.vue';
 import NextTick from '@/components/tick/NextTick.vue';
 import ElRef from '@/components/el_ref/ElRef.vue';
+import Wat from '@/components/watch/Wat.vue';
+import Com from '@/components/watch/Com.vue';
+import WatCom from '@/components/watch/WatCom.vue';
 
 Vue.use(VueRouter);
 
@@ -131,6 +134,20 @@ const routes = [
       {
         path: '/home/el_ref',
         component: ElRef,
+      },
+      {
+        path: '/home/wat_com',
+        component: WatCom,
+        children: [
+          {
+            path: '/home/wat_com/com',
+            component: Com,
+          },
+          {
+            path: '/home/wat_com/wat',
+            component: Wat,
+          },
+        ],
       },
     ],
   },

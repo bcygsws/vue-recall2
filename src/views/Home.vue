@@ -27,6 +27,9 @@
     <router-link to="/home/el_ref"
       >功能十：演示vue1.0弃用的v-el和vue2.0弃用的v-ref</router-link
     >
+    <router-link to="/home/wat_com"
+      >功能十一：watch和computed监测属性的异同点</router-link
+    >
     <router-view></router-view>
   </div>
 </template>
