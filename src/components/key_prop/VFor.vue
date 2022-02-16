@@ -16,7 +16,7 @@
         :ref="'myRef' + item.id"
         :data-index="item.id"
       >
-        <input type="checkbox" name="box" id="" @click="selected(item.id)" />
+        <input type="checkbox" name="box" @click="selected(item.id)" />
         {{ item.id }}---{{ item.name }}
         <a href="javascript:;" @click="delItem(item.id)">删除</a>
       </li>
@@ -45,6 +45,14 @@
  * 事件委托
  * 1.将事件处理程序代理到父节点上，减少内存占有率
  * 2.当动态增加子节点时，子节点自动将事件绑定到父节点上
+ *
+ * vue的就地复用策略：
+ * v-for循环，循环标签需要声明key关键字，vue关键字有“就地复用”策略就地复用：
+ * vue不会通过操作dom来匹配元素的顺序，而是简单的复用这个元素，并确保在特定的索引下显示已经被渲染的每个元素
+ *
+ * 参考本地项目：D:\Web-project\vue-primary\02-体会v-for循环中key的就地复用策略.html
+ * 该项目代码第59行，勾选列表中一个选项，然后删除某一条数据，对比设置key和不设置key的异同
+ *
  *
  *
  */
