@@ -233,3 +233,21 @@ inc(state,props){ // 方法名必须是 inc }}
 
 - 参考文档：[弃用的 v-el 和 v-ref](https://blog.csdn.net/qq_26642611/article/details/104493828)
 - 注意大小写的转换问题，在标签或者子组件中使用了大写 v-el:myCom 或者 v-ref:mySon。后面引用的时候，需要转换成小写 this\.\$els.mycom 和 this\.\$refs.myson
+
+### 十三、监测属性变化的两个重要属性：侦听属性 watch 和计算属性 computed
+
+#### 侦听属性 watch
+
+- 使用场合：异步数据或者开销较大的数据监测中，通常使用 watch
+
+1. watch 不支持缓存，数据变化立即触发
+2. watch 支持异步数据，watch 监听的属性有两个参数(newVal,oldVal)
+3. watch 有两个属性，immediately 和 deep。immediately 表示组件加载立即触发，deep 表示对所有变化了数据都加以监测(deep:true)
+4. watch 还可以监控路由的变化
+
+### 计算属性 computed
+
+1. 某一个属性是由其他属性计算而来，依赖其他属性。是多对一或者一对一的关系
+2. computed 支持缓存，依赖的属性值发生改变，才重新计算
+3. computed 不支持异步，监测异步数据无变化
+4. computed 默认走缓存，是基于其他属性的响应式依赖。这些依赖的属性包括 data 中声明的属性、其他组件传递过来的 props 属性等
