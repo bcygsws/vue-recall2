@@ -22,6 +22,22 @@
  * vue.delete会删除数组元素在内存中国的占位，数组的键也改变了
  *
  * vue.delete可以避免vue监测不到新的property
+ * Vue.delete(target,properName/index)
+ * 含义：用于删除对象的属性，确保这个被删除的property能够触发更新视图。
+ * 这个方法用于避开vue不能监测到property被删除的限制
+ * 换句话：这个方法用于vue能够监测到property被删除的限制
+ *
+ *
+ * 了解：
+ * 参考：https://cn.vuejs.org/v2/api/#Vue-set
+ * vue.set(target,properName/index,value)
+ * target: Object|Array
+ * properName/indx:string|number
+ * value:任意类型
+ *
+ * vue.set表示向响应式对象中添加一个属性，并确保这个这个新property同样是响应式的，并触发视图更新
+ *
+ *
  *
  *
  */
