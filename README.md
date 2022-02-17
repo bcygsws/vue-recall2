@@ -251,3 +251,22 @@ inc(state,props){ // 方法名必须是 inc }}
 2. computed 支持缓存，依赖的属性值发生改变，才重新计算
 3. computed 不支持异步，监测异步数据无变化
 4. computed 默认走缓存，是基于其他属性的响应式依赖。这些依赖的属性包括 data 中声明的属性、其他组件传递过来的 props 属性等
+
+### 十四、delete 和 Vue.delete（关联知识点 Vue.set）的区别与联系
+
+#### delete 用于删除数组或对象中的元素（第一个参数 target 的类型）。
+
+- 含义：delete 删除的是元素值，元素的空间仍然保留（控制台中键仍然不变，键值变成了 empty 或者 undefined）
+- delete 的删除要配合 this.\$set(),用以保证删除 data 中某个属性后，视图能够更新
+
+#### Vue.delete 用于删除数组中某个元素在内存中的占位，删除后键值改变了（数组中索引可以理解为它的键）
+
+- 含义：Vue.delete 用于删除某个元素在内存中的占位，删除后键值改变了
+- Vue.delete 用于删除对象中某个属性。如果对象时响应式的，要确保删除的这个 property 能够更新视图
+- Vue.delete()的参数列表，Vue.delete(target[Array|Object 类型],properName/index[string|number 类型])
+
+#### vue.delete 关联属性 Vue.set
+
+- 含义：Vue.set 用于向响应式对象中添加一个 property，如果对象是响应式的，要确保添加的对象也是响应式的，且触发视图更新
+- Vue.set 的参数列表，Vue.set(target[Object|Array 类型],properName/index[string|index 类型],value[任意类型])
+- [Vue.set 参考文档](https://cn.vuejs.org/v2/api/#Vue-set)
