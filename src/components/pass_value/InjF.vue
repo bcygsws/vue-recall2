@@ -18,6 +18,8 @@
  * 没有管理任何状态，也没有监听传递给它的状态，没有生命周期；只是接收一些props属性
  * https://blog.csdn.net/qq_35366269/article/details/102456270
  *
+ * provide/inject实现响应式的两种方式
+ * 参考文档：https://www.cnblogs.com/vickylinj/p/13368745.html
  *
  */
 export default {
