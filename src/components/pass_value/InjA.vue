@@ -56,6 +56,8 @@ export default {
       notReactiveData: this.msg,
       // 响应式的
       getReactiveInfo: () => this.info,
+      // 响应式的，不传函数参数，在injF使用watch监听
+      reactVal: this.info,
     };
   },
   mounted() {

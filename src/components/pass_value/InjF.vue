@@ -7,6 +7,7 @@
   <div class="injf_container">
     <h3 :style="{ color: theme.color }">这是InjectF组件</h3>
     <div>{{ changedGetReactiveInfo }}</div>
+    <div class="react_val">{{ reactVal }}</div>
   </div>
 </template>
 <script>
@@ -46,11 +47,18 @@ export default {
   //   },
   // },
   // 等效的inject方式
-  inject: ['theme', 'getReactiveInfo'],
+  inject: ['theme', 'getReactiveInfo', 'reactVal'],
   // 为了实现响应式，需要队getReactiveInfo数据进行侦听
   computed: {
     changedGetReactiveInfo() {
       return this.getReactiveInfo();
+    },
+  },
+  // 或者使用watch
+  // 参考文档：
+  watch: {
+    changedGetReactiveInfo(val) {
+      console.log('改变info值的按钮点击后，val的值：' + val);
     },
   },
   mounted() {
