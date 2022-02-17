@@ -20,7 +20,7 @@
  * 1.watch不支持缓存，数据变化，立即触发
  * 2.watch侦听的属性(如first、second)有两个参数，第一个参数是最新值，第二个参数可选，为旧值
  * 3.watch支持异步操作，watch有两个属性，immediately和deep。
- * immediately表示组件加载后，立即触发
+ * immediate表示组件加载后，立即触发回调函数执行
  * deep 表示深度监测，deep:true，以后所有数据的变化都能监测到，这个属性不推荐使用，通常是用哪个属性就监听哪个属性就好
  * 4.watch还能够监听路由的变化(在WatCom组件中演示，$route.path作为watch的监控变量)
  *

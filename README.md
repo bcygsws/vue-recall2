@@ -242,7 +242,7 @@ inc(state,props){ // 方法名必须是 inc }}
 
 1. watch 不支持缓存，数据变化立即触发
 2. watch 支持异步数据，watch 监听的属性有两个参数(newVal,oldVal)
-3. watch 有两个属性，immediately 和 deep。immediately 表示组件加载立即触发，deep 表示对所有变化了数据都加以监测(deep:true)
+3. watch 有两个属性，immediate 和 deep。immediately 表示组件加载立即触发，deep 表示对所有变化了数据都加以监测(deep:true)
 4. watch 还可以监控路由的变化
 
 ### 计算属性 computed
