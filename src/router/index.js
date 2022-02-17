@@ -26,6 +26,7 @@ import ElRef from '@/components/el_ref/ElRef.vue';
 import Wat from '@/components/watch/Wat.vue';
 import Com from '@/components/watch/Com.vue';
 import WatCom from '@/components/watch/WatCom.vue';
+import Del from '@/components/del/Del.vue';
 
 Vue.use(VueRouter);
 
@@ -148,6 +149,10 @@ const routes = [
             component: Wat,
           },
         ],
+      },
+      {
+        path: '/home/del',
+        component: Del,
       },
     ],
   },

@@ -30,6 +30,9 @@
     <router-link to="/home/wat_com"
       >功能十一：watch和computed监测属性的异同点</router-link
     >
+    <router-link to="/home/del"
+      >功能十二：delete和vue.delete的区别和联系</router-link
+    >
     <router-view></router-view>
   </div>
 </template>
