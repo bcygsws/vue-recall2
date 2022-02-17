@@ -45,7 +45,7 @@ export default {
   //     default: () => {},
   //   },
   // },
-  // 等效的inject方式
+  // 上面为等效的inject方式
   inject: ['theme', 'getReactiveInfo'],
   // 为了实现响应式，需要队getReactiveInfo数据进行侦听
   computed: {
