@@ -7,7 +7,8 @@
   <div class="injf_container">
     <h3 :style="{ color: theme.color }">这是InjectF组件</h3>
     <div>{{ changedGetReactiveInfo }}</div>
-    <div class="react_val">{{ reactVal }}</div>
+    <!-- injA组件中fontB对象汇总a属性的响应式验证 -->
+    <div>{{ reactA }}</div>
   </div>
 </template>
 <script>
@@ -17,6 +18,8 @@
  * 没有管理任何状态，也没有监听传递给它的状态，没有生命周期；只是接收一些props属性
  * https://blog.csdn.net/qq_35366269/article/details/102456270
  *
+ * provide/inject实现响应式的两种方式
+ * 参考文档：https://www.cnblogs.com/vickylinj/p/13368745.html
  *
  */
 export default {
@@ -46,19 +49,21 @@ export default {
   //     default: () => {},
   //   },
   // },
-  // 等效的inject方式
-  inject: ['theme', 'getReactiveInfo', 'reactVal'],
+  // 上面为等效的inject方式
+  inject: ['theme', 'getReactiveInfo', 'second'],
   // 为了实现响应式，需要队getReactiveInfo数据进行侦听
   computed: {
     changedGetReactiveInfo() {
       return this.getReactiveInfo();
     },
+    reactA() {
+      return this.second.a;
+    },
   },
-  // 或者使用watch
-  // 参考文档：
   watch: {
+    // computed中缓存的属性changedGetReactiveInfo的值变化
     changedGetReactiveInfo(val) {
-      console.log('改变info值的按钮点击后，val的值：' + val);
+      console.log('控制台展示响应式的getReactiveInfo值:' + val);
     },
   },
   mounted() {

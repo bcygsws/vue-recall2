@@ -7,6 +7,10 @@
       改变msg,看InjB和InjC中的值是否改变
     </button>
     <button @click="changeInfo">改变info值，测试是否响应式</button>
+    <!-- 更改fontB中a属性的值 -->
+    <button @click="changeFontA">
+      改变fontB对象中a的键值，测试响应式方法二
+    </button>
     <inj-b ref="injb"></inj-b>
     <inj-c></inj-c>
   </div>
@@ -22,6 +26,9 @@ export default {
       color: 'blue',
       msg: '我是父组件InjA的数据',
       info: '我是传递给孙子组件InjF的数据',
+      // 如果不传递函数参数，可以使用第二个中方法，将某个属性放到一个对象中，
+      // 比如fontB是一个对象，其中的a属性实现响应式
+      fontB: { a: 'hello world' },
     };
   },
   // 1.最简单的提供-注入，类似父子组件传值（非响应方式）
@@ -56,8 +63,7 @@ export default {
       notReactiveData: this.msg,
       // 响应式的
       getReactiveInfo: () => this.info,
-      // 响应式的，不传函数参数，在injF使用watch监听
-      reactVal: this.info,
+      second: this.fontB,
     };
   },
   mounted() {
@@ -87,6 +93,9 @@ export default {
     changeInfo() {
       this.info = '传到孙子组件的值被修改';
     },
+    changeFontA() {
+      this.fontB['a'] = 'provide/inject实现响应式方法二';
+    },
   },
   components: { InjB, InjC },
 };
@@ -95,7 +104,7 @@ export default {
 .inja_container {
   background-color: pink;
   button {
-    margin-right: 50px;
+    margin-right: 20px;
   }
 }
 </style>
