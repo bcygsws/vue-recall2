@@ -12,6 +12,7 @@
 /**
  *
  * @计算器案例，拼接字符串
+ * 参考文档：https://www.cnblogs.com/jiajialove/p/11327945.html
  * watch
  * 使用场合：
  * 用于异步且开销较大的场合
