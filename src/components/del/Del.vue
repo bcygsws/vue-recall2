@@ -21,7 +21,14 @@
  * delete删除的只是数组中的值，仍然在内存中中占据位置，显示empty或者undefined，其他元素的键值还是不变的
  * vue.delete会删除数组元素在内存中国的占位，数组的键也改变了
  *
- * vue.delete可以避免vue监测不到新的property
+ * vue.delete用于避开vue不能监测到property被删除的限制，但是这个方法很少被用到
+ * 换句话vue.delete的作用是vue能够监测到property被删除的限制
+ * 
+ * 关联知识
+ * Vue.set 
+ * 参考文档：https://cn.vuejs.org/v2/api/#Vue-set
+ * Vue.set(target【Object|Array】,properName/index【string|number】,value【任意类型的值】)
+ * Vue.set的含义是向对象添加一个属性。如果对象是响应式的，要确保被加入的这个property也是响应式的，且触发视图更新
  *
  *
  */
