@@ -18,8 +18,8 @@
  * 参考文档：https://zhuanlan.zhihu.com/p/80601923
  * 参考文档2：https://blog.csdn.net/qq_39594951/article/details/93618375
  * 区别：
- * delete删除的只是数组中的值，仍然在内存中中占据位置，显示empty
- * vue.delete会删除数组元素在内存中国的占位
+ * delete删除的只是数组中的值，仍然在内存中中占据位置，显示empty或者undefined，其他元素的键值还是不变的
+ * vue.delete会删除数组元素在内存中国的占位，数组的键也改变了
  *
  * vue.delete可以避免vue监测不到新的property
  *
