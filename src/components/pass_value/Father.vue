@@ -132,6 +132,14 @@ export default {
       fat: 'Father向SonSon传值',
     };
   },
+  created() {
+    // 哈希模式和history模式
+    // https://www.vue-js.com/topic/5f8cf91d96b2cb0032c385c0
+    // ngnix 配置try_files
+    // 参考文档： https://www.cnblogs.com/jedi1995/p/10900224.html
+    // hash模式：在浏览器中，符号#以及#后面的字符称为hash
+    console.log(window.location.hash);// #/home/pass_value/hello
+  },
   methods: {
     handle(value) {
       this.fontSize += value;
