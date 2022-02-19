@@ -61,8 +61,11 @@ export default {
     return {
       theme: this.theme,
       notReactiveData: this.msg,
-      // 响应式的
+      // 成为响应式的
+      // 方式1：数据中定义成一个函数参数。函数参数的好处，为返回的
+      // 数据维护一份独立的拷贝
       getReactiveInfo: () => this.info,
+      // 方式2：在data中定义成一个对象，然后在接收时使用计算属性监听
       second: this.fontB,
     };
   },

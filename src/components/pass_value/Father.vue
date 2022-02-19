@@ -85,7 +85,8 @@ import { Event } from '@/main';
  * @五、provide/inject 可以跨级传递数据，不能组件之间层级有多深，但这种方式不是响应式的，这是刻意为之的；如果传入一个
  * 可监听的对象，其属性是响应式的
  *
- * 传入监听的对象，解决响应式:分两步
+ * 传入监听的对象，解决响应式有两种方法：
+ * 方法一：
  * 1、在provide声明所在组件，provide提供函数式参数
  * provide(){
  * return {
@@ -99,6 +100,17 @@ import { Event } from '@/main';
  * changedGetReactiveInfo(){
  *    return this.getReactiveInfo();
  * }
+ * 方法二：将要监听的属性放在一个对象中，然后在provide中传递这个对象。
+ * 在接收的组件中同样使用计算属性监听
+ * 例如：
+ *
+ * data(){
+ *  return {
+ *    fontB:{a:'hello world'}
+ * }
+ * }
+ * 1.发送处，将fontB放在provide中
+ * 2.接收处同样使用计算属性监听
  *
  * 六、ref $parent 和$children为第六种组件通信方式：
  * 简单了解，常用ref="标识->this.$refs.标识获取原生对象
