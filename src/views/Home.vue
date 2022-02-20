@@ -33,6 +33,9 @@
     <router-link to="/home/del"
       >功能十二：delete和vue.delete的区别和联系</router-link
     >
+    <router-link to="/home/filter"
+      >功能十三：自定义过滤器和全局过滤器</router-link
+    >
     <router-view></router-view>
   </div>
 </template>
