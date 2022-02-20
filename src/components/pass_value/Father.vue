@@ -138,7 +138,7 @@ export default {
     // ngnix 配置try_files
     // 参考文档： https://www.cnblogs.com/jedi1995/p/10900224.html
     // hash模式：在浏览器中，符号#以及#后面的字符称为hash
-    console.log(window.location.hash);// #/home/pass_value/hello
+    console.log(window.location.hash); // #/home/pass_value/hello
   },
   methods: {
     handle(value) {
