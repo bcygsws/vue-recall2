@@ -28,6 +28,7 @@ import Com from '@/components/watch/Com.vue';
 import WatCom from '@/components/watch/WatCom.vue';
 import Del from '@/components/del/Del.vue';
 import Filter from '@/components/filter/Filter.vue';
+import Slot from '@/components/slot/Slot.vue';
 
 Vue.use(VueRouter);
 
@@ -158,6 +159,10 @@ const routes = [
       {
         path: '/home/filter',
         component: Filter,
+      },
+      {
+        path: '/home/slot',
+        component: Slot,
       },
     ],
   },
