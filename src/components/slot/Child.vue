@@ -11,22 +11,22 @@ export default {
       list: [
         {
           id: 1,
-          name: '林黛玉',
+          name: '林黛玉'
         },
         {
           id: 2,
-          name: '贾宝玉',
+          name: '贾宝玉'
         },
         {
           id: 3,
-          name: '晴雯',
+          name: '晴雯'
         },
         {
           id: 4,
-          name: '袭人',
-        },
-      ],
+          name: '袭人'
+        }
+      ]
     };
-  },
+  }
 };
 </script>

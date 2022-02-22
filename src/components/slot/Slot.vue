@@ -72,8 +72,8 @@ export default {
   },
   components: {
     'child-one': ChildOne,
-    child: Child,
-  },
+    child: Child
+  }
 };
 </script>
 <style lang="less" scoped>
