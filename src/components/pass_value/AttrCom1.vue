@@ -15,7 +15,7 @@ export default {
   name: 'AttrCom1',
   inheritAttrs: false, // 可以关闭自动挂载到根元素上的没有在当前组件上的非props属性
   props: {
-    foo: String,
+    foo: String
   },
   data() {
     return {};
@@ -26,9 +26,9 @@ export default {
   methods: {
     handle1(val) {
       console.log(val);
-    },
+    }
   },
-  components: { AttrCom2 },
+  components: { AttrCom2 }
 };
 </script>
 <style lang="less" scoped>

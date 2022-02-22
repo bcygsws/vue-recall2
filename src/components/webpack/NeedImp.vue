@@ -26,6 +26,6 @@ export default {
   name: 'NeedImp',
   data() {
     return {};
-  },
+  }
 };
 </script>

@@ -38,7 +38,7 @@ export default {
   name: 'UseNew',
   data() {
     return {};
-  },
+  }
 };
 </script>
 <style lang="stylus" scoped>

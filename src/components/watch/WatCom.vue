@@ -23,8 +23,8 @@ export default {
           console.log('进入路由/home/wat_com/com对应的组件Com');
         }
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

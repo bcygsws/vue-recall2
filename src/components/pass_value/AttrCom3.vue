@@ -12,7 +12,7 @@ export default {
   inheritAttrs: false,
   props: {
     coo: String,
-    title: String,
+    title: String
   },
   data() {
     return {};
@@ -21,7 +21,7 @@ export default {
     console.log(this.$attrs);
   },
   methods: {},
-  components: {},
+  components: {}
 };
 </script>
 <style lang="less" scoped>

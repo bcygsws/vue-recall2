@@ -29,7 +29,7 @@ export default {
   // props: ['rec', 'rv', 'fru'],
   props: {
     rec: {
-      type: String, // 传递值的类型
+      type: String // 传递值的类型
       // default: '默认值', // 默认值
       // // required: true, // 表示父级必须传入数据，否则会报错
       // validate: (value) => {
@@ -40,10 +40,10 @@ export default {
     rv: { type: String },
     fru: { type: Array },
     son: { type: String, default: '中央事件总线方法实现SonB向SonSon传值' },
-    bval: { type: String, default: 'SonB向同级的SonC传值' },
+    bval: { type: String, default: 'SonB向同级的SonC传值' }
   },
   components: {
-    SonSon,
+    SonSon
   },
   methods: {
     handle() {
@@ -51,8 +51,8 @@ export default {
     },
     handle1() {
       Event.$emit('toC', this.bval);
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

@@ -28,7 +28,7 @@ export default {
       info: '我是传递给孙子组件InjF的数据',
       // 如果不传递函数参数，可以使用第二个中方法，将某个属性放到一个对象中，
       // 比如fontB是一个对象，其中的a属性实现响应式
-      fontB: { a: 'hello world' },
+      fontB: { a: 'hello world' }
     };
   },
   // 1.最简单的提供-注入，类似父子组件传值（非响应方式）
@@ -56,7 +56,7 @@ export default {
   // 4.响应式的解决方案
   provide() {
     this.theme = Vue.observable({
-      color: this.color,
+      color: this.color
     });
     return {
       theme: this.theme,
@@ -66,7 +66,7 @@ export default {
       // 数据维护一份独立的拷贝
       getReactiveInfo: () => this.info,
       // 方式2：在data中定义成一个对象，然后在接收时使用计算属性监听
-      second: this.fontB,
+      second: this.fontB
     };
   },
   mounted() {
@@ -98,9 +98,9 @@ export default {
     },
     changeFontA() {
       this.fontB['a'] = 'provide/inject实现响应式方法二';
-    },
+    }
   },
-  components: { InjB, InjC },
+  components: { InjB, InjC }
 };
 </script>
 <style lang="less" scoped>

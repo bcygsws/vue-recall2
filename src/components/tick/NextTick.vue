@@ -34,7 +34,7 @@ export default {
       msg: 'Hello Vue',
       msg1: '',
       msg2: '',
-      msg3: '',
+      msg3: ''
     };
   },
   methods: {
@@ -42,13 +42,13 @@ export default {
       this.msg = 'Hello World';
       // 这个操作中要随数据变化而变化的DOM结构时， obj.innerText(使用了随数据变化而变化的DOM结构)
       // innerText从Hello Vue变成了Hello World
-      this.msg1 = this.$refs.mRef.innerText; 
+      this.msg1 = this.$refs.mRef.innerText;
       this.$nextTick(() => {
         this.msg2 = this.$refs.mRef.innerText;
       });
       this.msg3 = this.$refs.mRef.innerText;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

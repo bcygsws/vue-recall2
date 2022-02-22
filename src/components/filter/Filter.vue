@@ -30,7 +30,7 @@ export default {
   methods: {
     inputStr() {
       this.msg = this.$refs.inRef.value;
-    },
+    }
   },
   filters: {
     // 定义字符串首字母大写的过滤器firstUp
@@ -58,8 +58,8 @@ export default {
       } else if (pat === 'yyyy-mm-dd hh:mm:ss' || !pat) {
         return `${year}-${month}-${date} ${hours}:${minutes}:${seconds}`;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

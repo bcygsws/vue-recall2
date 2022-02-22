@@ -29,17 +29,17 @@ export default {
       foo: 'html',
       boo: 'css',
       coo: 'javascript',
-      doo: 'vue',
+      doo: 'vue'
     };
   },
   methods: {
     handle(val) {
       console.log(val);
-    },
+    }
   },
   components: {
-    AttrCom1,
-  },
+    AttrCom1
+  }
 };
 </script>
 <style lang="less" scoped>

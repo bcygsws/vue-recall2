@@ -15,7 +15,7 @@ export default {
   name: 'AttrCom2',
   inheritAttrs: false,
   props: {
-    boo: String,
+    boo: String
   },
   created() {
     console.log(this.$attrs);
@@ -26,9 +26,9 @@ export default {
   methods: {
     handle2(val) {
       console.log(val);
-    },
+    }
   },
-  components: { AttrCom3 },
+  components: { AttrCom3 }
 };
 </script>
 <style lang="less" scoped>

@@ -13,7 +13,7 @@ export default {
   data() {
     return {
       msg: '',
-      smsg: '',
+      smsg: ''
     };
   },
   // 只要页面没有强制刷新，存在组件切换，bus.$on方法会被多次绑定，造成事件多次触发
@@ -26,7 +26,7 @@ export default {
     Event.$on('tochild', (value) => {
       this.smsg = value;
     });
-  },
+  }
 };
 </script>
 <style lang="less" scoped>

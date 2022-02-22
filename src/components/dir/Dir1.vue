@@ -24,13 +24,13 @@ export default {
   name: 'Dir1',
   data() {
     return {
-      direction: 'left',
+      direction: 'left'
     };
   },
   methods: {
     toTop() {
       this.direction = 'top';
-    },
+    }
     // toLeft() {
     //   this.direction = 'left';
     // },
@@ -51,9 +51,9 @@ export default {
       update: function (el, binding) {
         let s = binding.arg === 'left' ? 'left' : 'top';
         el.style[s] = binding.value + 'px';
-      },
-    },
-  },
+      }
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

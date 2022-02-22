@@ -49,7 +49,7 @@ export default {
     // ...mapState({ count1: (state) => state.count }),
     // ...mapState(['count']),
 
-    ...mapGetters(['getCount']),
+    ...mapGetters(['getCount'])
   },
   methods: {
     /**
@@ -72,14 +72,14 @@ export default {
     // 1.点减号减少 一般写法
     handleDec(val) {
       this.$store.dispatch('actionCount', val);
-    },
+    }
     // 2.mapActions简写方式
     // ...mapActions(['actionCount']),
     // 上面代码等价于
     // actionCount(props) {
     //   return this.$store.dispatch('actionCount', props);
     // },
-  },
+  }
 };
 </script>
 

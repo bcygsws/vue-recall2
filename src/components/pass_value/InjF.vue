@@ -82,13 +82,13 @@ export default {
     },
     reactA() {
       return this.second.a;
-    },
+    }
   },
   watch: {
     // computed中缓存的属性changedGetReactiveInfo的值变化
     changedGetReactiveInfo(val) {
       console.log('控制台展示响应式的getReactiveInfo值:' + val);
-    },
+    }
   },
   mounted() {
     console.log(this.theme.color);
@@ -99,7 +99,7 @@ export default {
     console.log(this.changedGetReactiveInfo); // 传到孙子组件的值被修改
   },
   methods: {},
-  components: {},
+  components: {}
 };
 </script>
 <style lang="less" scoped>

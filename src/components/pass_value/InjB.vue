@@ -16,7 +16,7 @@ export default {
   },
   inject: ['notReactiveData'],
   methods: {},
-  components: { InjD, InjE },
+  components: { InjD, InjE }
 };
 </script>
 <style lang="less" scoped>

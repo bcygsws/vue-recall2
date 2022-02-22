@@ -10,7 +10,7 @@ export default {
     return {};
   },
   methods: {},
-  components: {},
+  components: {}
 };
 </script>
 <style lang="less" scoped>

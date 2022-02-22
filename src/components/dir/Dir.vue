@@ -23,14 +23,14 @@ export default {
   name: 'Dir',
   data() {
     return {
-      color: 'red',
+      color: 'red'
     };
   },
   methods: {
     changeColor() {
       // 改变颜色值
       this.color = 'green';
-    },
+    }
   },
   components: {},
   directives: {
@@ -50,13 +50,13 @@ export default {
         // {name: 'color', rawName: 'v-color', value: 'green', expression: 'color', modifiers: {…}, …}
         console.log(binding);
         el.style.color = binding.value;
-      },
+      }
       // 所在组件的VNode和子VNode更新后调用
       // componentUpdated: function (el, binding) {},
       // 指令解绑时调用,这个钩子也只执行一次
       // unbind(el, binding) {},
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

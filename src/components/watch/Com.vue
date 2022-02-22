@@ -25,15 +25,15 @@ export default {
     return {
       // 计算属性监测时,不需要在data中专门定义一个total值，total可以通过first和second值的变化，通过计算而得到
       first: '',
-      second: '',
+      second: ''
     };
   },
   methods: {},
   computed: {
     total() {
       return this.first + '' + this.second;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

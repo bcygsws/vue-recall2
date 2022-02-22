@@ -129,7 +129,7 @@ export default {
       fontSize: 18,
       fontSmall: 18,
       // Father向SonSon传值
-      fat: 'Father向SonSon传值',
+      fat: 'Father向SonSon传值'
     };
   },
   created() {
@@ -155,12 +155,12 @@ export default {
     },
     handle_fat() {
       Event.$emit('tochild', this.fat);
-    },
+    }
   },
   components: {
     BSon,
-    CSon,
-  },
+    CSon
+  }
 };
 </script>
 <style lang="less" scoped>

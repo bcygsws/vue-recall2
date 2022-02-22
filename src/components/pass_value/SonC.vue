@@ -23,7 +23,7 @@ export default {
     Event.$on('toC', (value) => {
       return (this.cmsg = value);
     });
-  },
+  }
 };
 </script>
 <style lang="less" scoped>

@@ -39,7 +39,7 @@ export default {
     return {
       first: '',
       second: '',
-      total: '',
+      total: ''
     };
   },
   watch: {
@@ -48,11 +48,11 @@ export default {
     },
     second(newVal) {
       this.total = this.first + newVal;
-    },
+    }
   },
   methods: {
-    plus() {},
-  },
+    plus() {}
+  }
 };
 </script>
 <style lang="less" scoped>

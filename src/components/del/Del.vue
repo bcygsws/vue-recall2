@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       a: [1, 2, 3, 4],
-      b: [1, 2, 3, 4],
+      b: [1, 2, 3, 4]
     };
   },
   methods: {
@@ -54,8 +54,8 @@ export default {
       // target类型Object|Array,properName/index类型 string|number
       this.$delete(this.b, 1);
       console.log(this.b);
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

@@ -27,15 +27,15 @@ export default {
     return {
       isActive: true,
       isActive1: false,
-      obj: { active1: true },
+      obj: { active1: true }
     };
   },
   methods: {},
   computed: {
     comObj() {
       return { active2: true };
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

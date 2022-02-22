@@ -58,13 +58,13 @@ export default {
   name: 'Keep',
   data() {
     return {
-      componentId: 'Coma',
+      componentId: 'Coma'
     };
   },
   methods: {
     select(id) {
       this.componentId = 'Com' + id;
-    },
+    }
   },
   created() {
     console.log(1);
@@ -82,8 +82,8 @@ export default {
   components: {
     Coma,
     Comb,
-    Comc,
-  },
+    Comc
+  }
 };
 </script>
 <style lang="less" scoped>

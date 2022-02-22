@@ -70,12 +70,12 @@ export default {
         { name: '香蕉', id: 2 },
         { name: '菠萝', id: 3 },
         { name: '桃子', id: 4 },
-        { name: '西瓜', id: 5 },
+        { name: '西瓜', id: 5 }
       ],
       // 正则表达式转换后的num
       num1: '',
       // 正则表达式转换后的num1
-      num2: '',
+      num2: ''
     };
   },
   methods: {
@@ -107,7 +107,7 @@ export default {
             // 你添加的数据id已经存在，请重新输入id数值
             this.$message({
               type: 'warn',
-              message: '你添加的id已经存在，请重新输入id值',
+              message: '你添加的id已经存在，请重新输入id值'
             });
             this.id = '';
             return true;
@@ -123,7 +123,7 @@ export default {
         this.$message({
           type: 'warn',
           message: '你添加的id不是数字，请重新输入id',
-          showClose: true, // 可选属性，意为：是否显示关闭按钮
+          showClose: true // 可选属性，意为：是否显示关闭按钮
         });
         this.id = '';
       }
@@ -230,7 +230,7 @@ export default {
     doSomething(index) {
       this.$message({
         type: 'success',
-        message: '当前li由id=' + index + '那条数据渲染得到',
+        message: '当前li由id=' + index + '那条数据渲染得到'
       });
     },
     // 正则表达式转换后
@@ -303,8 +303,8 @@ export default {
       console.log(reg1.exec(menu1));
       console.log(reg1.exec(menu1));
       console.log(reg1.exec(menu1));
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

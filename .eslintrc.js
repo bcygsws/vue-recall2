@@ -1,11 +1,11 @@
 module.exports = {
   root: true,
   env: {
-    node: true,
+    node: true
   },
   extends: ['plugin:vue/essential', 'eslint:recommended', '@vue/prettier'],
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: 'babel-eslint'
   },
   rules: {
     // 不检查单双引号
@@ -19,6 +19,6 @@ module.exports = {
     // 函数名称和函数体左括号前有空格，关闭，0等同于off
     'space-before-function-paren': 0,
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-  },
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+  }
 };
