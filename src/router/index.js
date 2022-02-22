@@ -44,11 +44,11 @@ const routes = [
     children: [
       {
         path: '/home/sub',
-        component: SubComp,
+        component: SubComp
       },
       {
         path: '/home/need',
-        component: NeedImp,
+        component: NeedImp
       },
       {
         path: '/home/keep_alive',
@@ -57,14 +57,14 @@ const routes = [
           {
             path: '/home/keep_alive/cache',
             component: Cache, // 需要缓存的视图组件Cache,isAlive值为true
-            meta: { isAlive: true },
+            meta: { isAlive: true }
           },
           {
             path: '/home/keep_alive/no_cache',
             component: NoCache,
-            meta: { isAlive: false },
-          },
-        ],
+            meta: { isAlive: false }
+          }
+        ]
       },
       {
         path: '/home/pass_value',
@@ -72,17 +72,17 @@ const routes = [
         children: [
           {
             path: '/home/pass_value/hello',
-            component: Hello,
+            component: Hello
           },
           {
             path: '/home/pass_value/attrs_lis',
-            component: Attr,
+            component: Attr
           },
           {
             path: '/home/pass_value/pro_inject',
-            component: InjectA,
-          },
-        ],
+            component: InjectA
+          }
+        ]
       },
       {
         path: '/home/guard',
@@ -94,15 +94,15 @@ const routes = [
             children: [
               {
                 path: '/home/guard/not_login/index',
-                component: Ind,
-              },
-            ],
-          },
-        ],
+                component: Ind
+              }
+            ]
+          }
+        ]
       },
       {
         path: '/home/use_new',
-        component: UseNew,
+        component: UseNew
       },
       {
         path: '/home/dir',
@@ -111,9 +111,9 @@ const routes = [
           {
             path: '/home/dir/dy_dir',
             name: 'Dir1',
-            component: Dir1,
-          },
-        ],
+            component: Dir1
+          }
+        ]
       },
       {
         path: '/home/key_prop',
@@ -122,21 +122,21 @@ const routes = [
         children: [
           {
             path: '/home/key_prop/reg',
-            component: Reg,
-          },
-        ],
+            component: Reg
+          }
+        ]
       },
       {
         path: '/home/dy_class',
-        component: DyClass,
+        component: DyClass
       },
       {
         path: '/home/tick',
-        component: NextTick,
+        component: NextTick
       },
       {
         path: '/home/el_ref',
-        component: ElRef,
+        component: ElRef
       },
       {
         path: '/home/wat_com',
@@ -144,28 +144,28 @@ const routes = [
         children: [
           {
             path: '/home/wat_com/com',
-            component: Com,
+            component: Com
           },
           {
             path: '/home/wat_com/wat',
-            component: Wat,
-          },
-        ],
+            component: Wat
+          }
+        ]
       },
       {
         path: '/home/del',
-        component: Del,
+        component: Del
       },
       {
         path: '/home/filter',
-        component: Filter,
+        component: Filter
       },
       {
         path: '/home/slot',
-        component: Slot,
-      },
-    ],
-  },
+        component: Slot
+      }
+    ]
+  }
   // {
   //   path: '/about',
   //   name: 'About',
@@ -191,7 +191,7 @@ const router = new VueRouter({
    * <router-link to="/home/dir" active-class="lac-class"></router-link>
    *
    */
-  linkActiveClass: 'lac-class',
+  linkActiveClass: 'lac-class'
 });
 
 // 路全局导航守卫

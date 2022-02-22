@@ -84,7 +84,7 @@ export default {
     return {
       ruleForm: {
         user: 'admin',
-        pass: '123f',
+        pass: '123f'
       },
       rules: {
         user: [
@@ -94,8 +94,8 @@ export default {
             // min: 2,
             // max: 16,
             message: '哈哈，请输入正确的用户名',
-            trigger: 'blur', // 失去焦点后，就能触发，并不需要点击提交按钮
-          },
+            trigger: 'blur' // 失去焦点后，就能触发，并不需要点击提交按钮
+          }
         ],
         pass: [
           {
@@ -105,10 +105,10 @@ export default {
             // max: 16,
             validator: validPass,
             message: '咳咳，请输入正确的密码~',
-            trigger: 'blur',
-          },
-        ],
-      },
+            trigger: 'blur'
+          }
+        ]
+      }
     };
   },
   methods: {
@@ -136,7 +136,7 @@ export default {
           this.$message({
             type: 'error',
             message: '用户名或密码错误，请输入正确的用户名和密码',
-            showClose: true,
+            showClose: true
           });
           return false;
         }
@@ -149,8 +149,8 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

@@ -15,12 +15,12 @@ try {
 export default new Vuex.Store({
   state: {
     count: defaultCount,
-    showChange: true,
+    showChange: true
   },
   getters: {
     getCount(state) {
       return state.count;
-    },
+    }
   },
   mutations: {
     // 注意改变状态管理对象的mutations中函数，第一参数state,第二个参数才是传过来的值
@@ -48,13 +48,13 @@ export default new Vuex.Store({
       } catch (e) {
         e.printStackTrace();
       }
-    },
+    }
   },
   actions: {
     // 注意交互行为处理模块汇总，第一个参数为context,第二个参数是传过来的值
     actionCount(context, props) {
       context.commit('dec', props);
-    },
-  },
+    }
+  }
   // modules: {},
 });
