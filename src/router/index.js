@@ -29,6 +29,7 @@ import WatCom from '@/components/watch/WatCom.vue';
 import Del from '@/components/del/Del.vue';
 import Filter from '@/components/filter/Filter.vue';
 import Slot from '@/components/slot/Slot.vue';
+import AsyncRender from '@/components/async_render/AsyncRender.vue';
 
 Vue.use(VueRouter);
 
@@ -163,6 +164,10 @@ const routes = [
       {
         path: '/home/slot',
         component: Slot
+      },
+      {
+        path: '/home/async_render',
+        component: AsyncRender
       }
     ]
   }

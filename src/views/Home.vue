@@ -37,6 +37,9 @@
       >功能十三：自定义过滤器和全局过滤器</router-link
     >
     <router-link to="/home/slot">功能十四：插槽和作用域插槽的使用</router-link>
+    <router-link to="/home/async_render"
+      >功能十五：Vue的异步渲染演示</router-link
+    >
     <router-view></router-view>
   </div>
 </template>
