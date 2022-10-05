@@ -18,6 +18,55 @@
  * vue中DOM传的异步渲染
  * 参考文档：https://blog.csdn.net/qq_44552416/article/details/107952313
  * 回顾：三大系列
+ * 一、offset系列:用于获取盒子的实际尺寸(offsetWidth=content+padding+border)
+ * 或者相对于最近的定位父盒子之间的距离(参照定位的盒子)
+ * .offsetParent 获取定位的那个父盒子(DOM对象)
+ *
+ * 二、scroll系列
+ * scrollWidth和scrollHeight
+ * a.内容没有溢出，这两个属性拿到的是content+padding，不包括边框
+ * b.内容溢出，这两个属性拿到的是溢出的那部分宽度，不包括边框
+ *
+ * scrollTop、scrollLeft
+ * 这要考虑兼容
+ * 火狐或者<=IE8版本，使用document.documentElement.scrollTop
+ * chrome或者IE8以上版本，document.body.scrollTop
+ * 苹果的Safari浏览器，使用window.pageYOffset(Y方向是scrollTop)
+ *
+ * 3.client系列
+ * clientWidth和clientHeight获取可视区域的宽度(content+padding,不包括边框)或者高度(content+padding,不包含边框)
+ * clientTop和clientLeft(子盒子padding外侧距离父盒子的padding内侧的距离；
+ * 如果父盒子没有padding，就是子盒子padding距离父盒子的边框内侧的距离)
+ * 将client和scroll的兼容问题封装在一起
+ *		var evTools = {
+ *			// 获取兼容事件的参数
+ *			getEvt: function(e) {
+ *				return window.event || e;
+ *			},
+ *			// 获取的是可视区域的横坐标
+ *			getClientX: function(e) {
+ *				return this.getEvt(e).clientX;
+ *			},
+ *			// 获取可视区域的纵坐标
+ *			getClientY: function(e) {
+ *				return this.getEvt(e).clientY;
+ *			},
+ *			// 向左卷曲出去的距离scrollLeft
+ *			getScrollLeft: function() {
+ *				// 1.safari浏览器 window.pageXOffset获取卷曲出去的水平距离
+ *				// 2.chrome和IE的8以上版本，使用document.body.scrollLeft获取卷曲出去的水平距离
+ *				// 3.火狐浏览器和IE的8以下版本，使用document.documentElement.scrollLeft获取卷曲出去的水平距离
+ *				return window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft || 0;
+ *			},
+ *			// 向上卷曲出去的距离
+ *			getScrollTop: function() {
+ *				return window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop || 0;
+ *			}
+ *		};
+ * 三篇文档弄清楚clientX、pageX(火狐浏览器已经把卷曲出去的距离算在内)、offsetX
+ * 参考文档1：http://t.zoukankan.com/hjdjs-p-6519396.html
+ * 参考文档2：http://t.zoukankan.com/moqiutao-p-5050225.html
+ * 参考文档3：https://blog.csdn.net/a460550542/article/details/100286609 
  *
  *
  */
