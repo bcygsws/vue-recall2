@@ -14,6 +14,12 @@
  * vue的异步渲染
  * 演示：在created和mounted阶段，改变数组，是否会触发beforeUpdate和updated钩子
  *
+ * this.$nextTick(cb)
+ * vue中DOM传的异步渲染
+ * 参考文档：https://blog.csdn.net/qq_44552416/article/details/107952313
+ * 回顾：三大系列
+ *
+ *
  */
 export default {
   name: 'AsyncRender',
@@ -24,6 +30,8 @@ export default {
     };
   },
   computed: {
+    // 在created阶段完成数据、计算属性和事件的配置
+    // 参考文档：https://blog.csdn.net/weixin_48337566/article/details/116057090
     total() {
       return this.arr.length;
     }
