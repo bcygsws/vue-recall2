@@ -30,6 +30,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## vue 基本概念、知识点-体会案例
 
+- github:远程仓库 org_re
+- gitee:远程仓库 org_gitee
+
 ### 一、为某个组件添加子组件-sub 文件夹
 
 - 注意：components:{大写}，在模板中引入时需要小写
