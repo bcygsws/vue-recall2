@@ -33,7 +33,7 @@
  * chrome或者IE8以上版本，document.body.scrollTop
  * 苹果的Safari浏览器，使用window.pageYOffset(Y方向是scrollTop)
  *
- * 3.client系列
+ * 三、client系列
  * clientWidth和clientHeight获取可视区域的宽度(content+padding,不包括边框)或者高度(content+padding,不包含边框)
  * clientTop和clientLeft(子盒子padding外侧距离父盒子的padding内侧的距离；
  * 如果父盒子没有padding，就是子盒子padding距离父盒子的边框内侧的距离)
