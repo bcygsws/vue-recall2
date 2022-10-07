@@ -63,6 +63,7 @@
  *				return window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop || 0;
  *			}
  *		};
+ * 
  * 三篇文档弄清楚clientX、pageX(火狐浏览器已经把卷曲出去的距离算在内)、offsetX、ScreenX
  * 参考文档1：http://t.zoukankan.com/hjdjs-p-6519396.html
  * 参考文档2：http://t.zoukankan.com/moqiutao-p-5050225.html
