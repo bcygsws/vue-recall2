@@ -7,6 +7,8 @@
       </li>
     </ul>
     <div>数组的长度：{{ total }}</div>
+    <span v-if="flag">何事秋风悲画扇</span>
+    <button @click="handleSwitch">点按钮，获取span标签的长度</button>
   </div>
 </template>
 <script>
@@ -63,7 +65,7 @@
  *				return window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop || 0;
  *			}
  *		};
- * 
+ *
  * 三篇文档弄清楚clientX、pageX(火狐浏览器已经把卷曲出去的距离算在内)、offsetX、ScreenX
  * 参考文档1：http://t.zoukankan.com/hjdjs-p-6519396.html
  * 参考文档2：http://t.zoukankan.com/moqiutao-p-5050225.html
@@ -76,8 +78,16 @@ export default {
   data() {
     return {
       msg: '',
-      arr: [1, 2, 3]
+      arr: [1, 2, 3],
+      // span标签显示或隐藏的标志变量flag默认为false
+      flag: false
     };
+  },
+  methods: {
+    handleSwitch() {
+      this.flag = true;
+      // 打印显示后，span标签的尺寸
+    }
   },
   computed: {
     // 在created阶段完成数据、计算属性和事件的配置
