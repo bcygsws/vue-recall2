@@ -7,7 +7,7 @@
       </li>
     </ul>
     <div>数组的长度：{{ total }}</div>
-    <span v-if="flag">何事秋风悲画扇</span>
+    <span v-if="flag" ref="sp">何事秋风悲画扇</span>
     <button @click="handleSwitch">点按钮，获取span标签的长度</button>
   </div>
 </template>
@@ -85,8 +85,33 @@ export default {
   },
   methods: {
     handleSwitch() {
+      // 点击按钮，显示隐藏的span标签，并获取它的尺寸
       this.flag = true;
       // 打印显示后，span标签的尺寸
+
+      // 直接获取，会报错：Error in v-on handler: "TypeError: Cannot read properties of undefined (reading 'offsetWidth')"
+      // 原因是：点击按钮后，v-if是惰性的，当flag为真值是，伴随着v-if代码块dom的渲染；dom更新是异步的过程，只有组件更新阶段钩子
+      // updated执行完成后，才能重新获取更新后的DOM
+      // const x = this.$refs.sp.offsetWidth;
+      // const y = this.$refs.sp.offsetHeight;
+      // console.log('长度是：' + x);
+      // console.log('宽度是：' + y);
+      this.$nextTick(() => {
+        const x = this.$refs.sp.offsetWidth;
+        const y = this.$refs.sp.offsetHeight;
+
+        // 执行结果分析
+        // this.$nextTick(cb)相当于延迟了操作dom的过程，在dom更新完成后(beforeUpdate和updated钩子执行完成后，才能够操作新的dom)，
+        // 才输出span标签的长和宽
+        /* 
+          beforeUpdate钩子执行了
+          updated钩子执行了
+          长度是：112
+          宽度是：18
+        */
+        console.log('长度是：' + x);
+        console.log('宽度是：' + y);
+      });
     }
   },
   computed: {
@@ -121,10 +146,10 @@ export default {
      */
     console.log('mounted钩子执行了');
     this.arr.push(4);
-    this.$nextTick(() => {
-      const list = document.getElementsByTagName('li');
-      console.log(list.length); // 4
-    });
+    // this.$nextTick(() => {
+    //   const list = document.getElementsByTagName('li');
+    //   console.log(list.length); // 4
+    // });
   },
   beforeUpdate() {
     console.log('beforeUpdate钩子执行了');
