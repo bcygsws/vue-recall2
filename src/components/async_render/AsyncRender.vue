@@ -71,6 +71,21 @@
  * 参考文档2：http://t.zoukankan.com/moqiutao-p-5050225.html
  * 参考文档3：https://blog.csdn.net/a460550542/article/details/100286609
  *
+ * 四、v-if和v-show的区别和联系
+ * 参考文档：https://m.php.cn/article/483644.html
+ * Concept:
+ * 1.v-if是真正的条件渲染，确保在切换过程中，事件监听器和子组件的销毁和重建
+ * v-if是“惰性的”，只有当v-if的值为真时，才开始渲染条件块
+ *
+ * 特点
+ * 2.v-show则更简单，不论条件是什么，v-show则元素一直会被渲染；当v-show值为false时隐藏；v-show值为true时显示；
+ * 就是简单的基于css进行切换，类比：display:block;或者display:none;
+ *
+ * 评价和使用场景
+ * 3.v-if有较高的切换性能消耗;使用场景：如果在运行时，条件很少改变，使用v-if
+ * v-show右较高的初始渲染消耗；使用场景：如果切换频繁，使用v-show
+ *
+ *
  *
  */
 export default {
