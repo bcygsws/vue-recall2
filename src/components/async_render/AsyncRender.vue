@@ -86,8 +86,6 @@
  * 3.v-if有较高的切换性能消耗;使用场景：如果在运行时，条件很少改变，使用v-if
  * v-show右较高的初始渲染消耗；使用场景：如果切换频繁，使用v-show
  *
- *
- *
  */
 export default {
   name: 'AsyncRender',
