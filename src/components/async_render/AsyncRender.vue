@@ -7,7 +7,7 @@
       </li>
     </ul>
     <div>数组的长度：{{ total }}</div>
-    <span v-if="flag" ref="sp">何事秋风悲画扇</span>
+    <span v-if="flag" ref="sp" class="sp">何事秋风悲画扇</span>
     <button @click="handleSwitch">点按钮，获取span标签的长度</button>
   </div>
 </template>
@@ -22,6 +22,7 @@
  * 回顾：三大系列
  * 一、offset系列:用于获取盒子的实际尺寸(offsetWidth=content+padding+border)
  * 或者相对于最近的定位父盒子之间的距离(参照定位的盒子)
+ * offsetLeft和offsetTop：子盒子padding外部相对于最近的定位父盒子的水平和垂直方向的距离
  * .offsetParent 获取定位的那个父盒子(DOM对象)
  *
  * 二、scroll系列
@@ -37,7 +38,7 @@
  *
  * 三、client系列
  * clientWidth和clientHeight获取可视区域的宽度(content+padding,不包括边框)或者高度(content+padding,不包含边框)
- * clientTop和clientLeft(子盒子padding外侧距离父盒子的padding内侧的距离；
+ * clientTop和clientLeft(子盒子padding外侧距离父盒子的padding内侧的距离，通常等于子盒子的border值；clientWidth+clientLeft=OffsetWidth(盒子的标准尺寸)
  * 如果父盒子没有padding，就是子盒子padding距离父盒子的边框内侧的距离)
  * 将client和scroll的兼容问题封装在一起
  *		var evTools = {
@@ -176,5 +177,9 @@ export default {
 </script>
 <style lang="less" scoped>
 .ar_container {
+  background-color: #ddd;
+  span.sp {
+    background-color: pink;
+  }
 }
 </style>
