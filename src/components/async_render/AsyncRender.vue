@@ -156,6 +156,7 @@ export default {
      * 参考文档：https://blog.csdn.net/qq_44552416/article/details/107952313
      * 总来来说，this.$nextTick(cb)相当于在dom挂载到页面后(mounted阶段)这个时机的测量
      * $nextTick传入一个回调函数cb，当mounted更新完成后，会执行其中的回调cb
+     * 
      *
      */
     console.log('mounted钩子执行了');
