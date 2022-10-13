@@ -24,7 +24,7 @@
  * vue.delete用于避开vue不能监测到property被删除的限制，但是这个方法很少被用到
  * 换句话vue.delete的作用是vue能够监测到property被删除的限制
  *
- * 
+ *
  * 关联知识
  * Vue.set
  * 参考文档：https://cn.vuejs.org/v2/api/#Vue-set
@@ -46,8 +46,9 @@ export default {
       delete this.a[1];
       // Vue.set参数列表Vue.set(target,properName/index,value)
       // target类型Object|Array，properName/index类型string|number,value可以是任意类型
-      this.$set(this.a); // 这个语句不能注释掉，是用以确保能够更新视图的。注释该语句后，delete(a[1])确实删除了元素的值，但是
+      // 这个语句不能注释掉，是用以确保能够更新视图的。注释该语句后，delete(a[1])确实删除了元素的值，但是
       // 页面还是删除前的，即视图没有更新
+      this.$set(this.a);
       console.log(this.a);
     },
     handleB() {
