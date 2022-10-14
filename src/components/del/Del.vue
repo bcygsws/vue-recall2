@@ -24,10 +24,11 @@
  * vue.delete用于避开vue不能监测到property被删除的限制，但是这个方法很少被用到
  * 换句话vue.delete的作用是vue能够监测到property被删除的限制
  *
+ * 
  *
  * 关联知识
  * Vue.set
- * 参考文档：https://cn.vuejs.org/v2/api/#Vue-set
+ * 参考文档：https://v2.cn.vuejs.org/v2/api/#Vue-set
  * Vue.set(target【Object|Array】,properName/index【string|number】,value【任意类型的值】)
  * Vue.set的含义是向对象添加一个属性。如果对象是响应式的，要确保被加入的这个property也是响应式的，且触发视图更新
  *
