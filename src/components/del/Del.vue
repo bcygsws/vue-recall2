@@ -24,13 +24,17 @@
  * vue.delete用于避开vue不能监测到property被删除的限制，但是这个方法很少被用到
  * 换句话vue.delete的作用是vue能够监测到property被删除的限制
  *
- * 
+ *
  *
  * 关联知识
  * Vue.set
  * 参考文档：https://v2.cn.vuejs.org/v2/api/#Vue-set
+ * 语法：
  * Vue.set(target【Object|Array】,properName/index【string|number】,value【任意类型的值】)
- * Vue.set的含义是向对象添加一个属性。如果对象是响应式的，要确保被加入的这个property也是响应式的，且触发视图更新
+ * 定义：
+ * Vue.set的含义是向对象添加一个property,并确保被加入的这个property也是响应式的，且触发视图更新
+ * 特别注意：
+ * 它只适用于响应式对象添加属性，无法探测普通的新增的属性(如：this.myObject.newProperty = 'hi')
  *
  *
  */
@@ -45,12 +49,22 @@ export default {
   methods: {
     handleA() {
       delete this.a[1];
-      // Vue.set参数列表Vue.set(target,properName/index,value)
-      // target类型Object|Array，properName/index类型string|number,value可以是任意类型
+      /**
+       *
+       * Vue.set的参数列表(这是全局写法，非全局this.$set)
+       * Vue.set(target[,properName/index[,value]])
+       * target类型Object|Array
+       * properName/index类型string|number
+       * value可以是任意类型
+       *
+       *
+       */
       /**
        *
        * 特别注意：这个语句不能注释掉，是用以确保能够更新视图的。注释该语句后，delete(a[1])确实删除了元素的值，但是
        * 页面还是删除前的，即视图没有更新
+       * 这里只使用了第一个参数Object|Array
+       *
        */
       this.$set(this.a);
       console.log(this.a);
