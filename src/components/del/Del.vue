@@ -9,6 +9,18 @@
       <li v-for="(item, index) in b" :key="index">b---{{ item }}</li>
     </ul>
     <button @click="handleB">打印b数组处理后的值</button>
+    <ul>
+      <li>名称：{{ obj1.title }}</li>
+      <li>作者：{{ obj1.author }}</li>
+      <li>描述：{{ obj1.des }}</li>
+    </ul>
+    <button @click="handleDel">delete直接删除</button>
+    <ul>
+      <li>名称：{{ obj2.title }}</li>
+      <li>作者：{{ obj2.author }}</li>
+      <li>描述：{{ obj2.des }}</li>
+    </ul>
+    <button @click="handle$del">使用this.$delete删除</button>
   </div>
 </template>
 <script>
@@ -44,6 +56,8 @@ export default {
     return {
       a: [1, 2, 3, 4],
       b: [1, 2, 3, 4],
+      obj1: { title: '绛雪玄霜', author: '卧龙生', des: '姐妹纠葛，捍卫正道' },
+      obj2: { title: '白马啸西风', author: '金庸', des: '李文秀西域历险' },
     };
   },
   methods: {
@@ -74,6 +88,19 @@ export default {
       // target类型Object|Array,properName/index类型 string|number
       this.$delete(this.b, 1);
       console.log(this.b);
+    },
+    handleDel() {
+      // a.delete方式删除对象的属性
+      delete this.obj1.des;
+      this.$set(this.obj1); // 必须有，用以更新视图
+      // 对象中属性值删除了，变成了undefined；键和值都变成了undefined，仍然占据内存空间
+      console.log(this.obj1); // { title: '绛雪玄霜', author: '卧龙生', undefined: undefined },
+    },
+    handle$del() {
+      // b.使用$delete删除对象的属性
+      this.$delete(this.obj2, 'des');
+      // 将des属性彻底删除了，不在对象中占据存储空间了
+      console.log(this.obj2); // { title: '白马啸西风', author: '金庸' }
     },
   },
 };
