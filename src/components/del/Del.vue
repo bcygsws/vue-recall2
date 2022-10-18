@@ -4,10 +4,14 @@
     <ul>
       <li v-for="(item, index) in a" :key="index">a---{{ item }}</li>
     </ul>
-    <button @click="handleA">打印a数组处理后的值</button>
+    <!-- a. delete方式删除 -->
+    <button @click="handleA">打印a数组处理后的值</button><br />
+    <!-- a. this.$set更改数组this.$set(this.a,0,"某字符串") 将索引为0的元素更改为某字符串 -->
+    <button @click="handleAdd">向数组中添加元素</button>
     <ul>
       <li v-for="(item, index) in b" :key="index">b---{{ item }}</li>
     </ul>
+    <!-- b. $delete方式删除 -->
     <button @click="handleB">打印b数组处理后的值</button>
     <ul>
       <li>名称：{{ obj1.title }}</li>
@@ -78,10 +82,14 @@ export default {
        * 特别注意：这个语句不能注释掉，是用以确保能够更新视图的。注释该语句后，delete(a[1])确实删除了元素的值，但是
        * 页面还是删除前的，即视图没有更新
        * 这里只使用了第一个参数Object|Array
-       * 
+       *
        *
        */
       this.$set(this.a);
+      console.log(this.a);
+    },
+    handleAdd() {
+      this.$set(this.a, 0, 'Hello,add data!');
       console.log(this.a);
     },
     handleB() {
