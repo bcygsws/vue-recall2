@@ -75,7 +75,6 @@ export default {
        * properName/index类型string|number
        * value可以是任意类型
        *
-       *
        */
       /**
        *
