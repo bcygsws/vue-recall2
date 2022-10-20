@@ -7,7 +7,7 @@
     <!-- a. delete方式删除 -->
     <button @click="handleA">打印a数组处理后的值</button><br />
     <!-- a. this.$set更改数组this.$set(this.a,0,"某字符串") 将索引为0的元素更改为某字符串 -->
-    <button @click="handleAdd">向数组中添加元素</button>
+    <button @click="handleAdd">设定数组中的某个元素</button>
     <ul>
       <li v-for="(item, index) in b" :key="index">b---{{ item }}</li>
     </ul>
