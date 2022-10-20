@@ -75,8 +75,6 @@ export default {
        * properName/index类型string|number
        * value可以是任意类型
        *
-       */
-      /**
        *
        * 特别注意：这个语句不能注释掉，是用以确保能够更新视图的。注释该语句后，delete(a[1])确实删除了元素的值，但是
        * 页面还是删除前的，即视图没有更新
