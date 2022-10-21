@@ -4,9 +4,9 @@
     <ul>
       <li v-for="(item, index) in a" :key="index">a---{{ item }}</li>
     </ul>
-    <!-- a. delete方式删除 -->
+    <!-- a1. delete方式删除 -->
     <button @click="handleA">打印a数组处理后的值</button><br />
-    <!-- a. this.$set更改数组this.$set(this.a,0,"某字符串") 将索引为0的元素更改为某字符串 -->
+    <!-- a2. this.$set更改数组this.$set(this.a,0,"某字符串") 将索引为0的元素更改为某字符串 -->
     <button @click="handleAdd">设定数组中的某个元素</button>
     <ul>
       <li v-for="(item, index) in b" :key="index">b---{{ item }}</li>
