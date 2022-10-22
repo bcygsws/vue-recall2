@@ -50,7 +50,6 @@
  * 特别注意：
  * 它只适用于响应式对象添加属性，无法探测普通的新增的属性(如：this.myObject.newProperty = 'hi')
  *
- *
  */
 export default {
   name: 'Del',
