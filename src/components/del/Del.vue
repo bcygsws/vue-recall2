@@ -5,7 +5,7 @@
       <li v-for="(item, index) in a" :key="index">a---{{ item }}</li>
     </ul>
     <!-- a1. delete方式删除 -->
-    <button @click="handleA">打印a数组处理后的值</button><br />
+    <button @click="handleA">delete方式删除数组中某个元素</button><br />
     <!-- a2. this.$set更改数组this.$set(this.a,0,"某字符串") 将索引为0的元素更改为某字符串 -->
     <button @click="handleAdd">设定数组中的某个元素</button>
     <ul>
@@ -62,6 +62,8 @@ export default {
     };
   },
   methods: {
+    // 1.直接delete的方式；注意：delete这种方式删除数组中某个元素后，再次点删除，数组a是不会变化的；原因是：
+    // 删除数组中索引为1的元素后，该位置元素被empty替代；再次使用delete删除，该元素仍然会是empty
     handleA() {
       delete this.a[1];
       /**
