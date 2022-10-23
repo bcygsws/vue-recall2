@@ -7,24 +7,33 @@
     <!-- a1. delete方式删除 -->
     <button @click="handleA">delete方式删除数组中某个元素</button><br />
     <!-- a2. this.$set更改数组this.$set(this.a,0,"某字符串") 将索引为0的元素更改为某字符串 -->
-    <button @click="handleAdd">设定数组中的某个元素</button>
+    <button @click="handleAdd">this.$set更改数组中的某个元素</button>
     <ul>
       <li v-for="(item, index) in b" :key="index">b---{{ item }}</li>
     </ul>
-    <!-- b. $delete方式删除 -->
-    <button @click="handleB">打印b数组处理后的值</button>
+    <!-- a3. $delete方式删除 -->
+    <button @click="handleB">this.$deletes删除数组b中的某个元素</button>
     <ul>
       <li>名称：{{ obj1.title }}</li>
       <li>作者：{{ obj1.author }}</li>
       <li>描述：{{ obj1.des }}</li>
     </ul>
-    <button @click="handleDel">delete直接删除</button>
+    <!-- b1. delete方式删除对象的某个属性 -->
+    <button @click="handleDel">delete方式删除对象的某个属性</button>
     <ul>
       <li>名称：{{ obj2.title }}</li>
       <li>作者：{{ obj2.author }}</li>
       <li>描述：{{ obj2.des }}</li>
     </ul>
-    <button @click="handle$del">使用this.$delete删除</button>
+    <!-- b2. $delete方式删除对象的某个属性 -->
+    <button @click="handle$del">使用this.$delete删除对象的某个属性</button>
+    <ul>
+      <li>名称：{{ obj2.title }}</li>
+      <li>作者：{{ obj2.author }}</li>
+      <li>描述：{{ obj2.des }}</li>
+    </ul>
+    <!-- b3. $set方式设置值对象的某个属性 -->
+    <button @click="handle$set">使用this.$set修改对象的某个属性值</button>
   </div>
 </template>
 <script>
@@ -62,7 +71,8 @@ export default {
     };
   },
   methods: {
-    // 1.直接delete的方式；注意：delete这种方式删除数组中某个元素后，再次点删除，数组a是不会变化的；原因是：
+    // 1.直接delete的方式；
+    // 注意：delete这种方式删除数组中某个元素后，再次点删除，数组a是不会变化的；原因是：
     // 删除数组中索引为1的元素后，该位置元素被empty替代；再次使用delete删除，该元素仍然会是empty
     handleA() {
       delete this.a[1];
@@ -106,6 +116,10 @@ export default {
       this.$delete(this.obj2, 'des');
       // 将des属性彻底删除了，不在对象中占据存储空间了
       console.log(this.obj2); // { title: '白马啸西风', author: '金庸' }
+    },
+    handle$set() {
+      this.$set(this.obj2, 'des', '南风知我意，吹梦到西洲');
+      console.log(this.obj2);
     },
   },
 };
