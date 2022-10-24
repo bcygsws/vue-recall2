@@ -34,6 +34,16 @@
     </ul>
     <!-- b3. $set方式设置值对象的某个属性 -->
     <button @click="handle$set">使用this.$set修改对象的某个属性值</button>
+    <!-- b4.验证添加普通属性， -->
+    <ul>
+      <li>名称：{{ obj2.title }}</li>
+      <li>作者：{{ obj2.author }}</li>
+      <li>描述：{{ obj2.des }}</li>
+      <li v-if="obj2.pages">页数：{{ obj2.pages ? obj2.pages : '未知' }}</li>
+    </ul>
+    <button @click="handle$setAdd">
+      使用this.$set验证vue无法探测到普通的新增属性
+    </button>
   </div>
 </template>
 <script>
@@ -57,7 +67,7 @@
  * 定义：
  * Vue.set的含义是向对象添加一个property,并确保被加入的这个property也是响应式的，且触发视图更新
  * 特别注意：
- * 它只适用于响应式对象添加属性，无法探测普通的新增的属性(如：this.myObject.newProperty = 'hi')
+ * 它只适用于响应式对象添加属性，因为无法探测普通的新增的属性(如：this.myObject.newProperty = 'hi')
  *
  */
 export default {
@@ -95,6 +105,7 @@ export default {
     },
     handleAdd() {
       this.$set(this.a, 0, 'Hello,add data!');
+      this.$set(this.a, 4, '我是新增的元素');
       console.log(this.a);
     },
     handleB() {
@@ -118,6 +129,18 @@ export default {
     },
     handle$set() {
       this.$set(this.obj2, 'des', '南风知我意，吹梦到西洲');
+      console.log(this.obj2);
+    },
+    // $set使用时注意事项：
+    // 1.对象不能是vue实例，或者vue实例的根数据对象
+    // 2.只能用于为响应式对象添加属性，因为vue无法探测到普通的新增的property,例如：this.myObject.newProperty="hi"
+    // ( myObject不在data函数中定义的那些对象)
+    handle$setAdd() {
+      // 方式一：同样得如果没有this.$set()语句，this.obj2确实增加了pages这个新属性，但是不会触发页面更新
+      // this.obj2.pages = 345;
+      // this.$set(this.obj2);
+      // 方式二
+      this.$set(this.obj2, 'pages', 345);
       console.log(this.obj2);
     },
   },
