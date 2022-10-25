@@ -8,10 +8,19 @@
     </ul>
     <div>数组的长度：{{ total }}</div>
     <span v-if="flag" ref="sp" class="sp">何事秋风悲画扇</span>
-    <button @click="handleSwitch">点按钮，获取span标签的长度</button>
+    <button @click="handleSwitch">点按钮，获取span标签的长度</button><br />
+    <!-- keep-alive内置组件演示，三个生命周期钩子 -->
+    <button @click="switchFn">点击按钮，切换要缓存的组件</button>
+    <keep-alive>
+      <!-- component内置组件，根据is的属性值来选择缓存的组件，注意：属性值要和组件名称一致 -->
+      <component :is="num"></component>
+    </keep-alive>
   </div>
 </template>
 <script>
+import First from './First.vue';
+import Second from './Second.vue';
+import Third from './Third.vue';
 /**
  * vue的异步渲染
  * 演示：在created和mounted阶段，改变数组，是否会触发beforeUpdate和updated钩子
@@ -86,7 +95,7 @@
  * 3.v-if有较高的切换性能消耗;使用场景：如果在运行时，条件很少改变，使用v-if
  * v-show右较高的初始渲染消耗；使用场景：如果切换频繁，使用v-show
  *
- * 
+ *
  */
 export default {
   name: 'AsyncRender',
@@ -95,8 +104,15 @@ export default {
       msg: '',
       arr: [1, 2, 3],
       // span标签显示或隐藏的标志变量flag默认为false
-      flag: false
+      flag: false,
+      // num变量，存储组件名称
+      num: 'first'
     };
+  },
+  components: {
+    first: First,
+    second: Second,
+    third: Third
   },
   methods: {
     handleSwitch() {
@@ -127,10 +143,21 @@ export default {
         console.log('长度是：' + x);
         console.log('宽度是：' + y);
       });
+    },
+    switchFn() {
+      // 点击按钮，切换要缓存的组件
+      const arr = ['first', 'second', 'third'];
+      const index = arr.indexOf(this.num);
+      if (index < 2) {
+        this.num = arr[index + 1];
+      } else {
+        this.num = arr[0];
+      }
     }
   },
   computed: {
     // 在created阶段完成数据、计算属性和事件的配置
+    // 11个生命周期钩子(创建前后，挂载前后，更新前后，销毁前后+keep-alive内置组件3个，activated、deactivated、errorCaptured)
     // 参考文档：https://blog.csdn.net/weixin_48337566/article/details/116057090
     total() {
       return this.arr.length;
@@ -157,8 +184,8 @@ export default {
      * 参考文档：https://blog.csdn.net/qq_44552416/article/details/107952313
      * 总来来说，this.$nextTick(cb)相当于在dom挂载到页面后(mounted阶段)这个时机的测量
      * $nextTick传入一个回调函数cb，当mounted更新完成后，会执行其中的回调cb
-     * 
-     * 
+     *
+     *
      *
      */
     console.log('mounted钩子执行了');
@@ -173,6 +200,29 @@ export default {
   },
   updated() {
     console.log('updated钩子执行了');
+  },
+  // keep-alive生命周期狗子函数activated和deactivated
+  activated() {
+    console.log(100); // 被缓存的组件显示出来的时候触发
+  },
+  deactivated() {
+    // 被缓存的组件隐藏时触发
+    console.log(200);
+  },
+  // 当捕获一个子孙组件的错误时，会调用这个钩子
+  errorCaptured(a, b, c) {
+    /**
+     * 参数说明
+     * a:错误对象
+     * b:发生错误组件实例
+     * c：包含发生错误来源信息的字符串
+     *
+     * 此钩子返回一个false,阻止错误向上传播
+     *
+     */
+    console.log(a); // 错误对象
+    console.log(b); // 发生错误的组件实例
+    console.log(c); // 包含错误来源信息的字符串
   }
 };
 </script>
