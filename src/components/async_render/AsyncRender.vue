@@ -201,14 +201,37 @@ export default {
   updated() {
     console.log('updated钩子执行了');
   },
-  // keep-alive生命周期狗子函数activated和deactivated
-  activated() {
-    console.log(100); // 被缓存的组件显示出来的时候触发
-  },
-  deactivated() {
-    // 被缓存的组件隐藏时触发
-    console.log(200);
-  },
+  // keep-alive生命周期狗子函数activated和deactivated;在子组件中观看activated和deactivated钩子的执行
+  /**
+   * 
+   * @ 观察到缓存组件显示时，会触发组件的更新钩子，beforeUpdate、activated、updated的执行
+   * 
+   * 
+  */
+ /* 
+
+ first组件初始渲染时执行顺序
+    beforeCreate钩子执行
+    created钩子执行
+    beforeMount钩子执行了
+    first组件中activated钩子触发
+    mounted钩子执行了
+    beforeUpdate钩子执行了
+    updated钩子执行了
+
+    切换过程中，钩子的执行顺序first到second
+    beforeUpdate钩子执行了
+    first组件中deactivated钩子触发
+    second组件中activated钩子触发
+    updated钩子执行了
+ */
+  // activated() {
+  //   console.log(100); // 被缓存的组件显示出来的时候触发
+  // },
+  // deactivated() {
+  //   // 被缓存的组件隐藏时触发
+  //   console.log(200);
+  // },
   // 当捕获一个子孙组件的错误时，会调用这个钩子
   errorCaptured(a, b, c) {
     /**
