@@ -130,7 +130,6 @@ export default {
       this.$nextTick(() => {
         const x = this.$refs.sp.offsetWidth;
         const y = this.$refs.sp.offsetHeight;
-
         // 执行结果分析
         // this.$nextTick(cb)相当于延迟了操作dom的过程，在dom更新完成后(beforeUpdate和updated钩子执行完成后，才能够操作新的dom)，
         // 才输出span标签的长和宽
