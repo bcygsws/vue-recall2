@@ -82,6 +82,13 @@ import Third from './Third.vue';
  * 参考文档1：http://t.zoukankan.com/hjdjs-p-6519396.html
  * 参考文档2：http://t.zoukankan.com/moqiutao-p-5050225.html
  * 参考文档3：https://blog.csdn.net/a460550542/article/details/100286609
+ * screenX、screenY：表示相对于显示器屏幕的x轴和y轴的坐标
+ * pageX、pageY:
+ * 1.参考文档：https://blog.csdn.net/m0_45142186/article/details/126315694
+ * 2.当滚动条没有滚动时，鼠标点击client和page值是相等的；当滚动条滚动时，鼠标点击后，page会发生变化，其值等于鼠标点击
+ * 位置距离文档左上角距离的大小；但是，clientX和clientY依然是相对于视口的距离大小
+ * clientX、clientY:相对于浏览器可视区域的x轴或y轴的坐标
+ * offsetX、offsetY:相对于事件源对象x轴和y轴的坐标
  *
  * 四、v-if和v-show的区别和联系
  * 参考文档：https://m.php.cn/article/483644.html
