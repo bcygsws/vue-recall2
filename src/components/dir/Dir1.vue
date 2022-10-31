@@ -18,7 +18,6 @@
  * 语法
  * v-指令名称:[arg]="指令值"
  *
- *
  */
 export default {
   name: 'Dir1',
