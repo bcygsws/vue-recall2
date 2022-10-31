@@ -49,6 +49,8 @@ import Third from './Third.vue';
  * clientWidth和clientHeight获取可视区域的宽度(content+padding,不包括边框)或者高度(content+padding,不包含边框)
  * clientTop和clientLeft(子盒子padding外侧距离父盒子的padding内侧的距离，通常等于子盒子的border值；clientWidth+clientLeft=OffsetWidth(盒子的标准尺寸)
  * 如果父盒子没有padding，就是子盒子padding距离父盒子的边框内侧的距离)
+ * clientLeft:视口左边界边框的长度
+ * clientTop：视口有边界边框的长度
  * 将client和scroll的兼容问题封装在一起
  *		var evTools = {
  *			// 获取兼容事件的参数
