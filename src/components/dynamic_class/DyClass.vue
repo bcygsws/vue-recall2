@@ -21,21 +21,30 @@
   </div>
 </template>
 <script>
+/**
+ *
+ * @ 概括起来，就两种方式：对象或数组
+ * 对象方式，示例：{active: true}，替代成对象或者computed属性返回的那个对象
+ * 数组方式，适用于多个类样式，必须用数组了:class="['active3','active4']"或者数组对象混合版本
+ * :class="['active5',{active1: true}]"
+ *
+ *
+ */
 export default {
   name: 'DyClass',
   data() {
     return {
       isActive: true,
       isActive1: false,
-      obj: { active1: true }
+      obj: { active1: true },
     };
   },
   methods: {},
   computed: {
     comObj() {
       return { active2: true };
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
