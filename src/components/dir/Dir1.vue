@@ -20,6 +20,9 @@
  * 语法
  * v-指令名称:[arg]="指令值"
  *
+ * 测试验证：direction初始值为left(没有设置top)；当toTop方法执行后，el.style.[binding.arg]=el.style.top=200+"px";
+ * 而且这种变化，只能出现一次；如果，再改变direction值，界面就没有变化了
+ *
  */
 export default {
   name: 'Dir1',
