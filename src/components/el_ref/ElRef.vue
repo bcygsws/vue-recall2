@@ -1,10 +1,10 @@
 <template>
   <div class="el_container">
     <h3>vue 1.0 和vue2.0分别抛弃的v-el和v-ref，如今使用ref</h3>
-    <!-- <button @click="getCom">点击案例，控制台打印元素对象</button>
-    <!-- <div v-el:myCom></div> -->
+    <button @click="getCom">点击案例，控制台打印元素对象</button>
+    <div v-el:myCom></div>
+    <!-- 由于当前环境为vue2.6.11,因此没有按照预期打印对象 -->
     <!-- <button @click="getSonObj">点击案例，控制台打印对象</button> -->
-    -->
     <!-- <son v-ref:mySon></son> -->
   </div>
 </template>
@@ -12,16 +12,20 @@
 /**
  *
  * @ vue1.0 和vue 2.0启用的v-el和v-ref 演示
+ * 本案例：主要目的是观察被抛弃的的指令v-el和v-ref的用法
+ * 
  * 参考文档：https://blog.csdn.net/qq_26642611/article/details/104493828
  * 特别注意点：
- *  特别注意大写转小写的问题：v-el:myCom
- *                          v-ref:mySon
+ *  特别注意大写转小写的问题：
+ * v-el:myCom
+ * v-ref:mySon
  *
- * 引用的时候，一律转为小写。
- * this.$els.mycom和this.$refs.myson
+ * 引用的时候，一律转为小写：
+ * this.$els.mycom
+ * this.$refs.myson
  */
 // 导入子组件son
-import Son from './Son.vue';
+// import Son from './Son.vue';
 export default {
   name: 'ElRef',
   data() {
@@ -30,9 +34,9 @@ export default {
   methods: {
     // 由于当前环境为vue2.6.11,因此没有按照预期打印对象
     // 报错[Vue warn]: Failed to resolve directive: el
-    // getCom() {
-    //   console.log(this.$els.mycom);
-    // },
+    getCom() {
+      console.log(this.$els.mycom);
+    },
     // // 由于当前环境为vue2.6.11,因此没有按照预期打印对象
     // // 报错[Vue warn]: Failed to resolve directive: el
     // getSonObj() {
@@ -40,7 +44,7 @@ export default {
     // },
   },
   components: {
-    Son,
+    // Son,
   },
 };
 </script>
