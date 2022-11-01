@@ -2,6 +2,8 @@
   <div class="dir1_container">
     <h3>这动态指令参数的理解</h3>
     <button @click="toTop">div盒子定位到距离顶部200px</button>
+    <!-- 在top和left之间来回切换 -->
+    <!-- <button @click="switchDir">来回在top和left之间切换</button> -->
     <!-- 点击按钮，再次回到左侧，待实现 -->
     <!-- <button @click="toLeft">div盒子定位到距离左侧200px</button> -->
     <!-- div盒子是距离顶部还是左侧200px -->
@@ -28,8 +30,16 @@ export default {
   },
   methods: {
     toTop() {
+      // (left,top) 按钮点击后，(200,0)变成了(200,200)
       this.direction = 'top';
     },
+    // switchDir() {
+    //   // 来回在left和top之间切换
+    //   const arr = ['left', 'top'];
+    //   const index = arr.indexOf(this.direction);
+    //   this.direction = index === 0 ? arr[1] : arr[0];
+    //   console.log(this.direction);
+    // },
     // toLeft() {
     //   this.direction = 'left';
     // },
@@ -48,8 +58,10 @@ export default {
       },
       // inserted: function (el, binding) {},
       update: function (el, binding) {
-        let s = binding.arg === 'left' ? 'left' : 'top';
+        let s = binding.arg;
         el.style[s] = binding.value + 'px';
+        console.log(binding);
+        console.log(s);
       },
     },
   },
