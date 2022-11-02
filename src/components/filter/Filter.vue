@@ -10,18 +10,32 @@
       @keyup="inputStr"
       value=""
     />
-    <!-- | 管道符，后面跟自定义过滤器的名称(firstUp(传的值是，directives定义过滤器时的第二个参数，可以不传参)) -->
+    <!-- | 管道符，后面跟自定义过滤器的名称(firstUp(传的值是，filters定义过滤器时的第二个参数，可以不传参)) -->
     <div class="str">{{ msg | firstUp }}</div>
     <!-- 时间格式化过滤器 -->
     <!-- pattern为空字符串 -->
     <div>{{ time | formatTime }}</div>
     <!-- pattern为YYYY-MM-DD HH:mm:ss -->
-    <div>{{ time | formatTime('YYYY-MM-DD HH:mm:ss') }}</div>
+    <!-- <div>{{ time | formatTime('YYYY-MM-DD HH:mm:ss') }}</div> -->
     <!-- pattern为 YYYY/MM/DD HH:yyyy-mm-ss-->
     <div>{{ time | formatTime('YYYY/MM/DD HH:mm:ss') }}</div>
   </div>
 </template>
 <script>
+/**
+ *
+ * @ Date初始化的不同参数
+ * 方式1：
+ * var today = new Date()
+ * 方式2：传入一个字符串：月 日,年 时：分：秒
+ * var d1 = new Date("October 13, 1975 11:13:00")
+ * 方式3：3个参数简单年月日
+ * var d2 = new Date(79,5,24)
+ * 方式4：6个参数，年月日时分秒
+ * var d3 = new Date(79,5,24,11,33,0)
+ *
+ *
+ */
 export default {
   // name: 'Filter',
   data() {
@@ -39,10 +53,10 @@ export default {
       if (!val) return;
       // 对输入的英文字符串首字母做大写处理，其他字符保持原样
       val = val.toString();
+      // 首字母，使用string.charAt(索引值，从0开始)
       return val.charAt(0).toUpperCase() + val.slice(1);
     },
     // 定义格式化时间的过滤器formatTime
-
     formatTime: function (val, pattern = '') {
       const year = val.getFullYear();
       console.log(typeof year); // number，其他时间变量都是number,使用字符串的方法padStart，需要拼接一个空字符，转化成字符串
