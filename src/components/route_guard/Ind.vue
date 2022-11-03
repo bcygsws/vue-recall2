@@ -10,7 +10,7 @@ export default {
   name: 'Ind',
   methods: {
     clearToken() {
-      // 清除token
+      // 清除token,本地localStorage的清除，clear()
       localStorage.clear();
       // 编程式导航进入login页面
       this.$router.push({ name: 'User' });
