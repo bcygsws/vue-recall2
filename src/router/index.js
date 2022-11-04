@@ -105,7 +105,7 @@ const router = new VueRouter({
   linkExactActiveClass: 'myClass',
 });
 
-// 路由全局导航守卫
+// 前置路由导航守卫
 router.beforeEach((to, from, next) => {
   if (to.path === '/user') {
     next();
