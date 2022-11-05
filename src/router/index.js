@@ -15,22 +15,6 @@ import InjectA from '@/components/pass_value/InjA.vue';
 import Guard from '@/components/route_guard/Guard.vue';
 import NotLogin from '@/components/route_guard/NotLogin.vue';
 import Ind from '@/components/route_guard/Ind.vue';
-import UseNew from '@/components/stylus_jade/UseNew.vue';
-import Dir from '@/components/dir/Dir.vue';
-import Dir1 from '@/components/dir/Dir1.vue';
-import VFor from '@/components/key_prop/VFor.vue';
-import Reg from '@/components/key_prop/Reg.vue';
-import DyClass from '@/components/dynamic_class/DyClass.vue';
-import NextTick from '@/components/tick/NextTick.vue';
-import ElRef from '@/components/el_ref/ElRef.vue';
-import Wat from '@/components/watch/Wat.vue';
-import Com from '@/components/watch/Com.vue';
-import WatCom from '@/components/watch/WatCom.vue';
-import Del from '@/components/del/Del.vue';
-import Filter from '@/components/filter/Filter.vue';
-import Slot from '@/components/slot/Slot.vue';
-import AsyncRender from '@/components/async_render/AsyncRender.vue';
-
 Vue.use(VueRouter);
 
 const routes = [
