@@ -6,6 +6,7 @@
     NavigationDuplicated: Avoided redundant navigation to current location: "/home/guard/login".
     意为，清除了x-token导航到了同一个路由 -->
     <!-- <button @click="clearToken">清除localStorage中的x_token</button> -->
+    <!-- model和rules都写在data函数的return返回数据中，而校验规则写在data函数体中，return关键字之前 -->
     <el-form
       :model="ruleForm"
       status-icon
@@ -44,9 +45,10 @@ export default {
     let validUser = (rule, value, callback) => {
       // 用户名比较简单，设置为字母或数字，但位数在3到16位即可
       const regExp = /^[a-zA-Z0-9]{3,16}$/;
+      // 一、value===''这个分支表示没有点击文本输入框，直接就点击了提交，给出的提示
+      // 顶层的else表示至少点击了文本输入框，确实点击了文本框，分为点击了输入了内容和点击了未输入任何内容两种情况
       if (value === '') {
-        // callback(new Error('请输入用户名'));
-        callback('请输入用户名');
+        callback(new Error('请输入用户名'));
       } else {
         if (this.ruleForm.user !== '') {
           // 注意：当前版本的element-ui为2.4.5，并不识别在其他高版本中的validateField('user')方法，
@@ -62,7 +64,6 @@ export default {
     };
     let validPass = (rule, value, callback) => {
       // 密码必须为:1.数字和字母的组合，既不能是纯数字也不能是纯字母2.长度为3到16位
-      // 总共就三种情况：纯数字，纯字母，数字和字母混合。前两种通过负前瞻作为条件排除掉了
       // ?!表示负前瞻，以为前面能是，https://blog.csdn.net/csm0912/article/details/81206848
       const regExp = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9a-zA-Z]{3,16}$/;
       // let regExp = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{3,16}$/;
@@ -84,18 +85,19 @@ export default {
     return {
       ruleForm: {
         user: 'admin',
-        pass: '123f'
+        pass: '123f',
       },
       rules: {
         user: [
           {
             required: true,
-            validator: validUser,
+            validator: validUser,// validator验证器、校验器、校验程序
             // min: 2,
             // max: 16,
+            // message表示失去焦点后，文本框下方出现的提示文字
             message: '哈哈，请输入正确的用户名',
-            trigger: 'blur' // 失去焦点后，就能触发，并不需要点击提交按钮
-          }
+            trigger: 'blur', // 失去焦点后，就能触发，并不需要点击提交按钮
+          },
         ],
         pass: [
           {
@@ -105,10 +107,10 @@ export default {
             // max: 16,
             validator: validPass,
             message: '咳咳，请输入正确的密码~',
-            trigger: 'blur'
-          }
-        ]
-      }
+            trigger: 'blur',
+          },
+        ],
+      },
     };
   },
   methods: {
@@ -133,11 +135,7 @@ export default {
       // 注意区分：在规则中使用的是validator这个单词，而不是validate
       this.$refs[formName].validate((valid) => {
         if (!valid) {
-          this.$message({
-            type: 'error',
-            message: '用户名或密码错误，请输入正确的用户名和密码',
-            showClose: true
-          });
+          console.log('Error Submit');
           return false;
         }
         this.$message({ message: '恭喜你登录成功', type: 'success' });
@@ -149,8 +147,8 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
