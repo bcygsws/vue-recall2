@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
-// 导入子组件
+// 导入所有子组件
 import User from '@/views/User.vue';
 import SubComp from '@/components/sub/SubComp.vue';
 import NeedImp from '@/components/webpack/NeedImp.vue';
