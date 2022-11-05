@@ -1,9 +1,3 @@
----
-tags: []
-created: 2022-01-14T19:12:32.817Z
-modified: 2022-01-14T19:14:58.883Z
----
-
 # vue-recall2
 
 ## Project setup
