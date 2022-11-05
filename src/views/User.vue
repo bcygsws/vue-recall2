@@ -6,6 +6,7 @@
     NavigationDuplicated: Avoided redundant navigation to current location: "/home/guard/login".
     意为，清除了x-token导航到了同一个路由 -->
     <!-- <button @click="clearToken">清除localStorage中的x_token</button> -->
+    <!-- model和rules都写在data函数的return返回数据中，而校验规则写在data函数体中，return关键字之前 -->
     <el-form
       :model="ruleForm"
       status-icon
@@ -44,6 +45,8 @@ export default {
     let validUser = (rule, value, callback) => {
       // 用户名比较简单，设置为字母或数字，但位数在3到16位即可
       const regExp = /^[a-zA-Z0-9]{3,16}$/;
+      // 一、value===''这个分支表示没有点击文本输入框，直接就点击了提交，给出的提示
+      // 顶层的else表示至少点击了文本输入框，确实点击了文本框，分为点击了输入了内容和点击了未输入任何内容两种情况
       if (value === '') {
         callback(new Error('请输入用户名'));
       } else {
@@ -88,9 +91,10 @@ export default {
         user: [
           {
             required: true,
-            validator: validUser,
+            validator: validUser,// validator验证器、校验器、校验程序
             // min: 2,
             // max: 16,
+            // message表示失去焦点后，文本框下方出现的提示文字
             message: '哈哈，请输入正确的用户名',
             trigger: 'blur', // 失去焦点后，就能触发，并不需要点击提交按钮
           },
