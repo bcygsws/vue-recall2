@@ -15,7 +15,6 @@ import InjectA from '@/components/pass_value/InjA.vue';
 import Guard from '@/components/route_guard/Guard.vue';
 import NotLogin from '@/components/route_guard/NotLogin.vue';
 import Ind from '@/components/route_guard/Ind.vue';
-
 Vue.use(VueRouter);
 
 const routes = [
