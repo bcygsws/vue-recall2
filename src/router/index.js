@@ -85,74 +85,74 @@ const routes = [
           }
         ]
       },
-      {
-        path: '/home/use_new',
-        component: UseNew
-      },
-      {
-        path: '/home/dir',
-        component: Dir,
-        children: [
-          {
-            path: '/home/dir/dy_dir',
-            name: 'Dir1',
-            component: Dir1
-          }
-        ]
-      },
-      {
-        path: '/home/key_prop',
-        component: VFor,
-        // 正则表达式
-        children: [
-          {
-            path: '/home/key_prop/reg',
-            component: Reg
-          }
-        ]
-      },
-      {
-        path: '/home/dy_class',
-        component: DyClass
-      },
-      {
-        path: '/home/tick',
-        component: NextTick
-      },
-      {
-        path: '/home/el_ref',
-        component: ElRef
-      },
-      {
-        path: '/home/wat_com',
-        component: WatCom,
-        children: [
-          {
-            path: '/home/wat_com/com',
-            component: Com
-          },
-          {
-            path: '/home/wat_com/wat',
-            component: Wat
-          }
-        ]
-      },
-      {
-        path: '/home/del',
-        component: Del
-      },
-      {
-        path: '/home/filter',
-        component: Filter
-      },
-      {
-        path: '/home/slot',
-        component: Slot
-      },
-      {
-        path: '/home/async_render',
-        component: AsyncRender
-      }
+      // {
+      //   path: '/home/use_new',
+      //   component: UseNew
+      // },
+      // {
+      //   path: '/home/dir',
+      //   component: Dir,
+      //   children: [
+      //     {
+      //       path: '/home/dir/dy_dir',
+      //       name: 'Dir1',
+      //       component: Dir1
+      //     }
+      //   ]
+      // },
+      // {
+      //   path: '/home/key_prop',
+      //   component: VFor,
+      //   // 正则表达式
+      //   children: [
+      //     {
+      //       path: '/home/key_prop/reg',
+      //       component: Reg
+      //     }
+      //   ]
+      // },
+      // {
+      //   path: '/home/dy_class',
+      //   component: DyClass
+      // },
+      // {
+      //   path: '/home/tick',
+      //   component: NextTick
+      // },
+      // {
+      //   path: '/home/el_ref',
+      //   component: ElRef
+      // },
+      // {
+      //   path: '/home/wat_com',
+      //   component: WatCom,
+      //   children: [
+      //     {
+      //       path: '/home/wat_com/com',
+      //       component: Com
+      //     },
+      //     {
+      //       path: '/home/wat_com/wat',
+      //       component: Wat
+      //     }
+      //   ]
+      // }
+      // {
+      //   path: '/home/del',
+      //   component: Del
+      // },
+      // {
+      //   path: '/home/filter',
+      //   component: Filter
+      // },
+      // {
+      //   path: '/home/slot',
+      //   component: Slot
+      // },
+      // {
+      //   path: '/home/async_render',
+      //   component: AsyncRender
+      // }
     ]
   }
   // {
