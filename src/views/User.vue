@@ -125,6 +125,7 @@ export default {
         n += t.charAt(Math.floor(Math.random() * t.length));
       }
       return n;
+
     },
     // 清除token的事件
     // clearToken() {
@@ -154,7 +155,18 @@ export default {
 /**
  * 
  * @ 正则表达式的用法
+ * 千分位分隔数字(常用)
+ * 参考文档：
+ * 一文说透如何用正则完成“千分位分隔符”
+ *  https://www.jianshu.com/p/33d954c02803
  * 
+ * https://blog.csdn.net/weixin_40161974/article/details/103156879
+ * 常用写法：
+ * a.使用非边界符(非边界符相当于不包含头尾的字符空隙)
+ * str.replace(/\B(?=(\d{3})+(?!\d))/,",")
+ * b.使用逆序环视
+ * /(\d)(?=(\d{3})+$)/或者/(\d)(?=(?:\d{3})+$)/ 
+ * str.replace(/(\d)(?=(\d{3})+$)/,"$1")
  * 
  * 
  */ 
