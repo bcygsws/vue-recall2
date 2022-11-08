@@ -38,8 +38,7 @@ const routes = [
           },
           {
             path: '/home/keep_alive/no_cache',
-            component: NoCache,
-            meta: { isAlive: false },
+            component: NoCache, // 需要缓存的视图组件Cache,isAlive值为true
           },
         ],
       },
