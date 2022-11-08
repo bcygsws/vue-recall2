@@ -1,16 +1,19 @@
 <template>
   <div class="keep_container">
     <h3>这是keep-alive组件</h3>
-    <keep-alive :include="/Coma|Comb|Comc/" max="10">
+    <!-- <keep-alive :include="/Coma|Comb|Comc/" max="10"> -->
+    <!-- 只对组件Coma和Comb进行缓存，Comc不缓存；测试：向三个文本框中输入内容，观看变化 -->
+    <keep-alive :include="/Coma|Comb/" max="10">
       <component :is="componentId"></component>
     </keep-alive>
     <input type="button" value="缓存coma" @click="select('a')" />&nbsp;&nbsp;
     <input type="button" value="缓存comb" @click="select('b')" />&nbsp;&nbsp;
     <input type="button" value="缓存comc" @click="select('c')" />
     <hr />
-    <router-link to="/home/keep_alive/cache">缓存的路由</router-link
+    <router-link to="/home/keep_alive/cache">切换到缓存的组件</router-link
     >&nbsp;&nbsp;
-    <router-link to="/home/keep_alive/no_cache">不缓存的路由</router-link>
+    <!-- 作为对照，定义一个同级别路由，不换存 -->
+    <router-link to="/home/keep_alive/no_cache">切换到不缓存组件</router-link>
     <!-- 需要缓存的视图组件 -->
     <keep-alive>
       <router-view v-if="$route.meta.isAlive"></router-view>
@@ -43,14 +46,16 @@ import Comc from './Comc.vue';
  * 一旦组件实例达到了max属性值，将优先清除那个缓存最久，没有被访问的实例
  *
  * 两个钩子：activated 和deactivated
- * 1.keep-alive缓存的组件，不会执行beforeDestroy和destroyed生命周期钩子了。原因很简单：keep-alive本意为缓存组件，而不是将其
- * 销毁，这两个钩子在keep-alive包含的组件中，不会执行了
+ * 1.keep-alive缓存的组件，不会执行beforeDestroy和destroyed生命周期钩子了。原因很简单：keep-alive本意为缓存组件，而
+ * 不是将其
+销毁，这两个钩子在keep-alive包含的组件中，不会执行了
  * 2.两个钩子的注意点：https://www.jianshu.com/p/42429f4d8f9e
  * 3.第一次触发时，执行顺序是created mounted activated,退出时触发deactivated。再次触发时，只会执行activated钩子了
  * keep-alive拓展理解，参考文档：https://segmentfault.com/a/1190000015727279
  * 
  *
- * 面试官说：keep-alive https://mp.weixin.qq.com/s?__biz=MzU1OTgxNDQ1Nw==&mid=2247484446&idx=1&sn=80d5a4a15c88f4d6fd878095101601e8&chksm=fc10c648cb674f5efbdad8222de6cd607870e44d5870480a229bfeefd6a78c3ba3b9d372ab37&scene=21#wechat_redirect
+ * 面试官说：keep-alive-重点体会使用场景：首页-列表项-详情页，再从详情页返回时，列表项组件就最好使用缓存
+ *  https://mp.weixin.qq.com/s?__biz=MzU1OTgxNDQ1Nw==&mid=2247484446&idx=1&sn=80d5a4a15c88f4d6fd878095101601e8&chksm=fc10c648cb674f5efbdad8222de6cd607870e44d5870480a229bfeefd6a78c3ba3b9d372ab37&scene=21#wechat_redirect
  *
  *
  */
