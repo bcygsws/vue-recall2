@@ -54,7 +54,9 @@ import Comc from './Comc.vue';
  * keep-alive拓展理解，参考文档：https://segmentfault.com/a/1190000015727279
  * 
  *
- * 面试官说：keep-alive-重点体会使用场景：首页-列表项-详情页，再从详情页返回时，列表项组件就最好使用缓存
+ * 面试官说：keep-alive
+ * 1.重点体会使用场景：首页-列表项-详情页，再从详情页返回时，列表项组件就最好使用缓存
+ * 2.缓存组件如何获取数据，两种方式：beforeRouteEnter((to,from,next)=>{next(vm=>{vm.getData()})})，activated(){this.getData()}
  *  https://mp.weixin.qq.com/s?__biz=MzU1OTgxNDQ1Nw==&mid=2247484446&idx=1&sn=80d5a4a15c88f4d6fd878095101601e8&chksm=fc10c648cb674f5efbdad8222de6cd607870e44d5870480a229bfeefd6a78c3ba3b9d372ab37&scene=21#wechat_redirect
  *
  *
