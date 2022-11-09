@@ -117,6 +117,7 @@ export default {
         // id值为重复，往list数组的末尾追加一条数据
         // flag为true, 表示输入的id有和数组list中某个元素的id重复;期望：不重复，没有任何一个元素通过测试；flag=false
         if (!this.flag) {
+          // vue双向绑定的好处，模板中list数据变化，会直接触发视图更新；不需要像React中，手动setState()
           this.list.push({
             id: parseInt(this.id),
             name: this.$refs.ctRef.value
@@ -138,14 +139,15 @@ export default {
     delItem(val) {
       console.log(typeof val);
       // 拼接好删除li的ref名称
-      let rf = 'myRef' + val;
-      console.log(rf);
-      console.log(this.$refs[rf][0]);
-      // this.$refs[ref]，其中ref为变量。取回的结果是数组；
-      // 结果是一个数组,取索引[0]，才是一个对象，才能成为节点
-      console.log(this.$refs['ul']);
-      // vue不提倡操作DOM,操作DOM需要很高的性能消耗，这里只是举例
-      this.$refs['ul'].removeChild(this.$refs[rf][0]);
+      // let rf = 'myRef' + val;
+      // console.log(rf);
+      // console.log(this.$refs[rf][0]);
+      // // this.$refs[ref]，其中ref为变量。取回的结果是数组；
+      // // 结果是一个数组,取索引[0]，才是一个对象，才能成为节点
+      // console.log(this.$refs['ul']);
+      // // vue不提倡操作DOM,操作DOM需要很高的性能消耗，这里只是举例
+      // this.$refs['ul'].removeChild(this.$refs[rf][0]);
+
       // 同时该id的元素，也应该从list数组汇中删除。遍历获取等于val的item的索引值，从数组中删除元素splice方法
       // this.list.forEach((item, index) => {
       //   if (val === item.id) {
@@ -163,9 +165,12 @@ export default {
        *
        */
       this.list.find((item, index) => {
-        if (val === item.id) {
-          this.list.splice(index, 1);
-        }
+        // 保证dom挂载到页面完成后(即mounted阶段)，再获取item.id;避免报错：undefined的id属性
+        this.$nextTick(() => {
+          if (val === item['id']) {
+            this.list.splice(index, 1);
+          }
+        });
       });
       // console.log(res);
     },
@@ -206,7 +211,7 @@ export default {
       // 报错：Error in v-on handler: "TypeError: li.some is not a function"
       // 解决方案：使用Array的from方法，将HTML Collection转换成正常的数组
       Array.from(li).some((item, index) => {
-        console.log(item);
+        console.log(item); // <li data-v-43d0aa7f data-index="1">…</li>
         // data- 系列自定义属性值，可以使用obj.dataset.名称获取，也可以通过通用方式getAttribute('属性名')来获取
         console.log(item.getAttribute('data-index'));
         // console.log(item.dataset.index);
@@ -227,7 +232,8 @@ export default {
       console.log(event.target); // li
       console.log(event.currentTarget); // ul
       console.log(event.target.dataset.index);
-      // 使用nodeName区分掉委托的元素ul,和li
+      // 使用nodeName过滤掉委托的父元素ul,以及其子元素li
+      // 只为ul绑定了点击事件，event.currentTarget是ul；而event.target是当前的li
       if (event.target.nodeName.toLowerCase() === 'li') {
         this.doSomething(event.target.dataset.index);
       }
