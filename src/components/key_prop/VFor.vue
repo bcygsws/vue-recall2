@@ -43,6 +43,8 @@
  * 事件委托
  * 1.将事件处理程序代理到父节点上，减少内存占有率
  * 2.当动态增加子节点时，子节点自动将事件绑定到父节点上
+ * 注意：执行事件委托后，父节点绑定了事件，成为了event.currentTarget；而各子节点是event.target
+ *
  *
  * vue的就地复用策略：
  * v-for循环，循环标签需要声明key关键字，vue关键字有“就地复用”策略就地复用：
@@ -96,7 +98,7 @@ export default {
       this.id = this.$refs.idRef.value;
       console.log(this.id);
       console.log(typeof this.id); // string
-      // parseInt将字符串转化成了number类型，无论字符串中是什么？比如输入了'addfa',typeof检查其仍然为number类型
+      // 注意：parseInt将字符串转化成了number类型，无论字符串中是什么？比如输入了'addfa',typeof检查其仍然为number类型
       console.log(typeof parseInt(this.id));
       let reg = /^\d+$/g;
       // console.log(reg.test(this.id));
@@ -154,8 +156,6 @@ export default {
       //     this.list.splice(index, 1);
       //   }
       // });
-      // find方法用于找到数组中第一个满足条件的元素，找到返回那个元素，找不到返回undefined
-      // let res;
       /**
        * JavaScript操作DOM详解见文档：https://www.cnblogs.com/dalaoban/p/9498218.html
        * 重磅总结-插入子节点的方法
@@ -164,6 +164,7 @@ export default {
        * 那么将在父节点的最后插入一个子节点
        *
        */
+      // find方法用于找到数组中第一个满足条件的元素，找到返回那个元素，找不到返回undefined
       this.list.find((item, index) => {
         // 保证dom挂载到页面完成后(即mounted阶段)，再获取item.id;避免报错：undefined的id属性
         this.$nextTick(() => {
@@ -182,7 +183,7 @@ export default {
      * a. obj.checked  布尔值
      * jQuery
      * a. $('li:first').prop('checked', true)
-     * b. $('li:first').is(':checked')
+     * b.3003 $('li:first').is(':checked')
      * $().is()方法用于查看，某个元素是否匹配另外一个选择器
      *
      */
