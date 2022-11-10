@@ -24,7 +24,7 @@
     <!-- 点击按钮得到数字 -->
     <button @click="toggle1">点击按钮，正则表达式作用后的</button>
     <p class="reg">{{ num1 }}</p>
-    <p class="reg" ref="t2">245str</p>
+    <p class="reg" ref="t2">a4f5b7</p>
     <!-- 点击按钮得到数字 -->
     <button @click="toggle2">点击按钮，正则表达式作用后的</button>
     <p class="reg">{{ num2 }}</p>
@@ -256,7 +256,7 @@ export default {
       // 方法2：正则表达式，把非数字的使用空字符串代替
       // i忽略大小写，g全局匹配，匹配所有项
       // let numx = str1.replace(/[^0-9]/gi, '');
-      // 若要查找不在列表或范围内的所有字符，请将插入符号 (^)
+      // 若要查找不在列表或范围内的所有字符，请将插入符号 (^),[^....] 在中括号列表中，表示非列表中的字符
       //  放在列表的开头,非0到9的数字构成的字符，替换成空字符，就只剩下数字了
       let numx = str1.replace(/[^0-9]/gi, '');
       console.log(numx);
@@ -264,15 +264,19 @@ export default {
       console.log(this.num1);
     },
     toggle2() {
-      let str2 = this.$refs.t2.innerText;
+      let str2 = this.$refs.t2.innerText; // a4f5b7
       // 数字全部在字符前，可以直接 使用parseInt
       // this.num2 = parseInt(str2);
       // 当然使用正则表达式，[^0-9]以数字之外的字符开头的，
       // 替换成空字符。非数字字符就没有了
       // 测试：正则表达式中/[^0-9]/gi匹配的结果
       let reg_test = /[^0-9]/gi;
-      console.log('a4f5b7'.match(reg_test)); // (3) ['a', 'f', 'b']
-      this.num2 = parseInt(str2.replace(/[^0-9]/gi), '');
+      console.log(str2.match(reg_test)); // (3) ['a', 'f', 'b']
+      // res存储替换后的结果
+      const res = str2.replace(reg_test, '');
+      console.log(res); // 457
+      // trim()方法去掉字符串两侧的空字符（' 457 '），以使得字符串能够被parseInt方法得出结果
+      this.num2 = parseInt(res.trim());
       console.log(this.num2);
       // 参考链接：https://www.cnblogs.com/xiaochongchong/p/5304909.html
       // 正则的前瞻后顾https://www.jianshu.com/p/bf1fe73beed2
