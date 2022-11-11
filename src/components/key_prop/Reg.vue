@@ -29,26 +29,26 @@ export default {
     startMatching() {
       // 一、前瞻 /abc(?=123)/g
       // 要匹配的是abc,限制条件是其前面的123。注意：前瞻默认方向向右，和坐标系一样。我们称要匹配前面试123的abc
-      let reg = /abc(?=123)/g;
-      let str1 = 'abc123';
-      console.log(str1.match(reg)); // ['abc']
-      let str2 = 'abc456';
-      console.log(str2.match(reg)); // null
-      let str3 = '123abc';
-      console.log(str3.match(reg)); // null
-      let str4 = '456abc';
-      console.log(str4.match(reg)); // null
+      // let reg = /abc(?=123)/g;
+      // let str1 = 'abc123';
+      // console.log(str1.match(reg)); // ['abc']
+      // let str2 = 'abc456';
+      // console.log(str2.match(reg)); // null
+      // let str3 = '123abc';
+      // console.log(str3.match(reg)); // null
+      // let str4 = '456abc';
+      // console.log(str4.match(reg)); // null
       // 二、负前瞻 /abc(?！123)/g
       // 要匹配的是abc,匹配的条件是abc前面不是123
-      // let reg = /abc(?!123)/g;
-      // let str1 = 'abc123';
-      // console.log(str1.match(reg)); // null
-      // let str2 = 'abc456';
-      // console.log(str2.match(reg)); // ['abc']
-      // let str3 = '123abc';
-      // console.log(str3.match(reg)); // ['abc']
-      // let str4 = '456abc';
-      // console.log(str4.match(reg)); // ['abc']
+      let reg = /abc(?!123)/g;
+      let str1 = 'abc123';
+      console.log(str1.match(reg)); // null
+      let str2 = 'abc456';
+      console.log(str2.match(reg)); // ['abc']
+      let str3 = '123abc';
+      console.log(str3.match(reg)); // ['abc']
+      let str4 = '456abc';
+      console.log(str4.match(reg)); // ['abc']
     },
     // 后顾或者负后顾
     startBehind() {
@@ -65,15 +65,15 @@ export default {
       // console.log(str4.match(reg)); // null
       // 四、负后顾
       // 读作有匹配abc,且匹配的是abc后面不是123的那些abc
-    //   let reg = /(?<!123)abc/g;
-    //   let str1 = 'abc123';
-    //   console.log(str1.match(reg)); // ['abc']
-    //   let str2 = 'abc456';
-    //   console.log(str2.match(reg)); // ['abc']
-    //   let str3 = '123abc';
-    //   console.log(str3.match(reg)); // null
-    //   let str4 = '456abc';
-    //   console.log(str4.match(reg)); // ['abc']
+      let reg = /(?<!123)abc/g;
+      let str1 = 'abc123';
+      console.log(str1.match(reg)); // ['abc']
+      let str2 = 'abc456';
+      console.log(str2.match(reg)); // ['abc']
+      let str3 = '123abc';
+      console.log(str3.match(reg)); // null
+      let str4 = '456abc';
+      console.log(str4.match(reg)); // ['abc']
     },
     matchHandle() {},
     execHandle() {
