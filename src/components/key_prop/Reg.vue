@@ -77,7 +77,7 @@ export default {
     },
     matchHandle() {},
     execHandle() {
-      // 说到底，非捕获分组功能和()一样的，看匹配结果时，不同点在于，(?: )匹配的子配项不会返回在数组中了
+      // 说到底，非捕获分组功能和()一样的，看匹配结果时，不同点在于，(?: )匹配的子配项不会返回在数组中了。
       // 参考链接：https://lihefei.blog.csdn.net/article/details/53022253?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_default&utm_relevant_index=1
       // 多了个(?:) 剔除了.41646ass.sss'
       // let a = /^([^.]*)(?:\.(.+))$/;
