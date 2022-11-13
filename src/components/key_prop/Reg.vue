@@ -82,13 +82,17 @@ export default {
       // 1.说到底，非捕获分组功能和()一样的，看匹配结果时，不同点在于，(?: )匹配的子配项不会返回在数组中了。
       // 2. (?:\.(.+))表达式中，多了个(?:)，出现了非捕获分组；剔除了.41646ass.sss'，但是内层括号(.+)没有非捕获符号，这个内层括号匹配到的
       // 41646ass.sss仍然会以子项的方式出现在数组中
-      let a = /^([^.]*)(?:\.(.+))$/;
+      let a = /^([^.]*)(?:\.(.+))$/g;
       // 3. .有两重含义，一个是符号上的. 使用时需要加反斜杠，语法：\. ；第二重含义是，.可以匹配任意单个字符，换行符除外
       // 第一个分组中捕获到'click'，第二个分组中捕获到41646ass.sss（?: 的限制，.41646ass.sss不会显示
       // let a = /^([^.]*)(\.(.+))$/; // // ['click.41646ass.sss', 'click', '.41646ass.sss', '41646ass.sss', index: 0, input: 'click.41646ass.sss', groups: undefined]
       let str = 'click.41646ass.sss';
-      let b = a.exec(str);
-      console.log(b);
+      // let b = a.exec(str);
+      // console.log(b);
+      let b;
+      while ((b = a.exec(str)) != null) {
+        console.log(b[0]);
+      }
       // (3) ['click.41646ass.sss', 'click', '41646ass.sss', index: 0, input: 'click.41646ass.sss', groups: undefined]
     },
     // 正则表达式综合
@@ -100,11 +104,12 @@ export default {
       // RegExp(arg1,arg2)
       // arg1:匹配的字符串，需要用到转义符号 "\\d{2,3}" 匹配一个长度为2到3位的数字
       // arg2："gim" g全局匹配，i忽略大小写，m多行匹配
-      let reg = new RegExp('\\d+$', 'g');
-      console.log(reg.exec('a456')); // ['456',]
+      // let reg = new RegExp('\\d+$', 'g');
+      // console.log(reg.exec('a456')); // ['456',]
       // 如果前面加一个 ^，则表示要以数字开始，数字结束
-      // let reg = new RegExp('^\\d+$', 'g');
-      // console.log(reg.exec('34abc56')); // null
+      // new RegExp非全局匹配时，括号里第二个参数可以省略了
+      let reg = new RegExp('^\\d+$');
+      console.log(reg.exec('34abc56')); // null
 
       // 类比：str.indexOf(指定值) 返回指定值在字符串中第一次出现的索引
       // 二、search方法用于检索字符串中指定字符串的第一个索引位置，或检索与正则表达式匹配的字符串
@@ -120,7 +125,7 @@ export default {
       // 语法：str.match(reg)或者str.match(子串str1)
       let str1 = 'abchello';
       console.log(str1.match('hel')); // ['hel', index: 3, input: 'abchello', groups: undefined]
-      console.log(str1.match(/hel/)); // ['hel', index: 3, input: 'abchello', groups: undefined]
+      console.log(str1.match(/hel/g)); // ['hel']
       let str2 = '2st4trert6';
       console.log(str2.match(/\d+/g)); // ['2', '4', '6']
       // 四、replace方法 用后面的字符替换前面的字符（或者正则表达式匹配的字符）
@@ -128,12 +133,16 @@ export default {
       let res = name1.replace(/(\w+)\s*,\s*(\w+)/, '$2 $1');
       console.log(res); //  yunyi longen
       // var name = 'longen,yunxi';
-      //  /(\w+)\s*,\s*(\w+)/能匹配到整个字符串，所以replace方法作用后，整个字符串变成了$2 $1的形式，原来字符中的逗号，就不见了
+      //  /(\w+)\s*,\s*(\w+)/能匹配到整个字符串，所以replace方法作用后，
+      // 正则中出现普通括号，有捕获分组，$1、$2分别是捕获的结果；整个字符串变成了$2 $1的形式，原来字符中的逗号，就不见了
       // var s4 = name.replace(/(\w+)\s*,\s*(\w+)/, '$2 $1');
       // console.log(s4); // "yunxi longen"
       let str$ = 'hello,I am a Chinese people';
       let reg1 = /am/g;
-      if (reg1.test(str$)) {
+      // if (reg1.test(str$)) {
+      // "no-constant-condition": 2,//禁止在条件中使用常量表达式 if(true) if(1)
+      // 在.eslintrc.js文件中关闭该规则验证,设置其值为0或'off'
+      if (true) {
         // 只做了解，RegExp的这些属性都已经弃用了
         // 1. (RegExp['$&']返回正则表达式已经匹配的字符，已经弃用了
         // console.log(RegExp['$&']);// am
@@ -145,7 +154,7 @@ export default {
         // console.log(RegExp['$+']);
         //返回任何正则表达式搜索过程中的最后匹配的字符。
         // console.log(RegExp['$_']); // hello I am a chinese people
-        console.log(reg1.exec(str$));
+        console.log(reg1.exec(str$));// ['am', index: 8, input: 'hello,I am a Chinese people', groups: undefined]
       }
       // 五、  . 可以匹配任意的单个字符，换行符除外
       // 注意要输出的.,一定要做 \. 。没有转义符\的.才是单个字符通配符

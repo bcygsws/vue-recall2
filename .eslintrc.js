@@ -18,6 +18,8 @@ module.exports = {
     'no-irregular-whitespace': 'off',
     // 函数名称和函数体左括号前有空格，关闭，0等同于off
     'space-before-function-paren': 0,
+    // "no-constant-condition": 2,// 禁止在条件中使用常量表达式 if(true) if(1)
+    "no-constant-condition": 0,// 在条件中使用常量表达式 if(true) if(1)
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
   },
