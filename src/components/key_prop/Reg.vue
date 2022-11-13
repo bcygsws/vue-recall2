@@ -82,10 +82,10 @@ export default {
       // 1.说到底，非捕获分组功能和()一样的，看匹配结果时，不同点在于，(?: )匹配的子配项不会返回在数组中了。
       // 2. (?:\.(.+))表达式中，多了个(?:)，出现了非捕获分组；剔除了.41646ass.sss'，但是内层括号(.+)没有非捕获符号，这个内层括号匹配到的
       // 41646ass.sss仍然会以子项的方式出现在数组中
-      // let a = /^([^.]*)(?:\.(.+))$/;
+      let a = /^([^.]*)(?:\.(.+))$/;
       // 3. .有两重含义，一个是符号上的. 使用时需要加反斜杠，语法：\. ；第二重含义是，.可以匹配任意单个字符，换行符除外
       // 第一个分组中捕获到'click'，第二个分组中捕获到41646ass.sss（?: 的限制，.41646ass.sss不会显示
-      let a = /^([^.]*)(\.(.+))$/; // // ['click.41646ass.sss', 'click', '.41646ass.sss', '41646ass.sss', index: 0, input: 'click.41646ass.sss', groups: undefined]
+      // let a = /^([^.]*)(\.(.+))$/; // // ['click.41646ass.sss', 'click', '.41646ass.sss', '41646ass.sss', index: 0, input: 'click.41646ass.sss', groups: undefined]
       let str = 'click.41646ass.sss';
       let b = a.exec(str);
       console.log(b);
