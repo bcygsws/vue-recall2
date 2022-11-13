@@ -154,7 +154,7 @@ export default {
         // console.log(RegExp['$+']);
         //返回任何正则表达式搜索过程中的最后匹配的字符。
         // console.log(RegExp['$_']); // hello I am a chinese people
-        console.log(reg1.exec(str$));// ['am', index: 8, input: 'hello,I am a Chinese people', groups: undefined]
+        console.log(reg1.exec(str$)); // ['am', index: 8, input: 'hello,I am a Chinese people', groups: undefined]
       }
       // 五、  . 可以匹配任意的单个字符，换行符除外
       // 注意要输出的.,一定要做 \. 。没有转义符\的.才是单个字符通配符
