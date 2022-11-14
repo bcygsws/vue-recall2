@@ -156,6 +156,15 @@ export default {
         // console.log(RegExp['$_']); // hello I am a chinese people
         console.log(reg1.exec(str$)); // ['am', index: 8, input: 'hello,I am a Chinese people', groups: undefined]
       }
+      // 千分位分隔数字（或含数字的字符）
+      const thousand_str = '1234567890';
+      let thousand_reg = /\B(?=((?:\d{3})+(?!\d)))/g; // 1,234,567,890
+      // let thousand_reg = /\B(?=((?:\d{3})+$))/g; // 纯数字字符串，上一行正则可以简写成此表达式
+      console.log(thousand_str.replace(thousand_reg, ','));
+      const thousand_str1 = '1234567890';
+      let thousand_reg1 = /(\d)(?=(\d{3})+$)/g;
+      // let thousand_reg1 = /(\d)(?=(?:\d{3})+$)/g;// (?:\d{3})可以写成非捕获形式，也可以写成默认的捕获形式
+      console.log(thousand_str1.replace(thousand_reg1, '$1,')); // 1,234,567,890
 
       // 五、  . 可以匹配任意的单个字符，换行符除外
       // 注意要输出的.,一定要做 \. 。没有转义符\的.才是单个字符通配符
