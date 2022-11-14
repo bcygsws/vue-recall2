@@ -11,8 +11,14 @@
  * 加载方式：1.不进行按需加载；2.按需加载（懒加载）的方式
  * 1.不进行按需加载 举例：import Home from '@/home/Home.vue';
  * 2.按需加载
+ * 三个参数：
+ * [] 代表需要传进来的一些模块的依赖
+ * cb 成功回调，callback:function(require){}   ()=>r(require('@/home/Home.vue')) r参数，呼应外层箭头函数的r，不要使用其他变量名，以让webpack识别
+ * cb 失败回调，callback:function(err){}
+ * 'chunk-name' 字符串，组块名称
+ * 
  *   a. common.js或者webpack 2.4版本以下，使用require.ensure()方法来实现按需加载（懒加载）
- *      举例：const Home= r=>require.ensure([],()=>r(import('@/home/Home.vue')),'home-chunk');
+ *      举例：const Home= r=>require.ensure([],()=>r(require('@/home/Home.vue')),'home-chunk');
  *   b. webpack 2.4以上版本，require.ensure()这种方式被抛弃，采用更加简洁的写法：
  * */
 // 举例：const Home=()=>import(/* webpackChunkName:'home-chunk' */'@/home/Home.vue');
@@ -26,6 +32,6 @@ export default {
   name: 'NeedImp',
   data() {
     return {};
-  },
+  }
 };
 </script>
