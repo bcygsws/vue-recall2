@@ -156,25 +156,46 @@ export default {
         // console.log(RegExp['$_']); // hello I am a chinese people
         console.log(reg1.exec(str$)); // ['am', index: 8, input: 'hello,I am a Chinese people', groups: undefined]
       }
+      // 千分位分隔数字（或含数字的字符）
+      const thousand_str = '1234567890';
+      let thousand_reg = /\B(?=((?:\d{3})+(?!\d)))/g; // 1,234,567,890
+      // let thousand_reg = /\B(?=((?:\d{3})+$))/g; // 纯数字字符串，上一行正则可以简写成此表达式
+      console.log(thousand_str.replace(thousand_reg, ','));
+      const thousand_str1 = '1234567890';
+      let thousand_reg1 = /(\d)(?=(\d{3})+$)/g;
+      // let thousand_reg1 = /(\d)(?=(?:\d{3})+$)/g;// (?:\d{3})可以写成非捕获形式，也可以写成默认的捕获形式
+      console.log(thousand_str1.replace(thousand_reg1, '$1,')); // 1,234,567,890
+
       // 五、  . 可以匹配任意的单个字符，换行符除外
       // 注意要输出的.,一定要做 \. 。没有转义符\的.才是单个字符通配符
       let namex = 'adsffgawf23434';
       let Reg = /.+/;
       console.log(Reg.exec(namex)); // ['adsffgawf23434', index: 0, input: 'adsffgawf23434', groups: undefined]
+
       // 六、贪婪模式和非贪婪模式
       // a.贪婪模式是尽可能多的匹配,贪婪模式的量词：都是常规的? + * {m,n} {m,}
       // b.非贪婪模式是尽可能少的匹配，在量词后面加?,就是非贪婪模式
       // 非贪婪模式的量词：都是常规的? + * {m,n} {m,}后面再加一个?
       // 注意点：单个?表示{0,1}，量词后面+?(本身也是一个量词)才是非贪婪模式
+
+      // 贪婪模式正则，常规情况下，表达式就是这么写的，单字符通配符（换行符除外），量词是*
       let html =
         '<p>这是一点文本</p>text2<p>text2ing</p>text2ing<p>一身转战三千里，一剑曾当百万师</p>';
-      // 贪婪模式正则，常规情况下，表达式就是这么写的，单字符通配符（换行符除外），量词是*
       let _reg = /<p>.*<\/p>text2/;
-      // 非贪婪模式正则
-      // let _reg = /<p>.*?<\/p>text2/;
       console.log(html.match(_reg));
       // 贪婪模式打印：['<p>这是一点文本</p>text2<p>text2ing</p>text2', index: 0, input: '<p>这是一点文本</p>text2<p>text2ing</p>text2ing<p>一身转战三千里，一剑曾当百万师</p>', groups: undefined]
+
+      // 非贪婪模式正则
+      let _reg2 = /<p>.*?<\/p>text2/;
+      let html2 =
+        '<p>这是一点文本</p>text2<p>text2ing</p>text2ing<p>一身转战三千里，一剑曾当百万师</p>';
+      console.log(html2.match(_reg2));
       // 非贪婪模式打印：['<p>这是一点文本</p>text2', index: 0, input: '<p>这是一点文本</p>text2<p>text2ing</p>text2ing<p>一身转战三千里，一剑曾当百万师</p>', groups: undefined]
+      // 七、回车符\r和换行符的区别\n
+      // 参考文档：https://blog.csdn.net/amqvje/article/details/38370681?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-38370681-blog-105767157.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-38370681-blog-105767157.pc_relevant_recovery_v2&utm_relevant_index=1
+      // \r 表示return，回车符，由其他位置返回当前所在行 行首
+      // \n 表示new line，换行符，换到新行(和原字符横坐标相同)
+      // Enter相当于\r\n,ENTER=\r\n，顺序不能颠倒
     }
   }
 };
