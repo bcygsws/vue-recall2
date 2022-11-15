@@ -6,6 +6,7 @@
 </template>
 <script>
 export default {
+  name: 'Child',
   data() {
     return {
       list: [
