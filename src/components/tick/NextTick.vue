@@ -21,7 +21,7 @@
  * 例如：当我们设置var data=vm.newData的时候，组件不会立即进行渲染.当刷新队列时，组件会在事件循环列表清空时的下一个tick
  * 更新
  * 过程：当数据变化时，vue会开启一个队列，在事件循环中存储数据变化。当一个watcher(观察者对象)被多次触发时，只会被推入到队列
- * 中一次。这种缓冲时的去重是为了避免不必要的计算和dom操作。然后，在下一个事件循环"tick"中，vue刷新队列并执行实际工作（实际工作
+ * 中一次（this.$refs.mRef.innerText只会执行一次）。这种缓冲时的去重是为了避免不必要的计算和dom操作。然后，在下一个事件循环"tick"中，vue刷新队列并执行实际工作（实际工作
  * 就是渲染组件）
  *
  *
@@ -42,7 +42,9 @@ export default {
       this.msg = 'Hello World';
       // 这个操作中要随数据变化而变化的DOM结构时， obj.innerText(使用了随数据变化而变化的DOM结构)
       // innerText从Hello Vue变成了Hello World
-      this.msg1 = this.$refs.mRef.innerText;
+      this.msg1 = this.$refs.mRef.innerText; 
+      // dom的更新是异步的，this.msg1和this.msg3都立即变成了Hello World,但是this.$refs.myRef.innerText就是那个随
+      // 数据变化而变化的dom结构
       this.$nextTick(() => {
         this.msg2 = this.$refs.mRef.innerText;
       });
