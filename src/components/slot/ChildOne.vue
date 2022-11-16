@@ -11,17 +11,17 @@
       会匹配到没有声明v-slot属性的模板。另外一种情况下，slot占位符汇中没有声明任何name属性，
     也将匹配到没有声明v-slot属性的模板 -->
     <div
-      style="text-decoration: underline; padding-bottom: 30px"
+      style="text-decoration: underline; padding: 30px 0"
       title="声明了默认名称default,可以匹配任何没有被声明v-slot的模板"
     >
       <slot name="default"></slot>
     </div>
-    <div
+    <!-- <div
       style="text-decoration: line-through"
       title="slot没有声明name属性，自动匹配没有v-slot的模板"
     >
       <slot></slot>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
