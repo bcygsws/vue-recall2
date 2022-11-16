@@ -25,6 +25,7 @@
     <!-- 作用域插槽，子组件slot中绑定一个变量提供数据。父组件中使用slot-scope进行接收;vue 2.6+以后，v-slot取代slot-scope -->
     <child>
       <!--<template slot-scope="user">-->
+      <!-- 给出数据，使用动态绑定的方式，:data="list" -->
       <template v-slot="user">
         <!-- user是一个对象,显示在界面上为：{ "data": [ { "id": 1, "name": "林黛玉" },
         { "id": 2, "name": "贾宝玉" }, { "id": 3, "name": "晴雯" }, { "id": 4, "name": "袭人" } ] } -->
