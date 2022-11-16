@@ -3,13 +3,15 @@
     <h3>这是插槽的使用组件</h3>
     <!-- 引入child-one子组件 -->
     <child-one>
+      <!-- 可以交换下面两个模板的位置，不影响结果；原因是父组件中只提供内容，子组件child-one中slot标签的
+      相对位置才决定视图的顺序 -->
+      <template v-slot:bro>
+        <div>新栽杨柳三千里，引得春风度玉关。</div>
+      </template>
       <template v-slot:son>
         <div>
           有限光阴过隙，无情岁月飞梭。春花秋月暗消磨，相看一年又过。-节选自张抡《西江月》
         </div>
-      </template>
-      <template v-slot:bro>
-        <div>新栽杨柳三千里，引得春风度玉关。</div>
       </template>
       <template>
         <div>
@@ -20,10 +22,11 @@
         <div>一身转战三千里，一剑曾当百万师</div>
       </template> -->
     </child-one>
-    <!-- 作用域插槽，子组件slot中绑定一个变量提供数据。父组件中使用slot-scope进行接收 -->
+    <!-- 作用域插槽，子组件slot中绑定一个变量提供数据。父组件中使用slot-scope进行接收;vue 2.6+以后，v-slot取代slot-scope -->
     <child>
-      <template slot-scope="user">
-        <!-- user是一个对象,显示在界面上为：{ "data": [ { "id": 1, "name": "林黛玉" }, 
+      <!--<template slot-scope="user">-->
+      <template v-slot="user">
+        <!-- user是一个对象,显示在界面上为：{ "data": [ { "id": 1, "name": "林黛玉" },
         { "id": 2, "name": "贾宝玉" }, { "id": 3, "name": "晴雯" }, { "id": 4, "name": "袭人" } ] } -->
         <div>
           {{ user }}
@@ -32,7 +35,8 @@
     </child>
     <!-- v-for循环渲染在页面中 -->
     <child>
-      <template slot-scope="user1">
+      <!--<template slot-scope="user1">-->
+      <template v-slot="user1">
         <ul class="ul">
           <li v-for="item in user1.data" :key="item.id">
             {{ item.id }}-{{ item.name }}
@@ -64,14 +68,15 @@
  *
  *
  */
-import ChildOne from './ChildOne.vue';
-import Child from './Child.vue';
+import ChildOne from "./ChildOne.vue";
+import Child from "./Child.vue";
+
 export default {
   data() {
     return {};
   },
   components: {
-    'child-one': ChildOne,
+    "child-one": ChildOne,
     child: Child
   }
 };
@@ -82,9 +87,11 @@ export default {
     li {
       list-style: none;
       /* nth-child表示的是第几个子元素，nth-child(2n)可以表示第2个、第4个子元素等等…… */
+
       &:nth-child(2n) {
         background-color: red;
       }
+
       &:nth-child(2n + 1) {
         background-color: orange;
       }
