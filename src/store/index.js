@@ -25,7 +25,7 @@ export default new Vuex.Store({
   mutations: {
     // 注意改变状态管理对象的mutations中函数，第一参数state,第二个参数才是传过来的值
     inc(state, props) {
-      console.log(typeof props);
+      console.log(typeof props);// number类型
       state.count = state.count + props;
       if (state.count >= 20) {
         state.count = 20;
