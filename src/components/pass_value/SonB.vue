@@ -8,7 +8,7 @@
     <ul>
       <li v-for="(item, index) in fru" :key="index">{{ item }}</li>
     </ul>
-    <!-- 子组件向父组件传值 -->
+    <!-- 子组件向父组件传值,作用于父组件的span标签 -->
     <button @click="$emit('text-enlarged', 2)">
       点击子组件，父组件字体变大
     </button>
