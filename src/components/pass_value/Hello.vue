@@ -31,6 +31,16 @@ import { mapState, mapGetters, mapMutations } from 'vuex';
  * 1.vuex中提供了一套简化对象，分别叫做mapState,mapGetters,mapMutations，mapActions。
  * 使用形如：扩展符+mapState()来进行简化，其他类似
  * 2.mapState和mapGetters放在computed属性中，方便响应式；然后，mapMutations和mapActions需要放在methods方法中
+ * 
+ * 参考文档：
+ * https://blog.fundebug.com/2019/05/18/6-ways-for-vue-communication/
+ * 
+ * vuex原理：vuex实现了一个单向数据流，并定义了一个全局的state;要更改state数据，需要通过mutations，mutations提供了订阅
+ * 者模式，供其他组件调用；当处理异步操作（向后端请求数据）或批量同步操作时，需要使用actions;然而，actions并不能直接更改
+ * state,还是需要通过（dispatch）mutations来更改state,更改的state完成渲染
+ * 
+ * 
+ * 
  *
  */
 export default {
