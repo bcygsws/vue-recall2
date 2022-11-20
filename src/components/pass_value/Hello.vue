@@ -36,7 +36,7 @@ import { mapState, mapGetters, mapMutations } from 'vuex';
  * https://blog.fundebug.com/2019/05/18/6-ways-for-vue-communication/
  * 
  * vuex原理：vuex实现了一个单向数据流，并定义了一个全局的state;要更改state数据，需要通过mutations，mutations提供了订阅
- * 者模式，供其他组件调用；当处理异步操作（向后端请求数据）或批量同步操作时，需要使用actions;然而，actions并不能直接更改
+ * 者模式，供其他组件调用，获得state数据更新；当处理异步操作（向后端请求数据）或批量同步操作时，需要使用actions;然而，actions并不能直接更改
  * state,还是需要通过（dispatch）mutations来更改state,更改的state完成渲染
  * 
  * 
