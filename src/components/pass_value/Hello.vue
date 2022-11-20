@@ -20,7 +20,7 @@
 </template>
 <script>
 // import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
-import { mapState, mapGetters, mapMutations } from 'vuex';
+import { mapState, mapGetters, mapMutations } from "vuex";
 /**
  *
  * 特别注意：无论是mutations直接改变数据，抑或是使用actions间接改变数据，还是使用getters获取即时数据，都需要书写长长的一串
@@ -31,27 +31,27 @@ import { mapState, mapGetters, mapMutations } from 'vuex';
  * 1.vuex中提供了一套简化对象，分别叫做mapState,mapGetters,mapMutations，mapActions。
  * 使用形如：扩展符+mapState()来进行简化，其他类似
  * 2.mapState和mapGetters放在computed属性中，方便响应式；然后，mapMutations和mapActions需要放在methods方法中
- * 
+ *
  * 参考文档：
  * https://blog.fundebug.com/2019/05/18/6-ways-for-vue-communication/
- * 
+ *
  * vuex原理：vuex实现了一个单向数据流，并定义了一个全局的state;要更改state数据，需要通过mutations，mutations提供了订阅
- * 者模式，供其他组件调用；当处理异步操作（向后端请求数据）或批量同步操作时，需要使用actions;然而，actions并不能直接更改
+ * 者模式，供其他组件获取state数据的更新；当处理异步操作（向后端请求数据）或批量同步操作时，需要使用actions;然而，actions并不能直接更改
  * state,还是需要通过（dispatch）mutations来更改state,更改的state完成渲染
- * 
- * 
- * 
+ *
+ *
+ *
  *
  */
 export default {
-  name: 'Hello',
+  name: "Hello",
   data() {
     return {};
   },
   //  mapState和mapGetters需要放在computed侦听属性中，方便响应式
   computed: {
     // 1.最简洁的方式
-    ...mapState(['count']),
+    ...mapState(["count"]),
     // 2.对象的方式
     // 直接对象的形式，将count变量的键名放到渲染模板中,组织成一个对象{count1:'count'}
     // ...mapState({ count1: 'count' }),
@@ -59,7 +59,7 @@ export default {
     // ...mapState({ count1: (state) => state.count }),
     // ...mapState(['count']),
 
-    ...mapGetters(['getCount'])
+    ...mapGetters(["getCount"])
   },
   methods: {
     /**
@@ -74,14 +74,14 @@ export default {
     //   this.$store.commit('inc', val);
     // },
     // b.mapMutations简写方式
-    ...mapMutations(['inc']),
+    ...mapMutations(["inc"]),
     // 上面代码等价于下面代码
     // inc(props){
     //   return this.$store.commit('inc',props);
     // }
     // 1.点减号减少 一般写法
     handleDec(val) {
-      this.$store.dispatch('actionCount', val);
+      this.$store.dispatch("actionCount", val);
     }
     // 2.mapActions简写方式
     // ...mapActions(['actionCount']),
