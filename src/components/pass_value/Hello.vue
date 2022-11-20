@@ -39,9 +39,6 @@ import { mapState, mapGetters, mapMutations } from "vuex";
  * 者模式，供其他组件获取state数据的更新；当处理异步操作（向后端请求数据）或批量同步操作时，需要使用actions;然而，actions并不能直接更改
  * state,还是需要通过（dispatch）mutations来更改state,更改的state完成渲染
  *
- *
- *
- *
  */
 export default {
   name: "Hello",
