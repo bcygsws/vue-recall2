@@ -13,7 +13,10 @@
 import AttrCom2 from './AttrCom2.vue';
 export default {
   name: 'AttrCom1',
-  inheritAttrs: false, // 可以关闭自动挂载到根元素上的没有在当前组件上的非props属性
+  // inheritAttrs: false, // 可以关闭自动挂载到根元素上的没有在props上声明的属性，设置为false
+  inheritAttrs: true,
+  // inheritAttrs为true时，boo="css" coo="javascript" doo="vue" title="前端工匠" 这些在父组件中绑定的在子组件中的
+  //  非props属性，会显示在c1_container这个div上
   props: {
     foo: String
   },
@@ -21,7 +24,7 @@ export default {
     return {};
   },
   created() {
-    console.log(this.$attrs);
+    console.log(this.$attrs);// {boo: 'css', coo: 'javascript', doo: 'vue', title: '前端工匠'}
   },
   methods: {
     handle1(val) {

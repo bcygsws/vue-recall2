@@ -13,15 +13,15 @@
 import AttrCom3 from './AttrCom3.vue';
 export default {
   name: 'AttrCom2',
-  inheritAttrs: false,
+  data() {
+    return {};
+  },
+  inheritAttrs: false, // 可以关闭自动挂载在根元素上没有在props上声明的属性
   props: {
     boo: String
   },
   created() {
-    console.log(this.$attrs);
-  },
-  data() {
-    return {};
+    console.log(this.$attrs); // {coo: 'javascript', doo: 'vue', title: '前端工匠'}
   },
   methods: {
     handle2(val) {

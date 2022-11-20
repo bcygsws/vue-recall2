@@ -18,7 +18,7 @@
  * $attrs和$listener是两个对象
  * 1.分别存储的是父组件中的非props中声明的属性（当然也不包括style和class属性），以及父组件中绑定的非.native事件
  * 2.$attrs是v-bind="$attrs"，适用于父级向子级和孙子级等等，高级向低级
- * 3.$listeners中包含的是父组件中的非native事件(v-on="$listeners")，类比子组件向父组件传值
+ * 3.$listeners中包含的是父组件中的非原生（native）事件(v-on="$listeners")，类比子组件向父组件传值
  *
  */
 import AttrCom1 from './AttrCom1.vue';
