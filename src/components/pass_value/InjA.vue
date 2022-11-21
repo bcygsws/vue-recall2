@@ -55,9 +55,10 @@ export default {
   // },
   // 4.响应式的解决方案
   provide() {
-    this.theme = Vue.observable({
-      color: this.color,
-    });
+    // this.theme = Vue.observable({
+    //   // color: this.color,
+    // });
+   this.theme= Vue.observable({});
     return {
       theme: this.theme,
       notReactiveData: this.msg,
