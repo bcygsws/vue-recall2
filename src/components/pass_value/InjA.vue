@@ -16,19 +16,19 @@
   </div>
 </template>
 <script>
-import InjB from './InjB.vue';
-import InjC from './InjC.vue';
-import Vue from 'vue';
+import InjB from "./InjB.vue";
+import InjC from "./InjC.vue";
+import Vue from "vue";
 export default {
-  name: 'InjA',
+  name: "InjA",
   data() {
     return {
-      color: 'blue',
-      msg: '我是父组件InjA的数据',
-      info: '我是传递给孙子组件InjF的数据',
+      color: "blue",
+      msg: "我是父组件InjA的数据",
+      info: "我是传递给孙子组件InjF的数据",
       // 如果不传递函数参数，可以使用第二个中方法，将某个属性放到一个对象中，
       // 比如fontB是一个对象，其中的a属性实现响应式
-      fontB: { a: 'hello world' }
+      fontB: { a: "hello world" }
     };
   },
   // 1.最简单的提供-注入，类似父子组件传值（非响应方式）
@@ -55,6 +55,9 @@ export default {
   // },
   // 4.响应式的解决方案
   provide() {
+    // this.theme = Vue.observable({
+    //   // color: this.color,
+    // });
     this.theme = Vue.observable({
       color: this.color
     });
@@ -86,18 +89,18 @@ export default {
       if (val) {
         this.theme.color = val;
       } else {
-        this.theme.color = this.theme.color === 'blue' ? 'red' : 'blue';
+        this.theme.color = this.theme.color === "blue" ? "red" : "blue";
       }
     },
     changeNotReactive() {
-      this.msg = 'InjA传递给B和C的数据';
+      this.msg = "InjA传递给B和C的数据";
     },
     // 传到孙子组件的值被修改
     changeInfo() {
-      this.info = '传到孙子组件的值被修改';
+      this.info = "传到孙子组件的值被修改";
     },
     changeFontA() {
-      this.fontB['a'] = 'provide/inject实现响应式方法二';
+      this.fontB["a"] = "provide/inject实现响应式方法二";
     }
   },
   components: { InjB, InjC }
