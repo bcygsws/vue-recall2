@@ -8,7 +8,7 @@
     </button>
     <button @click="changeInfo">改变info值，测试是否响应式</button>
     <!-- 更改fontB中a属性的值 -->
-    <button @click="changeFontA">
+    <button @click="changeFontB('')">
       改变fontB对象中a的键值，测试响应式方法二
     </button>
     <inj-b ref="injb"></inj-b>
@@ -19,16 +19,16 @@
 import InjB from './InjB.vue';
 import InjC from './InjC.vue';
 import Vue from 'vue';
-/** 
- * 
- * @ provide/inject 
+/**
+ *
+ * @ provide/inject
  * 1.vue2.2.0 增加了一个新API,provide/inject,这对选项需要一起使用
  * 2.使用祖先组件向子孙组件注入一种依赖，无论组件层级多深；都会在 [上下游关系成立] 的时间里始终生效
  * 3.Vue.observable({})可以实现响应式
- * 
- * 
- * 
-*/
+ *
+ *
+ *
+ */
 export default {
   name: 'InjA',
   data() {
@@ -38,7 +38,8 @@ export default {
       info: '我是传递给孙子组件InjF的数据',
       // 如果不传递函数参数，可以使用第二个中方法，将某个属性放到一个对象中，
       // 比如fontB是一个对象，其中的a属性实现响应式
-      fontB: { a: 'hello world' },
+      // fontB: { a: 'hello world' },
+      fontB: 'hello world',
     };
   },
   // 1.最简单的提供-注入，类似父子组件传值（非响应方式）
@@ -64,12 +65,27 @@ export default {
   //   };
   // },
   // 4.响应式的解决方案
+  /* 
+  响应式解决方案：
+  provide(){
+    this.obj对象=Vue.observable({
+      x1:val1,
+      x2:val2
+    });
+    return {
+      obj对象：this.obj对象
+    }
+  }
+  配合的inject只需要引入
+  inject:['obj对象'] 
+
+  
+  */
   provide() {
-    // this.theme = Vue.observable({
-    //   // color: this.color,
-    // });
+    // this.theme响应式对象 {color: this.color}
     this.theme = Vue.observable({
       color: this.color,
+      fontB: this.fontB,
     });
     return {
       theme: this.theme,
@@ -79,7 +95,7 @@ export default {
       // 数据维护一份独立的拷贝
       getReactiveInfo: () => this.info,
       // 方式2：在data中定义成一个对象，然后在接收时使用计算属性监听
-      second: this.fontB,
+      // second: this.fontB,
     };
   },
   mounted() {
@@ -101,6 +117,7 @@ export default {
       if (val) {
         this.theme.color = val;
       } else {
+        // 持续点击改变颜色的按钮，都将走这个分支
         this.theme.color = this.theme.color === 'blue' ? 'red' : 'blue';
       }
     },
@@ -111,8 +128,11 @@ export default {
     changeInfo() {
       this.info = '传到孙子组件的值被修改';
     },
-    changeFontA() {
-      this.fontB['a'] = 'provide/inject实现响应式方法二';
+    changeFontB(val) {
+      // this.fontB['a'] = 'provide/inject实现响应式方法二';
+      if (!val) {
+        this.theme.fontB = 'provide/inject实现响应式方法二';
+      }
     },
   },
   components: { InjB, InjC },
