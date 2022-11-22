@@ -2,7 +2,7 @@
   <div class="inja_container">
     <h1>这是InjectA组件</h1>
     <!-- 改变color -->
-    <button @click="changeColor">改变color</button>
+    <button @click="changeColor('')">改变color</button>
     <button @click="changeNotReactive">
       改变msg,看InjB和InjC中的值是否改变
     </button>
@@ -16,9 +16,19 @@
   </div>
 </template>
 <script>
-import InjB from "./InjB.vue";
-import InjC from "./InjC.vue";
-import Vue from "vue";
+import InjB from './InjB.vue';
+import InjC from './InjC.vue';
+import Vue from 'vue';
+/** 
+ * 
+ * @ provide/inject 
+ * 1.vue2.2.0 增加了一个新API,provide/inject,这对选项需要一起使用
+ * 2.使用祖先组件向子孙组件注入一种依赖，无论组件层级多深；都会在 [上下游关系成立] 的时间里始终生效
+ * 3.Vue.observable({})可以实现响应式
+ * 
+ * 
+ * 
+*/
 export default {
   name: "InjA",
   data() {
@@ -59,7 +69,7 @@ export default {
     //   // color: this.color,
     // });
     this.theme = Vue.observable({
-      color: this.color
+      color: this.color,
     });
     return {
       theme: this.theme,
@@ -85,6 +95,8 @@ export default {
     //   }
     // },
     // 3.Vue.observable({})优化响应式方式事件处理函数
+    // 点击按钮时，val的值从默认的blue变成yellow（changeColor参数不为空，走第一个分支）
+    // 或者val从默认的""变成红色（走第二个分支）
     changeColor(val) {
       if (val) {
         this.theme.color = val;
