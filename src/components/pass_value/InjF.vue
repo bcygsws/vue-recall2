@@ -85,13 +85,14 @@ export default {
     },
   },
   watch: {
+    // watch中监控的变量（作为函数名）参数有两个：newVal和oldVal
     // computed中缓存的属性changedGetReactiveInfo的值变化
-    changedGetReactiveInfo(val) {
-      console.log('控制台展示响应式的getReactiveInfo值:' + val);
+    changedGetReactiveInfo(newVal) {
+      console.log('控制台展示响应式的getReactiveInfo值:' + newVal);
     },
   },
   mounted() {
-    console.log(this.theme.color);
+    console.log(this.theme.color); // blue
     console.log(this.changedGetReactiveInfo); // 我是传递给孙子组件InjF的数据
   },
   // 这个阶段数据已经是新的了，只是新数据还没有应用到页面上
