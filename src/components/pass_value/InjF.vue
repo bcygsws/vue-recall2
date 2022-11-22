@@ -8,7 +8,8 @@
     <h3 :style="{ color: theme.color }">这是InjectF组件</h3>
     <div>{{ changedGetReactiveInfo }}</div>
     <!-- injA组件中fontB对象汇总a属性的响应式验证 -->
-    <div>{{ reactA }}</div>
+    <!-- <div>{{ reactA }}</div> -->
+    <div>{{ theme.fontB }}</div>
   </div>
 </template>
 <script>
@@ -74,15 +75,16 @@ export default {
   //   },
   // },
   // 上面为等效的inject方式
-  inject: ['theme', 'getReactiveInfo', 'second'],
+  // inject: ['theme', 'getReactiveInfo', 'second'],
+  inject: ['theme', 'getReactiveInfo'],
   // 为了实现响应式，需要队getReactiveInfo数据进行侦听
   computed: {
     changedGetReactiveInfo() {
       return this.getReactiveInfo();
     },
-    reactA() {
-      return this.second.a;
-    }
+    // reactA() {
+    //   return this.second.a;
+    // },
   },
   watch: {
     // watch中监控的变量（作为函数名）参数有两个：newVal和oldVal
