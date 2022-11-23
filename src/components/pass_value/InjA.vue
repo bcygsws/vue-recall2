@@ -26,8 +26,6 @@ import Vue from 'vue';
  * 2.使用祖先组件向子孙组件注入一种依赖，无论组件层级多深；都会在 [上下游关系成立] 的时间里始终生效
  * 3.Vue.observable({})可以实现响应式
  *
- *
- *
  */
 export default {
   name: 'InjA',
