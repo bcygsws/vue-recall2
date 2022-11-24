@@ -10,6 +10,8 @@
     <!-- injA组件中fontB对象汇总a属性的响应式验证 -->
     <!-- <div>{{ reactA }}</div> -->
     <div>{{ theme.fontB }}</div>
+    <!-- 非响应式，观察点击InjA中按钮，按钮名称“改变msg,看InjB和InjC的值是否改变” -->
+    <div>{{ notReactiveData }}</div>
   </div>
 </template>
 <script>
@@ -76,7 +78,7 @@ export default {
   // },
   // 上面为等效的inject方式
   // inject: ['theme', 'getReactiveInfo', 'second'],
-  inject: ['theme', 'getReactiveInfo'],
+  inject: ['theme', 'getReactiveInfo', 'notReactiveData'],
   // 为了实现响应式，需要队getReactiveInfo数据进行侦听
   computed: {
     changedGetReactiveInfo() {
