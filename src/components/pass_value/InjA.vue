@@ -120,7 +120,7 @@ export default {
       }
     },
     changeNotReactive() {
-      this.msg = "InjA传递给B和C的数据";
+      this.msg = '非响应式，InjA传递给InjB和InjC的数据';
     },
     // 传到孙子组件的值被修改
     changeInfo() {
