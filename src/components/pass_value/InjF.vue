@@ -27,6 +27,7 @@
  *
  * 参考vue.js官方文档：
  * https://cn.vuejs.org/v2/guide/mixins.html
+ * 
  * 项目参考本地路径：
  * D:\Web-project\vue-primary
  * vue-primary项目中03和04
