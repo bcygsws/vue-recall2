@@ -27,13 +27,13 @@
  *
  * 参考vue.js官方文档：
  * https://cn.vuejs.org/v2/guide/mixins.html
- * 
+ *
  * 项目参考本地路径：
  * D:\Web-project\vue-primary
  * vue-primary项目中03和04
  * 混入：混入提供了一个非常灵活的方式，用于分发vue组件复用的功能
  * 混入对象（和组件一样） 和 组件
- * 
+ *
  * 说明：
  * a.混入对象可以设定组件的任意选项
  * b.组件使用混入对象时，混入对象中所有选项就会“混合”进当前组件的所有选项
@@ -83,7 +83,7 @@ export default {
   computed: {
     changedGetReactiveInfo() {
       return this.getReactiveInfo();
-    },
+    }
     // reactA() {
     //   return this.second.a;
     // },
@@ -93,7 +93,7 @@ export default {
     // computed中缓存的属性changedGetReactiveInfo的值变化
     changedGetReactiveInfo(newVal) {
       console.log('控制台展示响应式的getReactiveInfo值:' + newVal);
-    },
+    }
   },
   mounted() {
     console.log(this.theme.color); // blue
@@ -104,7 +104,7 @@ export default {
     console.log(this.changedGetReactiveInfo); // 传到孙子组件的值被修改
   },
   methods: {},
-  components: {},
+  components: {}
 };
 </script>
 <style lang="less" scoped>
