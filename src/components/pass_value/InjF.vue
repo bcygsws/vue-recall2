@@ -47,6 +47,18 @@
  * d.全局混入：一旦全局混入创建后，会对创建的每一个实例造成影响，一般不
  * 推荐使用。
  * 全局混入使用恰当时，可以为【自定义选项】注入【处理逻辑】
+ * 全局引入时，mixin单数；局部引入时mixin使用复数，mixins；类似的有component directive filter
+ * Vue.mixin({
+ * created:function(){
+ * var myOption=this.$options.myOption;
+ * // 对myOption进行处理
+ * 
+ * }
+ *
+ * })
+ * new Vue({
+ *  myOptions:"hello"
+ * })
  *
  */
 export default {
