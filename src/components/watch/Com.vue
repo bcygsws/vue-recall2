@@ -16,24 +16,40 @@
  * 3.computed不支持异步，异步数据监控无变化
  * 4.computed属性默认走缓存，是基于它的响应式依赖进行缓存的。它依赖的属性通常是data中定义的属性或者其他组件的传过来props属性
  *
+ * 向id="total"的文本输入框，输入内容，会报警告如下：
+ * [Vue warn]: Computed property "total" was assigned to but it has no setter.
+ * 参考文档：https://blog.csdn.net/weixin_38779534/article/details/108195664
+ * 解决掉警告
+ * 使用computed中的get和set
  *
  *
  */
+
 export default {
   name: 'Com',
   data() {
     return {
       // 计算属性监测时,不需要在data中专门定义一个total值，total可以通过first和second值的变化，通过计算而得到
       first: '',
-      second: ''
+      second: '',
     };
   },
   methods: {},
   computed: {
-    total() {
-      return this.first + '' + this.second;
-    }
-  }
+    // 往得出结果的那个文本框输入内容，会报警告：[Vue warn]: Computed property "total" was assigned to but it has no setter.
+    // 解决办法：在total中引入get和set
+    // total() {
+    //   return this.first + '' + this.second;
+    // },
+    total: {
+      get() {
+        return this.first + '' + this.second;
+      },
+      set(value1) {
+        this.first = value1;
+      },
+    },
+  },
 };
 </script>
 <style lang="less" scoped>

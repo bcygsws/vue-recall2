@@ -261,7 +261,7 @@ const router = new VueRouter({
   linkActiveClass: "lac-class"
 });
 
-// 前置路由导航守卫
+// 路由全局导航守卫
 router.beforeEach((to, from, next) => {
   if (to.path === "/user") {
     next();
