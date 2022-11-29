@@ -47,6 +47,7 @@ export default {
       },
       set(value1) {
         this.first = value1;
+        this.second = '';
       },
     },
   },
