@@ -24,16 +24,28 @@
  * 参考文档：
  * https://blog.csdn.net/fu983531588/article/details/89454446?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-1-89454446-blog-124806684.pc_relevant_3mothn_strategy_and_data_recovery&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-1-89454446-blog-124806684.pc_relevant_3mothn_strategy_and_data_recovery&utm_relevant_index=1
  * 注意事项：
- * 1.watch不支持缓存，数据变化，立即触发
+ * 1.watch不支持缓存，数据变化，立即触发   多对一或一对一
  * 2.watch侦听的属性(如first、second)有两个参数，第一个参数是最新值，第二个参数可选，为旧值
  * 3.watch支持异步操作，watch有两个属性，immediate和deep，此时侦听的逻辑写在handler(newVal){// 侦听的数据的逻辑}
  * 
+ * watch侦听的两种方式：
+ * 区别：
+ * 第一种方式：侦听对象时，props中每个属性值都会执行handler，且handler执行后，newVal和oldVal是一样的
+ * 第二种方式：侦听写成函数时，newVal和oldVal，分别表示新值和旧值
+ * 
+ * 一.侦听对象，如：prop1
  * 依赖的属性prop1:{
- *    handler(newVal){
+ *    handler(newVal,oldVal){
  *        // 侦听的数据逻辑
  *    },
  *    deep:true,// 为了侦听引用类型数据，存储在堆栈中，栈中存放的是变量名的指针或地址（是不会变化的，堆中的值发生变化）
  *    immediate:true // 进入页面立即触发
+ * }
+ * 
+ * 二、侦听属性作为一个函数
+ * props1(newVal,oldVal){
+ * 
+ * 
  * }
  * 
  * immediate表示组件加载后，立即触发回调函数执行
