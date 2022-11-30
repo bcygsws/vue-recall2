@@ -27,6 +27,7 @@
  * 1.watch不支持缓存，数据变化，立即触发
  * 2.watch侦听的属性(如first、second)有两个参数，第一个参数是最新值，第二个参数可选，为旧值
  * 3.watch支持异步操作，watch有两个属性，immediate和deep，此时侦听的逻辑写在handler(newVal){// 侦听的数据的逻辑}
+ * 
  * 依赖的属性prop1:{
  *    handler(newVal){
  *        // 侦听的数据逻辑
