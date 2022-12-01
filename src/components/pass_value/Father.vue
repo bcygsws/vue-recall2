@@ -111,6 +111,16 @@ import { Event } from '@/main';
  * }
  * 1.发送处，将fontB放在provide中
  * 2.接收处同样使用计算属性监听
+ * 
+ * 方法三：
+ * provide(){
+ *  this.theme= Vue.observable({
+ *  color:this.color 
+ * });
+ * return {
+ *  theme:this.theme
+ *  }
+ * }
  *
  * 六、ref $parent 和$children为第六种组件通信方式：
  * 简单了解，常用ref="标识->this.$refs.标识获取原生对象

@@ -12,16 +12,16 @@ export default {
   inheritAttrs: false,
   props: {
     coo: String,
-    title: String,
+    title: String
   },
   data() {
     return {};
   },
   created() {
-    console.log(this.$attrs);// {doo: 'vue'}
+    console.log(this.$attrs); // {doo: 'vue'}
   },
   methods: {},
-  components: {},
+  components: {}
 };
 </script>
 <style lang="less" scoped>
