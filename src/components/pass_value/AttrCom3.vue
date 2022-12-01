@@ -18,7 +18,7 @@ export default {
     return {};
   },
   created() {
-    console.log(this.$attrs);// {doo: 'vue'}
+    console.log(this.$attrs); // {doo: 'vue'}
   },
   methods: {},
   components: {}
