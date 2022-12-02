@@ -1,6 +1,7 @@
 <template>
   <div class="tick_container">
     <h3>这是nextTick演示组件</h3>
+    <!-- 没有v-if语法，不存在随数据变化而变化的dom结构 -->
     <p ref="mRef">{{ msg }}</p>
     <p v-if="msg1">没有使用$nextTick:{{ msg1 }}</p>
     <p v-if="msg2">使用$nextTick:{{ msg2 }}</p>
@@ -23,17 +24,17 @@
  * 过程：当数据变化时，vue会开启一个队列，在事件循环中存储数据变化。当一个watcher(观察者对象)被多次触发时，只会被推入到队列
  * 中一次（this.$refs.mRef.innerText只会执行一次）。这种缓冲时的去重是为了避免不必要的计算和dom操作。然后，在下一个事件循环"tick"中，vue刷新队列并执行实际工作（实际工作
  * 就是渲染组件）
- * 
+ *
  * 扩展：了解事件循环-Event Loop
  * 文档：https://zhuanlan.zhihu.com/p/469899375
  *
  * Event Loop(事件循环)：所有同步任务在主线程中执行，即主执行栈；除此之外，所有异步任务进入队列；当主线程中任务执行完毕后，
  * 就会去读取队列中的任务，并推入主执行栈执行；上述过程，循环往复，就叫做事件循环
- * 
+ *
  * 宏任务-macro tasks:  4s script setTimeout setInterval setImmediate, requestdAnimationFrames（浏览器独有）、I/0操作和
  * UI渲染（浏览器独有）
  * 微任务-micro jobs： process的nextTick(Node.js)、Promise和mutationObserver
- * 
+ *
  * 执行顺序：script块中同步任务-微任务（所有微任务清空后，才开始异步宏任务）-异步宏任务
  *
  */
@@ -49,16 +50,17 @@ export default {
   },
   methods: {
     changeMsg() {
-      this.msg = 'Hello World';
+      // this.msg直接赋值，没有操作dom；且msg所在的p标签没有随数据变化而变化的dom结构（v-if）
+      this.msg = 'Hello World'; // p标签显示为： Hello World
       // 这个操作中要随数据变化而变化的DOM结构时， obj.innerText(使用了随数据变化而变化的DOM结构)
       // innerText从Hello Vue变成了Hello World
-      this.msg1 = this.$refs.mRef.innerText; 
+      this.msg1 = this.$refs.mRef.innerText; // p标签显示为： Hello Vue
       // dom的更新是异步的，this.msg1和this.msg3都立即变成了Hello World,但是this.$refs.myRef.innerText就是那个随
       // 数据变化而变化的dom结构
       this.$nextTick(() => {
-        this.msg2 = this.$refs.mRef.innerText;
+        this.msg2 = this.$refs.mRef.innerText; // p标签显示为： Hello World
       });
-      this.msg3 = this.$refs.mRef.innerText;
+      this.msg3 = this.$refs.mRef.innerText; // p标签显示为： Hello Vue
     },
   },
 };
