@@ -36,7 +36,6 @@
  * 
  * 执行顺序：script块中同步任务-微任务（所有微任务清空后，才开始异步宏任务）-异步宏任务
  *
- *
  */
 export default {
   name: 'NextTick',
