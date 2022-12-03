@@ -22,8 +22,8 @@
  * 例如：当我们设置var data=vm.newData的时候，组件不会立即进行渲染.当刷新队列时，组件会在事件循环列表清空时的下一个tick
  * 更新
  * 过程：当数据变化时，vue会开启一个队列，在事件循环中存储数据变化。当一个watcher(观察者对象)被多次触发时，只会被推入到队列
- * 中一次（this.$refs.mRef.innerText只会执行一次）。这种缓冲时的去重是为了避免不必要的计算和dom操作。然后，在下一个事件循环"tick"中，vue刷新队列并执行实际工作（实际工作
- * 就是渲染组件）
+ * 中一次（this.$refs.mRef.innerText只会执行一次）。这种缓冲时的去重是为了避免不必要的计算和dom操作。然后，在下一个事件循环"tick"中，vue刷新队列并执行
+ * 实际工作（实际工作就是渲染组件）
  *
  * 扩展：了解事件循环-Event Loop
  * 文档：https://zhuanlan.zhihu.com/p/469899375
@@ -31,11 +31,11 @@
  * Event Loop(事件循环)：所有同步任务在主线程中执行，即主执行栈；除此之外，所有异步任务进入队列；当主线程中任务执行完毕后，
  * 就会去读取队列中的任务，并推入主执行栈执行；上述过程，循环往复，就叫做事件循环
  *
- * 宏任务-macro tasks:  4s script setTimeout setInterval setImmediate, requestdAnimationFrames（浏览器独有）、I/0操作和
- * UI渲染（浏览器独有）
+ * 宏任务-macro tasks:  4s script setTimeout setInterval setImmediate(node独有), requestAnimationFrame（浏览器独有）、
+ * I/0操作、UI渲染（浏览器独有）
  * 微任务-micro jobs： process的nextTick(Node.js)、Promise和mutationObserver
- *
- * 执行顺序：script块中同步任务-微任务（所有微任务清空后，才开始异步宏任务）-异步宏任务
+ * 
+ * 其执行顺序：script块中同步任务-微任务（所有微任务清空后，才开始异步宏任务）-异步宏任务
  *
  */
 export default {
