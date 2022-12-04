@@ -25,6 +25,7 @@
  * 中一次（this.$refs.mRef.innerText只会执行一次）。这种缓冲时的去重是为了避免不必要的计算和dom操作。然后，在下一个事件循环"tick"中，vue刷新队列并执行
  * 实际工作（实际工作就是渲染组件）
  *
+ * 
  * 扩展：了解事件循环-Event Loop
  * 文档：https://zhuanlan.zhihu.com/p/469899375
  *
