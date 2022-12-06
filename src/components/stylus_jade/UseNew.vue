@@ -14,6 +14,7 @@
  * [ˈstaɪləs]触笔，唱针，指示笔（在电脑上书写、画画等）
  * 1.使用vue ui安装开发依赖，stylus  stylus-loader
  * 2.在.vue文件中style标签配置lang="stylus"
+ * 
  *
  * @ 全局导入stylus的样式文件，index.styl
  * 如果全局插入stylus的样式文件，例如：index.styl
