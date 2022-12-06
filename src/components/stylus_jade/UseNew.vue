@@ -22,7 +22,7 @@
  * 可以在项目所在路径终端输入：
  * vue add style-resources-loader
  *
- * 安装过程中会选择使用的样式 预处理器，可以选择stylus,这种方式最为方便，会自动在vue.config.js文件中配置下列代码
+ * 安装过程中会根据需要来选择使用CSS预处理器，可以选择stylus(less也可以),这种方式最为方便，会自动在vue.config.js文件中配置下列代码
  * pluginOptions: {
  *  'style-resources-loader': {
  *  preProcessor: 'stylus',
@@ -50,8 +50,8 @@ export default {
 <style lang="stylus" scoped>
   /* 类似python式缩进，来区分级别 */
 .un_container h3
-   color green
+    color green
    /* &：表示使用父级选择器，后面跟一个伪类 :hover */
-   &:hover 
-     color greenyellow
+    &:hover 
+       color greenyellow
 </style>
