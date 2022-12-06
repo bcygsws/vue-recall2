@@ -22,7 +22,7 @@
  * 可以在项目所在路径终端输入：
  * vue add style-resources-loader
  *
- * 安装过程中会选择使用的样式 预处理器，可以选择stylus,这种方式最为方便，会自动在vue.config.js文件中配置下列代码
+ * 安装过程中会根据需要来选择使用CSS预处理器，可以选择stylus(less也可以),这种方式最为方便，会自动在vue.config.js文件中配置下列代码
  * pluginOptions: {
  *  'style-resources-loader': {
  *  preProcessor: 'stylus',
