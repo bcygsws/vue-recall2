@@ -50,8 +50,8 @@ export default {
 <style lang="stylus" scoped>
   /* 类似python式缩进，来区分级别 */
 .un_container h3
-   color green
+    color green
    /* &：表示使用父级选择器，后面跟一个伪类 :hover */
-   &:hover 
-     color greenyellow
+    &:hover 
+       color greenyellow
 </style>
