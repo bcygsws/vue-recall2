@@ -48,10 +48,17 @@ export default {
 };
 </script>
 <style lang="stylus" scoped>
-  /* 类似python式缩进，来区分级别 */
-.un_container h3
-    color green
-   /* &：表示使用父级选择器，后面跟一个伪类 :hover */
-    &:hover 
-       color greenyellow
+  /* 类似python式缩进，来区分级别;参考文档：http://t.zoukankan.com/matd-p-10997973.html
+  1.语法 2.变量 3.嵌套 4.混合mixins的使用 */
+.un_container
+  h3
+    color blue
+   /* &表示使用父级选择器，color green是h3的css属性，&符号和h3齐平，这个&代表的父类就是h3；后面跟一个伪类 :hover */
+&:hover
+  color greenyellow
+
+/* 混合，mixins预处理器函数的使用，多处使用同一段样式 */
+error(borderWidth=2px){
+  border:borderWidth solid red;
+}
 </style>
