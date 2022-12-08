@@ -2,6 +2,11 @@
   <div class="un_container">
     <h3>使用jade和stylus简化模板和样式</h3>
     <p>你好</p>
+    <div class="box">
+      <div class="mix1">混入1</div>
+      <div class="mix2">混入2</div>
+      <div class="mix3">混入3</div>
+    </div>
   </div>
 </template>
 <script>
@@ -47,18 +52,16 @@ export default {
   }
 };
 </script>
-<style lang="stylus" scoped>
-  /* 类似python式缩进，来区分级别;参考文档：http://t.zoukankan.com/matd-p-10997973.html
-  1.语法 2.变量 3.嵌套 4.混合mixins的使用 */
-.un_container
-  h3
-    color blue
-   /* &表示使用父级选择器，color green是h3的css属性，&符号和h3齐平，这个&代表的父类就是h3；后面跟一个伪类 :hover */
-&:hover
-  color greenyellow
-
-/* 混合，mixins预处理器函数的使用，多处使用同一段样式 */
-error(borderWidth=2px){
-  border:borderWidth solid red;
+<style lang="less" scoped>
+/* 类似python式缩进，来区分级别;参考文档：http://t.zoukankan.com/matd-p-10997973.html
+  1.语法 2.变量 3.嵌套 4.混合mixins的使用,需要配置*/
+.un_container {
+  h3 {
+    color: blue;
+    /* &表示使用父级选择器，color green是h3的css属性，&符号和h3齐平，这个&代表的父类就是h3；后面跟一个伪类 :hover */
+    &:hover {
+      color: orange;
+    }
+  }
 }
 </style>
