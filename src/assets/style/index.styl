@@ -1,4 +1,47 @@
+/* 混合，mixins预处理器函数 的使用，多处使用同一段样式 */
+error(borderWidth = 2px)
+  width 40px
+  height 40px
+  border borderWidth solid red
+  margin 30px auto /* 继承中使用 */
+.block
+  width 500px
+  height 500px
+  box-sizing content-box
 .un_container
   background-color pink
-  width 400px
+  width 600px
+  height 600px
+  margin 10px auto
+/* 4.混合，mixins预处理器函数 */
+/* box-sizing默认值为content-box，标准盒模型,时间宽（高）度：content+padding+border;
+而border-box中，实际宽度或高度就是width，padding+border会挤压content的内容 */
+& .box
   margin 0 auto
+  & .mix1
+    @extend .block
+    background-color #666 /* 未单独传值，使用error函数中的默认值2px */
+    error()
+  & .mix2
+    @extend .block
+    background-color purple
+    error(4px)
+    &:hover
+      color orange
+  & .mix3
+    @extend .block
+    background-color blue
+    error(10px)
+/* 5.继承：多个样式中，有公共样式，使用@extend继承过来，语法：@extend +选择器 */
+/* 6.导入 例如：@import ./a.css 在css中，并不喜欢使用@import,原因是导入会增加http请求的数量；但是，在css预处理器中导入css和在css
+中导入有所不同，它只是语义上导入不同的文件，但最终结果会生成一个css文件 */
+/* 7.颜色函数 */
+/* 7.1 返回color,并在此基础上变亮amount(值通常是半分比) lighten(red,10%) */
+/* 7.2 返回color，并在此基础上变暗amount */
+/* 7.3 返回color，并在此基础上饱和度提高amount */
+/* 7.4 返回color，并在此基础上饱和度降低amount */
+/* 8.运算符 */
+/* 9.局部引用、初始化引用、相对引用 */
+/* 9.1 局部引用^[0] 第一级别的标签，^[1] 第二级别的标签  ^[-1]负值，从最低级别开始，&之前的选择器 */
+/* 9.2 初始化引用 ~/ 相当于一个^[0] */
+/* 9.3 相对引用 ../ 参考&，同一级别的&的上一级选择器 */
