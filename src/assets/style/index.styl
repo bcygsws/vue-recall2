@@ -30,7 +30,13 @@ error(borderWidth = 2px)
     @extend .block
     background-color purple
     error(4px)
-    &:hover
+    // ^[-1]选中的是最低级别的选择器，最低级别有三个，.mix1 .mix2 和.mix3，因此点击这个三个div方框，方框内文字都会变色;负值最低级别选择器可以选多个；
+    // 多个的父亲是^[0],当前子选择器是^[1],直选中了当前，不同于^[-1]选中了所有
+    // ^[0]:hover 指得是.box
+    // ^[1]:hover 指得就是当前div
+    // ~/:hover  ~/等价于^[0]
+    // ^[-1..1]:hover 等价于^[1]:hover
+    ^[-1..1]:hover
       color orange
   & .mix3
     @extend .block
