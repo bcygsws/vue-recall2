@@ -12,8 +12,10 @@ error(borderWidth = 2px)
   width 500px
   height 500px
   box-sizing content-box
+ /*  background-color pink */
+ /* 颜色函数使用 */
 .un_container
-  background-color pink
+  background-color: darken(pink,10%)
   width 600px
   height 600px
   margin 10px auto
@@ -35,7 +37,7 @@ error(borderWidth = 2px)
     // ^[0]:hover 指得是.box
     // ^[1]:hover 指得就是当前div
     // ~/:hover  ~/等价于^[0]
-    // ^[-1..1]:hover 等价于^[1]:hover
+    // ^[-1..1]:hover 等价于^[1]:hover 将会只选中当前的子选择器
     ^[-1..1]:hover
       color orange
   & .mix3
