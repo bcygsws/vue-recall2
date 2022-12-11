@@ -13,6 +13,11 @@
           有限光阴过隙，无情岁月飞梭。春花秋月暗消磨，相看一年又过。-节选自张抡《西江月》
         </div>
       </template>
+      <!-- 已经具名的插槽，如果在子组件ChildOne中没有slot name="first" 是不会填充到子组件中的占位符中的 -->
+      <template v-slot:first>
+        <div>太匆匆，无奈朝来寒雨晚来风</div>
+      </template>
+      <!-- 这两个匿名模板都会填充到ChildOne组件的同一个没有name属性或者name属性值为slot的占位符中 -->
       <!-- 匿名插槽1 -->
       <template>
         <div>
@@ -32,7 +37,7 @@
       <!--<template slot-scope="user">-->
       <!-- 给出数据，使用动态绑定的方式，:data="list" -->
       <template v-slot="user">
-        <!-- user是一个对象,显示在界面上为：{ "data": [ { "id": 1, "name": "林黛玉" },
+        <!-- user是一个对象,显示在界面上为data键的json格式数据：{ "data": [ { "id": 1, "name": "林黛玉" },
         { "id": 2, "name": "贾宝玉" }, { "id": 3, "name": "晴雯" }, { "id": 4, "name": "袭人" } ] } -->
         <div>
           {{ user }}
@@ -68,7 +73,7 @@
  * 全都会填充到这些匿名插槽中
  * 1.匿名 slot标签中，无name属性；父组件模板中没有v-slot:default或者有v-slot:default
  * 2.匿名 slot标签中，有name属性；父组件模板中没有v-slot:default或者有v-slot:default
- * 
+ *
  *
  * 什么是作用域插槽？
  * 作用域插槽，就是带数据的插槽或者叫带参数的插槽。具体说来，就是子组件提供父组件的参数，该参数仅限于插槽中使用。
