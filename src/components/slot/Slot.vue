@@ -13,6 +13,13 @@
           有限光阴过隙，无情岁月飞梭。春花秋月暗消磨，相看一年又过。-节选自张抡《西江月》
         </div>
       </template>
+      <!-- 已经具名的插槽，如果在子组件ChildOne中没有slot name="first" 是不会填充到子组件中的占位符中的 -->
+      <template v-slot:first>
+        <div>
+          太匆匆，无奈朝来寒雨晚来风
+        </div>
+      </template>
+      <!-- 这两个匿名模板都会填充到ChildOne组件的同一个没有name属性或者name属性值为slot的占位符中 -->
       <!-- 匿名插槽1 -->
       <template>
         <div>
@@ -32,7 +39,7 @@
       <!--<template slot-scope="user">-->
       <!-- 给出数据，使用动态绑定的方式，:data="list" -->
       <template v-slot="user">
-        <!-- user是一个对象,显示在界面上为：{ "data": [ { "id": 1, "name": "林黛玉" },
+        <!-- user是一个对象,显示在界面上为data键的json格式数据：{ "data": [ { "id": 1, "name": "林黛玉" },
         { "id": 2, "name": "贾宝玉" }, { "id": 3, "name": "晴雯" }, { "id": 4, "name": "袭人" } ] } -->
         <div>
           {{ user }}
