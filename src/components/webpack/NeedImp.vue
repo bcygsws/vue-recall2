@@ -23,6 +23,7 @@
  * */
 // 举例：const Home=()=>import(/* webpackChunkName:'home-chunk' */'@/home/Home.vue');
 
+
 // 【去掉警告】
 // 解决终端命令中，关于prettier的一些警告问题，例如：warning Delete `␍` prettier/prettier
 // 原因：是clone代码后，会自动将换行符LF（linefeed character）转化成回车符CRLF（carriage-return character），
