@@ -52,8 +52,6 @@
  * 参考本地项目：D:\Web-project\vue-primary\02-体会v-for循环中key的就地复用策略.html
  * 该项目代码第59行，勾选列表中一个选项，然后删除某一条数据，对比设置key和不设置key的异同
  *
- *
- *
  */
 export default {
   name: 'VFor',
