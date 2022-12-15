@@ -82,12 +82,26 @@ export default {
     addItem() {
       /**
        *
-       * some方法是至少一个通过测试，并不遍历所有元素。返回值：true ，没有则返回false
-       * every 方法测试一个数组内的所有元素是否都能通过某个指定函数的测试。它返回一个布尔值,true或者false
+       * some 方法是至少一个元素通过测试，并不遍历所有元素。返回值：至少有一个元素通过测试就返回true，所有元素都没通过则返回false
+       * every 方法测试一个数组内的所有元素是否都能通过某个指定函数的测试。它返回一个布尔值；每一个元素都通过测试，则返回true；否则返回false
        * map 每个元素调用一次测试函数，返回一个新数组。和every的区别在于map callback函数体是一个操作语句(x=>x*2)，而非布尔值
        * filter,数组的过滤器函数，遍历所有元素。返回值：满足条件的，返回满足条件组成的新数组。没有任何一个满足条件，返回空数组
        * find,不会遍历所有元素，返回满足条件的第一个元素。所有都不满足，返回undefined
        * includes 某数组是否包含某个值，会对数组中所有元素进行遍历，有，返回true。没有返回false
+       *
+       * 自然数：日常生活中计数和确定次数的数，如：0,1,2,3……
+       * 质数（素数）：自然数中除了能被1和其本身外，不能被其他自然数整除的数；1不是质数
+       * 识别质数的条件书写；参考文档：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+       * function isPrime(num){
+       * for(let i=2;num>i;i++){
+       *  if(num%i==0){
+       *  return false;
+       *  }
+       * }
+       * return num>1;
+       * }
+       * arr.filter(isPrime)
+       * 过滤器函数拿到质数
        *
        */
       // 检查一下新添加的id是否在list对象数据中已经声明过
