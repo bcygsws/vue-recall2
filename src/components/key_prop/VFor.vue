@@ -204,7 +204,6 @@ export default {
        *
        * 2.正则表达式匹配
        *
-       *
        */
       // 报错：Error in v-on handler: "TypeError: li.some is not a function"
       // 解决方案：使用Array的from方法，将HTML Collection转换成正常的数组
