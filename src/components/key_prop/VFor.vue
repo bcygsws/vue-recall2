@@ -119,8 +119,15 @@ export default {
         this.flag = this.list.some((item) => {
           if (item.id === parseInt(this.id)) {
             // 你添加的数据id已经存在，请重新输入id数值
+            /**
+             *
+             * $message 的type
+             * success/error/warning/info,info是默认值
+             *
+             *
+             */
             this.$message({
-              type: 'warn',
+              type: 'warning',
               message: '你添加的id已经存在，请重新输入id值'
             });
             this.$refs.idRef.value = '';
@@ -141,7 +148,7 @@ export default {
         // 没有输入id或输入的id不是数字
         // 你输入的id非数字提醒
         this.$message({
-          type: 'warn',
+          type: 'error',
           message: '您没有输入id或者您添加的id不是数字，请输入合理的id',
           showClose: true // 可选属性，意为：是否显示关闭按钮
         });
@@ -206,7 +213,10 @@ export default {
       console.log(Array.from(li));
       // 根据id值，算出这个li在数组中的索引位置，找到即可结束，使用some测试方法
       /**
-       * @ substring(startIndex[,endIndex])
+       * @ String的方法 substring(startIndex[,endIndex])
+       * 返回值：返回一个从start到end的子集
+       * 语法：substring(startIndex[,endIndex])
+       * 说明：
        * 返回一个从start到end的子字符串，区间前闭后开[start,end)
        * end不声明，则表示截取到末尾，start和end其中有一个为负数或者NaN,则都将其视为0
        * start和end顺序可以自己解析，substring（3,1）会解析成substring（1,3）
@@ -226,6 +236,7 @@ export default {
         // data- 系列自定义属性值，可以使用obj.dataset.名称获取，也可以通过通用方式getAttribute('属性名')来获取
         console.log(item.getAttribute('data-index'));
         // console.log(item.dataset.index);
+        // 找出当前那个li的索引值（index值）
         if (id === parseInt(item.dataset.index)) {
           li[index].checked = !li[index].checked;
           if (li[index].checked) {
@@ -236,6 +247,12 @@ export default {
         }
       });
     },
+    /**
+     *
+     * @ 点击某一个列表展示id
+     * 事件委托
+     *
+     */
     showId(event) {
       // event.target引起触发事件的那个对象
       // event.currentTarget 当事件执行时，停留的那个对象；当前对象，ul（li委托事件给他）
@@ -245,6 +262,8 @@ export default {
       console.log(event.target.dataset.index);
       // 使用nodeName过滤掉委托的父元素ul,以及其子元素li
       // 只为ul绑定了点击事件，event.currentTarget是ul；而event.target是当前的li
+
+      // 注意：nodeName的值就是tagName值的大写 LI
       if (event.target.nodeName.toLowerCase() === 'li') {
         this.doSomething(event.target.dataset.index);
       }
