@@ -7,7 +7,7 @@
     content：<input type="text" name="fru" id="fru" value="" ref="ctRef" />
     <br />
     <input type="button" value="添加一条数据" @click="addItem" />
-    <ul ref="ul" @click="showId">
+    <ul ref="ul" @mouseover="showId" @mouseout="showId">
       <li
         v-for="item in list"
         :key="item.id"
@@ -260,13 +260,26 @@ export default {
       console.log(event.target); // li
       console.log(event.currentTarget); // ul
       console.log(event.target.dataset.index);
+      // 拿到当前li中的data-index值,定义变量为renderId
+      // const renderId = event.target.dataset.index;
       // 使用nodeName过滤掉委托的父元素ul,以及其子元素li
       // 只为ul绑定了点击事件，event.currentTarget是ul；而event.target是当前的li
 
       // 注意：nodeName的值就是tagName值的大写 LI
       if (event.target.nodeName.toLowerCase() === 'li') {
-        this.doSomething(event.target.dataset.index);
+        // 鼠标移入li上方区域，显示为红色;并弹出提示框，展示当前li是由那个id渲染得到的（模板中:data-index="item.id"）
+        if (event.type === 'mouseover') {
+          this.showBgc(event.target, 'red');
+          // this.doSomething(renderId);
+          // 鼠标离开li区域，恢复显示为白色
+        } else if (event.type === 'mouseout') {
+          this.showBgc(event.target, '#fff');
+        }
       }
+    },
+    // 显示颜色
+    showBgc(obj, color) {
+      obj.style.backgroundColor = color;
     },
     // doSomething函数，点击某个li显示当前li的key值（item.id值）
     doSomething(index) {
@@ -358,7 +371,6 @@ export default {
   ul {
     li {
       list-style-type: none;
-      background-color: hotpink;
       margin-bottom: 20px;
       a {
         margin-left: 30px;
