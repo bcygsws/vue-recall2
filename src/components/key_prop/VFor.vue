@@ -19,6 +19,10 @@
         <a href="javascript:;" @click="delItem(item.id)">删除</a>
       </li>
     </ul>
+    <!-- 点击按钮，只显示过滤后的质数 -->
+    <div>{{ arr }}</div>
+    <button @click="getPrime">获取其中的质数</button>
+    <p>{{ prime }}</p>
     <!-- 正则表达式案例 -->
     <p class="reg" ref="t1">str245</p>
     <!-- 点击按钮得到数字 -->
@@ -69,6 +73,10 @@ export default {
         { name: '桃子', id: 4 },
         { name: '西瓜', id: 5 }
       ],
+      // 验证是否为质数，存储数组arr
+      arr: [4, 8],
+      // prime数组存放filter过滤函数处理过的数组
+      prime: [],
       // 正则表达式转换后的num
       num1: '',
       // 正则表达式转换后的num1
@@ -89,7 +97,7 @@ export default {
        * find,不会遍历所有元素，返回满足条件的第一个元素。所有都不满足，返回undefined
        * includes 某数组是否包含某个值，会对数组中所有元素进行遍历，有，返回true。没有返回false
        *
-       * 
+       *
        * 自然数：日常生活中计数和确定次数的数，如：0,1,2,3……
        * 质数（素数）：自然数中除了能被1和其本身外，不能被其他自然数整除的数；1不是质数
        * 识别质数的条件书写；参考文档：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
@@ -155,6 +163,19 @@ export default {
         });
         this.$refs.idRef.value = '';
       }
+    },
+    // 获取数组中的质数，并显示在页面上
+    getPrime() {
+      this.prime = this.arr.filter((item) => {
+        // for循环，测试item是否能被从2到item-1；只要一次求余等于0了，就代表它不是质数了；直接返回false即可
+        for (let i = 2; i < item; i++) {
+          if (item % i === 0) {
+            return false;
+          }
+        }
+        return item > 1;
+      });
+      console.log(this.prime);
     },
     // 删除一条数据
     delItem(val) {
