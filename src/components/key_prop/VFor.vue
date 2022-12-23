@@ -48,7 +48,7 @@
  * 1.将事件处理程序代理到父节点上，减少内存占有率
  * 2.当动态增加子节点时，子节点自动将事件绑定到父节点上
  * 注意：执行事件委托后，父节点绑定了事件，成为了event.currentTarget；而各子节点是event.target
- * 
+ *
  * 事件委托成立的依据：冒泡机制
  * 关于冒泡注意4点：
  * 1.任意时刻，事件只能捕获或者冒泡这两个阶段之一
@@ -58,11 +58,11 @@
  * focus类：focus和blur本来就是设置当前元素的，不支持冒泡
  * mouse类：mouseenter和mouseleave不支持冒泡，使用mouseover/mouseout这对来替代
  * 关于所有不冒泡的事件,参考文档：https://blog.csdn.net/Piconjo/article/details/104729923
- * 
+ *
  * 事件冒泡：https://blog.csdn.net/weixin_42028153/article/details/119608440
  * 注意：事件冒泡只和html结构有关；如果一个子元素在html结构上是某个父元素的子元素，不论使用定位，将该子元素放到任何
  * 区域（甚至显示的父元素外边），子元素都会触发冒泡
- * 
+ *
  *
  * vue的就地复用策略：
  * v-for循环，循环标签需要声明key关键字，vue关键字有“就地复用”策略就地复用：
@@ -327,11 +327,12 @@ export default {
     },
     // 正则表达式转换后
     toggle1() {
-      // str字母在数字前面，不能直接使用parseInt转换
+      // str字符在数字前面，如：str234;不能直接使用parseInt转换;parseInt("str234")，结果是NaN
       // 方法1：借助String的截取子串的方法subStr(start[,end])
       let str1 = this.$refs.t1.innerText;
       // this.num1 = parseInt(str1.substring(3));
       // console.log(this.num1);
+      
       // 方法2：正则表达式，把非数字的使用空字符串代替
       // i忽略大小写，g全局匹配，匹配所有项
       // let numx = str1.replace(/[^0-9]/gi, '');
