@@ -358,7 +358,19 @@ export default {
       // trim()方法去掉字符串两侧的空字符（' 457 '），以使得字符串能够被parseInt方法得出结果
       this.num2 = parseInt(res.trim());
       console.log(this.num2);
-      // 参考链接：https://www.cnblogs.com/xiaochongchong/p/5304909.html
+      /**
+       * 
+       * 参考链接：https://www.cnblogs.com/xiaochongchong/p/5304909.html
+       * 1.parseInt(字符串[,第二个参数]) 在js中，parseInt第二个参数缺省状态下，默认为十进制转换；如果设置为2,表示转化出来的数字将
+       * 按照二进制展开
+       * 
+       * 2.类比：java中也有parseInt方法，不过Java中检测到非数字字符将立即报错
+       * parseInt('a456') 
+       * Java中直接报错了
+       * 而在js中，不会报错，会返回一个NaN
+       * 
+       */ 
+
       // 正则的前瞻后顾https://www.jianshu.com/p/bf1fe73beed2
       // https://blog.csdn.net/fuhanghang/article/details/96480351
       
