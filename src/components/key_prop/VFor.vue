@@ -332,7 +332,7 @@ export default {
       let str1 = this.$refs.t1.innerText;
       // this.num1 = parseInt(str1.substring(3));
       // console.log(this.num1);
-      
+
       // 方法2：正则表达式，把非数字的使用空字符串代替
       // i忽略大小写，g全局匹配，匹配所有项
       // let numx = str1.replace(/[^0-9]/gi, '');
@@ -359,21 +359,21 @@ export default {
       this.num2 = parseInt(res.trim());
       console.log(this.num2);
       /**
-       * 
+       *
+       * @parseInt用法
        * 参考链接：https://www.cnblogs.com/xiaochongchong/p/5304909.html
        * 1.parseInt(字符串[,第二个参数]) 在js中，parseInt第二个参数缺省状态下，默认为十进制转换；如果设置为2,表示转化出来的数字将
        * 按照二进制展开
-       * 
+       *
        * 2.类比：java中也有parseInt方法，不过Java中检测到非数字字符将立即报错
-       * parseInt('a456') 
+       * parseInt('a456')
        * Java中直接报错了
        * 而在js中，不会报错，会返回一个NaN
-       * 
-       */ 
+       *
+       */
 
-      // 正则的前瞻后顾https://www.jianshu.com/p/bf1fe73beed2
       // https://blog.csdn.net/fuhanghang/article/details/96480351
-      
+
       /**
        * @ js提取数字的方式：
        * 1.parseInt或parseFloat,有局限性，字符串必须以连续的数字开始
@@ -401,6 +401,7 @@ export default {
       // console.log(res1); // 不带全局g，只会匹配第一个
       // // 打印结果：['3.65', '.65', index: 2, input: '玉米3.65元/斤，白菜6.4元/斤，胡萝卜5元/斤', groups: undefined]
       let menu1 = '玉米3.65元/斤，白菜6.4元/斤，胡萝卜5元/斤';
+      // 一、全局匹配
       const reg = /\d+(.\d+)?/gi; // ?表示0或者一次，0时匹配整数
       let res2 = reg.exec(menu1);
       console.log(res2); // exec方法全局，也只匹配到了第一个，类似match非全局的情况
@@ -409,10 +410,11 @@ export default {
       console.log(reg.exec(menu1)); // ['5', undefined, index: 22, input: '玉米3.65元/斤，白菜6.4元/斤，胡萝卜5元/斤', groups: undefined]
       console.log(reg.exec(menu1)); // null
       const reg1 = /\d+(.\d+)?/;
-      console.log(reg1.exec(menu1));
-      console.log(reg1.exec(menu1));
-      console.log(reg1.exec(menu1));
-      console.log(reg1.exec(menu1));
+      // 二、非全局匹配，只会拿到第一个匹配结果
+      console.log(reg1.exec(menu1)); //  ['3.65', '.65', index: 2, input: '玉米3.65元/斤，白菜6.4元/斤，胡萝卜5元/斤', groups: undefined]
+      console.log(reg1.exec(menu1)); //  ['3.65', '.65', index: 2, input: '玉米3.65元/斤，白菜6.4元/斤，胡萝卜5元/斤', groups: undefined]
+      console.log(reg1.exec(menu1)); //  ['3.65', '.65', index: 2, input: '玉米3.65元/斤，白菜6.4元/斤，胡萝卜5元/斤', groups: undefined]
+      console.log(reg1.exec(menu1)); //  ['3.65', '.65', index: 2, input: '玉米3.65元/斤，白菜6.4元/斤，胡萝卜5元/斤', groups: undefined]
     }
   }
 };
