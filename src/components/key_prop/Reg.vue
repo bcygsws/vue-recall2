@@ -38,7 +38,7 @@ export default {
       // console.log(str3.match(reg)); // null
       // let str4 = '456abc';
       // console.log(str4.match(reg)); // null
-      
+
       // 二、负前瞻 /abc(?！123)/g
       // 要匹配的是abc,匹配的条件是abc前面不是123
       let reg = /abc(?!123)/g;
@@ -76,7 +76,20 @@ export default {
       let str4 = '456abc';
       console.log(str4.match(reg)); // ['abc']
     },
-    matchHandle() {},
+    matchHandle() {
+      /**
+       *
+       * @二、match和exec的区别和联系
+       * 区别：
+       * match是string字符串的api；exec是ExpReg对象的方法
+       * 全局状态下，match能够一次匹配所有的子项，以数组的形式打印出来；然后，exec的匹配是分步进行的，直至reg.exec(str)的结果为null
+       * 
+       * 联系：
+       * 非全局转态下，match和exec得到的结果是一致的
+       *
+       */
+
+    },
     execHandle() {
       // 参考链接：https://lihefei.blog.csdn.net/article/details/53022253?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_default&utm_relevant_index=1
       // 上述文档中，区分捕获分组或非捕获分组；
