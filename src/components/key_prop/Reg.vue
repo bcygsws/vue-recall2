@@ -38,6 +38,7 @@ export default {
       // console.log(str3.match(reg)); // null
       // let str4 = '456abc';
       // console.log(str4.match(reg)); // null
+      
       // 二、负前瞻 /abc(?！123)/g
       // 要匹配的是abc,匹配的条件是abc前面不是123
       let reg = /abc(?!123)/g;
