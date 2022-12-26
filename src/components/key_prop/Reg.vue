@@ -80,17 +80,52 @@ export default {
       /**
        *
        * @二、match和exec的区别和联系
+       * 参考文档；https://blog.csdn.net/yan_yuanfeng/article/details/100549408
+       *
        * 区别：
-       * match是string字符串的api；exec是ExpReg对象的方法
-       * 全局状态下，match能够一次匹配所有的子项，以数组的形式打印出来；然后，exec的匹配是分步进行的，直至reg.exec(str)的结果为null
-       * 
+       * 1.match是string字符串的api；exec是ExpReg对象的方法
+       * 2.全局状态下，match能够一次匹配所有的子项，以数组的形式输出，并且忽略所有子项的捕获项；但注意，非全局时，还是会打印出所有子项的
+       * 捕获项的
+       * 然后，exec的匹配是分步进行的，直至reg.exec(str)的结果为null
+       *
+       *
        * 联系：
        * 非全局转态下，match和exec得到的结果是一致的
        *
+       * 使用场景：
+       * 1.exec的全局匹配和非全局匹配结果是一样的，但是当使用循环匹配时，reg的正则表达式中必须带上g
+       * 2.match则用于一次性得到所有子项，并以数组的形式呈现
+       *
        */
-
+      const str = 'shanghai nihao shanghainihao';
+      //  2.1 非全局下，和exec一样；打印第一个子项，子项中包含其匹配项的信息，打印结果是；['nihao', index: 9, input: 'shanghai nihao shanghainihao', groups: undefined]
+      // const reg = /nihao/;
+      // 2.2 全局状态下，match打印出所有子项，但不包括子项的捕获项;打印结果：['nihao', 'nihao']
+      const reg = /nihao/g;
+      console.log(str.match(reg)); // ['nihao', 'nihao']
     },
     execHandle() {
+      // 3.作为与match方法的对照
+      const _str = 'shanghai nihao shanghainihao';
+      // 3.1 非全局下的exec方法；打印结果是：非全局下，和exec一样；打印第一个子项，子项中包含其匹配项的信息，打印结果是；['nihao', index: 9, input: 'shanghai nihao shanghainihao', groups: undefined]
+      // 这也印证了非全局情况下match和exec方法处理的结果是一样的
+      // const _reg=/nihao/;
+      // 3.2 全局状态下的exec方法，打印结果是：非全局下，和exec一样；打印第一个子项，子项中包含其匹配项的信息，打印结果是；['nihao', index: 9, input: 'shanghai nihao shanghainihao', groups: undefined]
+      // 【需要利用循环】才能拿到所有的匹配子项
+      const _reg = /nihao/g;
+      // // exec执行第一次
+      // console.log(_reg.exec(_str));// 打印结果是：['nihao', index: 9, input: 'shanghai nihao shanghainihao', groups: undefined]
+      // // exec执行第二次，才拿到另外一个index为23的"nihao"这个子字符串
+      // console.log(_reg.exec(_str));// 打印结果是：['nihao', index: 23, input: 'shanghai nihao shanghainihao', groups: undefined]
+      for (let i = 0; i < _str.match(_reg).length; i++) {
+        console.log('第' + i + '次：' + _reg.exec(_str));
+      }
+      // 3.3分步写过于繁琐，寻求用while循环来简化写法-先注释掉上面exec的两次执行
+      // do while语句只会拿到第一次匹配和null这俩打印值；原因简单分析可知；改用for循环
+      // do {
+      //   console.log(_reg.exec(_str));
+      // } while (_reg.exec(_str));
+
       // 参考链接：https://lihefei.blog.csdn.net/article/details/53022253?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_default&utm_relevant_index=1
       // 上述文档中，区分捕获分组或非捕获分组；
       // 1.说到底，非捕获分组功能和()一样的，看匹配结果时，不同点在于，(?: )匹配的子配项不会返回在数组中了。
