@@ -128,20 +128,31 @@ export default {
 
       // 参考链接：https://lihefei.blog.csdn.net/article/details/53022253?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_default&utm_relevant_index=1
       // 上述文档中，区分捕获分组或非捕获分组；
-      // 1.说到底，非捕获分组功能和()一样的，看匹配结果时，不同点在于，(?: )匹配的子配项不会返回在数组中了。
+      // 1.说到底，非捕获分组功能和()一样的，看匹配结果时，不同点在于，非捕获分组(?: )匹配的子配项不会返回在数组中了。
       // 2. (?:\.(.+))表达式中，多了个(?:)，出现了非捕获分组；剔除了.41646ass.sss'，但是内层括号(.+)没有非捕获符号，这个内层括号匹配到的
       // 41646ass.sss仍然会以子项的方式出现在数组中
+      // 3.一般有几个括号，就有几个子配项；?:的使用就可以剔除该非捕获分组的子配项
+      // 3.1 非捕获分组：
+      //  \. 匹配到. [^. ]表示 非.  .+ 表示至少一个字符，加号前的.是通配字符
       let a = /^([^.]*)(?:\.(.+))$/g;
-      // 3. .有两重含义，一个是符号上的. 使用时需要加反斜杠，语法：\. ；第二重含义是，.可以匹配任意单个字符，换行符除外
-      // 第一个分组中捕获到'click'，第二个分组中捕获到41646ass.sss（?: 的限制，.41646ass.sss不会显示
-      // let a = /^([^.]*)(\.(.+))$/; // // ['click.41646ass.sss', 'click', '.41646ass.sss', '41646ass.sss', index: 0, input: 'click.41646ass.sss', groups: undefined]
       let str = 'click.41646ass.sss';
-      // let b = a.exec(str);
-      // console.log(b);
-      let b;
-      while ((b = a.exec(str)) != null) {
-        console.log(b[0]);
-      }
+      let b = a.exec(str);
+      console.log(b);
+      // 特别注意：.有两重含义，一个是符号上的. 使用时需要加反斜杠，语法：\. ；第二重含义是，.可以匹配任意单个字符，换行符除外
+      // 第一个分组中捕获到'click'，第二个分组中捕获到41646ass.sss（?: 的限制，.41646ass.sss不会显示
+      // 3.2 捕获分组；"问嘉兴" ？0或1次，+号表示大于等于1次；*号表示大于等于0次，*范围最广
+      let a1 = /^([^.]*)(\.(.+))$/; // ['click.41646ass.sss', 'click', '.41646ass.sss', '41646ass.sss', index: 0, input: 'click.41646ass.sss', groups: undefined]
+      let str1 = 'click.41646ass.sss';
+      let str2 = 'click.41646asssss'; // 测试 .+ 中的.表示通配字符
+      let str3 = '.41646asssss'; // 测试 .+ 中的.表示通配字符
+      let b1 = a1.exec(str1);
+      console.log(b1);
+      console.log(a1.exec(str2));
+      console.log(a1.exec(str3));
+      // let b;
+      // while ((b = a.exec(str)) != null) {
+      //   console.log(b[0]);
+      // }
       // (3) ['click.41646ass.sss', 'click', '41646ass.sss', index: 0, input: 'click.41646ass.sss', groups: undefined]
     },
     // 正则表达式综合
