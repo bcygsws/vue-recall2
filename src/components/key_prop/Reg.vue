@@ -173,7 +173,12 @@ export default {
       console.log(reg.exec('34abc56')); // null
       /**
        * 
-       * @ str.index(字符串)
+       * @ str.indexOf(字符串)
+       * 语法；str.indexOf(searchStr[,position])
+       * position缺省状态下默认为0；表示开始筛选的位置；是可选参数；
+       * a.如果position大于字符串的长度，则在str中根本搜索不到子串searchStr
+       * b.如果position小于0，则跟默认的position等于0一样
+       * c.如果position的值小于或等于字符串第一次出现的位置，则跟默认的position等于0一样
        * str.search(正则)
        * 
        * 返回值：
