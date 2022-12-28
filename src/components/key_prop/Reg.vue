@@ -169,18 +169,37 @@ export default {
       // 如果前面加一个 ^，则表示要以数字开始，数字结束
       // new RegExp非全局匹配时，括号里第二个参数可以省略了
       let reg = new RegExp('^\\d+$');
+      // reg.exec的结果是null的原因是：正则是由纯数字组成；默认是贪婪模式，要进可能多的匹配；下面将讲述非贪婪模式的办法
       console.log(reg.exec('34abc56')); // null
-
-      // 类比：str.indexOf(指定值) 返回指定值在字符串中第一次出现的索引
+      /**
+       * 
+       * @ str.indexOf(字符串)
+       * 语法；str.indexOf(searchStr[,position])
+       * position缺省状态下默认为0；表示开始筛选的位置；是可选参数；
+       * a.如果position大于字符串的长度，则在str中根本搜索不到子串searchStr
+       * b.如果position小于0，则跟默认的position等于0一样
+       * c.如果position的值小于或等于字符串第一次出现的位置，则跟默认的position等于0一样
+       * str.search(正则)
+       * 
+       * 返回值：
+       * 都是返回括号内传入的子串或括号内正则匹配的字符串在str中第一次出现时的索引
+       * 如果找不到都返回-1
+       * 
+       * 
+       * 
+      */
+      // 类比：str.indexOf(指定值) 返回指定值在字符串中第一次出现的索引；只不过str.search(正则表达式);如果没有找到则返回-1
+      // 具体参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
       // 二、search方法用于检索字符串中指定字符串的第一个索引位置，或检索与正则表达式匹配的字符串
       // 语法：str.search(regExp) 对全局g不起作用，但是对i其作用，忽略大小写
       // 返回值是：子串在字符串中的首个出现位置的索引，找不到或匹配不到，返回-1
       let str = 'hello world abdhello world';
-      console.log(str.search(/hello/)); // 0
-      console.log(str.search(/hello/g)); // 0
-      console.log(str.search(/Hello/)); // -1
+      console.log(str.indexOf('world')); // 6
+      console.log(str.search(/world/)); // 6
+      console.log(str.search(/world/g)); // 6
+      console.log(str.search(/World/)); // -1
       //  对i起作用，忽略大小写来匹配
-      console.log(str.search(/HELLO/i)); // 0
+      console.log(str.search(/WORLD/i)); // 6
       // 三、match用于检索字符串中指定的值，匹配到一个或者多个。类似indexOf()或者lastIndexOf()
       // 语法：str.match(reg)或者str.match(子串str1)
       let str1 = 'abchello';
