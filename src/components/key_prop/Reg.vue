@@ -172,24 +172,26 @@ export default {
       // reg.exec的结果是null的原因是：正则是由纯数字组成；默认是贪婪模式，要进可能多的匹配；下面将讲述非贪婪模式的办法
       console.log(reg.exec('34abc56')); // null
       /**
-       * 
+       *
        * @ str.indexOf(字符串)
+       * 参考MDN文档：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
        * 语法；str.indexOf(searchStr[,position])
+       *
+       * 特别注意：如果搜索 空字符串，会得到另外的结果；参考上面MDN文档
+       * 类比：str.indexOf(指定值) 返回指定值在字符串中第一次出现的索引；只不过str.search(正则表达式);如果没有找到则返回-1
+       *
        * position缺省状态下默认为0；表示开始筛选的位置；是可选参数；
        * a.如果position大于字符串的长度，则在str中根本搜索不到子串searchStr
        * b.如果position小于0，则跟默认的position等于0一样
-       * c.如果position的值小于或等于字符串第一次出现的位置，则跟默认的position等于0一样
+       * c.该方法返回指定字符串searchStr在大于或等于position值时第一次出现的位置的索引值
+       * 执行的是正则表达式和被搜索的string对象之间的一个匹配
        * str.search(正则)
-       * 
+       *
        * 返回值：
        * 都是返回括号内传入的子串或括号内正则匹配的字符串在str中第一次出现时的索引
        * 如果找不到都返回-1
-       * 
-       * 
-       * 
-      */
-      // 类比：str.indexOf(指定值) 返回指定值在字符串中第一次出现的索引；只不过str.search(正则表达式);如果没有找到则返回-1
-      // 具体参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
+       *
+       */
       // 二、search方法用于检索字符串中指定字符串的第一个索引位置，或检索与正则表达式匹配的字符串
       // 语法：str.search(regExp) 对全局g不起作用，但是对i其作用，忽略大小写
       // 返回值是：子串在字符串中的首个出现位置的索引，找不到或匹配不到，返回-1
@@ -200,14 +202,17 @@ export default {
       console.log(str.search(/World/)); // -1
       //  对i起作用，忽略大小写来匹配
       console.log(str.search(/WORLD/i)); // 6
-      // 三、match用于检索字符串中指定的值，匹配到一个或者多个。类似indexOf()或者lastIndexOf()
+      // 三、match用于检索字符串中指定的值，匹配到一个或者多个；非全局的时候和reg.exec方法的结果完全一致；全局的时候，略有不同
+      // match方法可以一次性返回所有的子项，并且不包括各子项的匹配项
       // 语法：str.match(reg)或者str.match(子串str1)
       let str1 = 'abchello';
       console.log(str1.match('hel')); // ['hel', index: 3, input: 'abchello', groups: undefined]
+      // 全局时，match中是不包含各子项的捕获项的
       console.log(str1.match(/hel/g)); // ['hel']
       let str2 = '2st4trert6';
       console.log(str2.match(/\d+/g)); // ['2', '4', '6']
       // 四、replace方法 用后面的字符替换前面的字符（或者正则表达式匹配的字符）
+      // $1 $2 分别表示获取第一个和第二个捕获项（注：以括号为边界，很容易识别）
       let name1 = 'longen , yunyi';
       let res = name1.replace(/(\w+)\s*,\s*(\w+)/, '$2 $1');
       console.log(res); //  yunyi longen
@@ -235,14 +240,39 @@ export default {
         // console.log(RegExp['$_']); // hello I am a chinese people
         console.log(reg1.exec(str$)); // ['am', index: 8, input: 'hello,I am a Chinese people', groups: undefined]
       }
-      // 千分位分隔数字（或含数字的字符）
+      // 案例：千分位分隔数字（或含数字的字符）
+      /**
+       *
+       * @正则表达式中两类匹配
+       * 匹配字符+匹配位置
+       *
+       * 匹配字符当然很常见了
+       * 如 \w ===[a-zA-Z0-9_] 表示匹配下划线在内的任何字符
+       *
+       * \b和\B是边界匹配
+       * \b是匹配到单词的边界，就是首尾的位置
+       * \B匹配的是非首尾的位置
+       * \s 表示不可见的字符，如空格符 制表位 分页符
+       *
+       *
+       */
+      // \b在前表示的是ver就是单词的左边界，averc ver的左边界是a，因此输出null
+      console.log('averc'.match(/\bver/)); // null
+      console.log('never'.match(/ver\b/)); // ['ver', index: 2, input: 'never', groups: undefined]
+      console.log('never'.match(/\bver/));
       const thousand_str = '1234567890';
       let thousand_reg = /\B(?=((?:\d{3})+(?!\d)))/g; // 1,234,567,890
       // let thousand_reg = /\B(?=((?:\d{3})+$))/g; // 纯数字字符串，上一行正则可以简写成此表达式
       console.log(thousand_str.replace(thousand_reg, ','));
       const thousand_str1 = '1234567890';
       let thousand_reg1 = /(\d)(?=(\d{3})+$)/g;
+      // 测试：将thousand_reg1中的全局g去掉，会发现，结果是第一次匹配的1,234567890
+      // thousand_reg1第一次匹配到的是1 234567890，往中间加<成为1,234567890
+      // thousand_reg1第二次匹配到的是4 567890，往中间加<成为1,234,567890
+      // thousand_reg1第三次匹配到的是7 890，往中间加<成为1,234,567,890
       // let thousand_reg1 = /(\d)(?=(?:\d{3})+$)/g;// (?:\d{3})可以写成非捕获形式，也可以写成默认的捕获形式
+      // 原理:(?=(\d{3})+$)这个括号内包括一个前瞻表达式，用于逆序定位的，还附加$；$必须带上；否则定位的索引从右向左分别为3,4,5,6,7,8,9
+      // 此时打印的结果将是1,2,3,4,5,6,7,890
       console.log(thousand_str1.replace(thousand_reg1, '$1,')); // 1,234,567,890
 
       // 五、  . 可以匹配任意的单个字符，换行符除外
