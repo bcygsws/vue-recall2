@@ -252,20 +252,37 @@ export default {
        * \b和\B是边界匹配
        * \b是匹配到单词的边界，就是首尾的位置
        * \B匹配的是非首尾的位置
-       * \s 表示不可见的字符，如空格符 制表位 分页符
+       * \s 表示不可见的字符，如空格符 制表位 分页符[\r\n\t\v\f]
+       * \S 表示[^\r\n\t\v\f]，这些不可见的字符之外的字符
+       * \d 数字
+       * \D 非数字 [^0-9]
+       * 
        *
+       * 千分位分隔符正则书写思路
+       * 逆序环视是一样的
+       * (?=(?:\d{3})+$)
+       * 或者不写分捕获分组，直接用默认的捕获分组
+       * (?=(\d{3})+$)
+       * 或者为了匹配数字后面跟随有其他字符的比如：'1234567890hjk'
+       * 可以写作(?=(?:\d{3})+(?!\d))
+       * 匹配位置+逆序环视 /\B(?=(?:\d{3})+(?!\d))/g
+       * 匹配数字+逆序环视
        *
        */
       // \b在前表示的是ver就是单词的左边界，averc ver的左边界是a，因此输出null
       console.log('averc'.match(/\bver/)); // null
       console.log('never'.match(/ver\b/)); // ['ver', index: 2, input: 'never', groups: undefined]
       console.log('never'.match(/\bver/));
-      const thousand_str = '1234567890';
-      let thousand_reg = /\B(?=((?:\d{3})+(?!\d)))/g; // 1,234,567,890
+      // const thousand_str = '1234567890';
+      const thousand_str = '1234567890hjk';
+      // 只给数字部分，按照千分位分隔，字母不做处理
+      // let thousand_reg = /\B(?=((?:\d{3})+(?!\d)))/g; // 1,234,567,890hjk
+      let thousand_reg = /\B(?=(?:\d{3})+(?!\d))/g; // 1,234,567,890hjk
       // let thousand_reg = /\B(?=((?:\d{3})+$))/g; // 纯数字字符串，上一行正则可以简写成此表达式
       console.log(thousand_str.replace(thousand_reg, ','));
       const thousand_str1 = '1234567890';
-      let thousand_reg1 = /(\d)(?=(\d{3})+$)/g;
+      // let thousand_reg1 = /(\d)(?=(\d{3})+$)/g;
+      let thousand_reg1 = /(\d)(?=(?:\d{3})+$)/g;
       // 测试：将thousand_reg1中的全局g去掉，会发现，结果是第一次匹配的1,234567890
       // thousand_reg1第一次匹配到的是1 234567890，往中间加<成为1,234567890
       // thousand_reg1第二次匹配到的是4 567890，往中间加<成为1,234,567890
