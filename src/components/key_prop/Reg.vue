@@ -174,6 +174,18 @@ export default {
       /**
        *
        * @ str.indexOf(字符串)
+       * 
+       * str.indexOf(字符串，position)
+       * str.search(正则表达式)
+       * str.match(正则表达式)
+       * reg.exec(字符串)
+       * 案例：添加千分位分隔符
+       * 捕获分组和非捕获分组（?:）
+       * 贪婪模式和非贪婪模式(+ * {m,n} {m,}后面加上?)
+       * . 表示通配符匹配
+       * 
+       * 匹配字符和匹配位置（\b单词两端边界，\B非两端的空闲）
+       * 
        * 参考MDN文档：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
        * 语法；str.indexOf(searchStr[,position])
        *
