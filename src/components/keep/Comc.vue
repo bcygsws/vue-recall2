@@ -4,3 +4,8 @@
     <input type="text" id="comc" name="comc" />
   </div>
 </template>
+<script>
+export default {
+  name: 'Comc'
+};
+</script>
