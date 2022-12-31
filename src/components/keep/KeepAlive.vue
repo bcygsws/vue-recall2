@@ -30,9 +30,9 @@ import Coma from './Coma.vue';
 import Comb from './Comb.vue';
 import Comc from './Comc.vue';
 /**
- *
+ * @keep-alive缓存
  * 一、定义：keep-alive是Vue的一个内置组件
- * 功能：用来对组件进行缓存，节省性能
+ * 优点：用来对组件进行缓存，节省性能
  *      缓存的组件仍然保存在内存中，防止重复渲染DOM
  * 注意：keep-alive包裹一个动态组件时，注意是动态组件（keep-alive不能用于v-for循环的组件中，只能缓存其中的一个直属子组件）
  *       而且keep-alive是一个成抽象组件，所以它不会渲染成一个DOM元素
