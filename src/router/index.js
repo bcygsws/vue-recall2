@@ -6,7 +6,7 @@ import User from '@/views/User.vue';
 import SubComp from '@/components/sub/SubComp.vue';
 import NeedImp from '@/components/webpack/NeedImp.vue';
 import Keep from '@/components/keep/KeepAlive.vue';
-import Cache from '@/components/keep/Cache.vue';
+import _Cache from '@/components/keep/Cache.vue';
 import NoCache from '@/components/keep/NoCache.vue';
 import Father from '@/components/pass_value/Father.vue';
 import Hello from '@/components/pass_value/Hello.vue';
@@ -57,8 +57,8 @@ const routes = [
         children: [
           {
             path: '/home/keep_alive/cache',
-            component: Cache, // 需要缓存的视图组件Cache,isAlive值为true
-            meta: { isAlive: true }
+            component: _Cache, // 需要缓存的视图组件Cache,isAlive值为true
+            meta: { isAlive: true },
           },
           {
             path: '/home/keep_alive/no_cache',
