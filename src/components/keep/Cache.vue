@@ -14,6 +14,7 @@
    * 缓存组件切换时
    * beforeRouteEnter-activated-beforeRouteLeave-deactivated
    * 
+   * 
   */
 export default {
   name: '_Cache',
