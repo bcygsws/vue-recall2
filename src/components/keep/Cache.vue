@@ -7,7 +7,6 @@
 </template>
 <script>
   /**
-   * 
    * @生命周期钩子 
    * 组件初始化渲染时
    * beforeRouteEnter-beforeCreate-created-beforeMount-mounted-activated-beforeRouteLeave-deactivated
