@@ -61,6 +61,9 @@ import Comc from './Comc.vue';
  * beforeRouteEnter---beforeCreate---created---beforeMount---mounted---activated---beforeRouteLeave---deactivated
  * 2.被缓存的组件再次渲染时
  * beforeRouteEnter---activated---beforeRouteLeave---deactivated
+ * beforeRouteEnter使用场景：
+ * 掘金；https://juejin.cn/post/6844904036697653256
+ * 
  *
  * 四、面试官说：keep-alive
  * 1.重点体会使用场景：首页-列表页-详情页-列表页（缓存）-首页（缓存）-列表页（不缓存），再从详情页返回时，列表项组件就最好使用缓存

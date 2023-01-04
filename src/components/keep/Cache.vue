@@ -12,7 +12,9 @@
  * beforeRouteEnter-beforeCreate-created-beforeMount-mounted-activated-beforeRouteLeave-deactivated
  * 缓存组件切换时
  * beforeRouteEnter-activated-beforeRouteLeave-deactivated
- *
+ *  beforeRouteEnter使用场景：
+ * 掘金；https://juejin.cn/post/6844904036697653256
+ * 
  *
  */
 export default {
