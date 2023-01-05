@@ -61,4 +61,19 @@ const router = new VueRouter({
   linkExactActiveClass: 'myClass'
 });
 
+// 前置路由导航守卫
+router.beforeEach((to, from, next) => {
+  // 方式一：to.name="user"
+  // to.name==='user'
+  // 方式二：to.path==="/user"
+  // if (to.path === '/user') {
+  if (to.name === 'user') {
+    next();
+  }
+  // 如果是非/home/guard/login页面，验证是否有x-token令牌
+  let xToken = localStorage.getItem('x-token');
+  if (!xToken) next('/user');
+  // 非login路由，xToken存在，自动跳转
+  next();
+});
 export default router;
