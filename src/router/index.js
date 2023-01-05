@@ -106,7 +106,11 @@ const router = new VueRouter({
 
 // 前置路由导航守卫
 router.beforeEach((to, from, next) => {
-  if (to.path === '/user') {
+  // 方式一：to.name="user"
+  // to.name==='user'
+  // 方式二：to.path==="/user"
+  // if (to.path === '/user') {
+  if (to.name === 'user') {
     next();
   }
   // 如果是非/home/guard/login页面，验证是否有x-token令牌
