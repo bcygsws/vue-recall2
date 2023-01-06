@@ -31,8 +31,12 @@
  * 二、Date初始化的不同参数
  * 方式1：
  * var today = new Date()
+ * 
  * 方式2：传入一个字符串：月 日,年 时：分：秒
- * var d1 = new Date("October 13, 1975 11:13:00")
+ * var d1 = new Date("October 13, 1975 11:13:00")  
+ * 注意：其中传入的字符顺序， 月日，年日后面的逗号,可以省略
+ *
+ * 方式3和方式4 打印的第二个参数月份，比传入的参数大1；比如：79,5,24；其中的数字5代表的是6月份
  * 方式3：3个参数简单年月日
  * var d2 = new Date(79,5,24)
  * 方式4：6个参数，年月日时分秒
@@ -55,9 +59,10 @@ export default {
     firstUp: function (val) {
       // 如果没有输入任何字符串，直接返回
       if (!val) return;
-      // 对输入的英文字符串首字母做大写处理，其他字符保持原样
+
+      // 实现功能：对输入的英文字符串首字母做大写处理，其他字符保持原样
       val = val.toString();
-      // 首字母，使用string.charAt(索引值，从0开始)
+      // 首字母，使用string.charAt(索引值：从0开始)
       return val.charAt(0).toUpperCase() + val.slice(1);
     },
     // 定义格式化时间的过滤器formatTime
