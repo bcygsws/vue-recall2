@@ -43,6 +43,16 @@ export default {
     // },
     // // 由于当前环境为vue2.6.11,因此没有按照预期打印对象
     // // 报错[Vue warn]: Failed to resolve directive: el
+    /**
+     * 
+     * @参考文档：https://v2.cn.vuejs.org/v2/api/#el
+     * 1.组件挂载以后，vm.$el可以获取dom；其中vm是组件实例
+     * 
+     * 2.传入的子组件，在模板中使用ref="mySon"属性标记；然后使用this.$refs.myson可以获取子组件实例；
+     * 组件挂载后，vm.$el可以获取dom
+     * 
+     * 
+    */
     getSonObj() {
       // 要使用$nextTick(cb)确保子组件已经完成渲染
       this.$nextTick(() => {
