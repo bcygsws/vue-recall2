@@ -20,6 +20,7 @@
  * 参考文档1：https://blog.csdn.net/weixin_46074961/article/details/119634379?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-119634379-blog-105531726.pc_relevant_3mothn_strategy_and_data_recovery&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-119634379-blog-105531726.pc_relevant_3mothn_strategy_and_data_recovery&utm_relevant_index=1
  * 特别注意点：
  *  特别注意大写转小写的问题：
+ * 
  * v-el:myCom
  * v-ref:mySon
  *
@@ -53,10 +54,10 @@ export default {
       VueComponent {_uid: 17, _isVue: true, $options: {…}, _renderProxy: Proxy, _self: VueComponent, …}
       <div class="son_container">...</div>
       */
-    },
+    }
   },
   components: {
-    Son,
-  },
+    Son
+  }
 };
 </script>
