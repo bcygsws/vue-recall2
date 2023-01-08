@@ -24,8 +24,8 @@
  * @ vue1.0 的v-el和v-ref 演示
  * 并深刻理解：ref放在子组件上，和元素上；this.$refs.模板标记tag有两种表现形式：
  * 前者得到组件实例，后者直接获取到这个dom元素
- * 
- * 一、vue2.0 中v-el和v-ref都已废除，无法再使用了；当前为vue2.x已经无法演示v-el和v-ref
+ *
+ * 一、vue 2.0版本中，v-el和v-ref都已废除，无法再使用了；当前为vue2.x已经无法演示v-el和v-ref
  * 本案例：主要目的是观察被抛弃的的指令v-el和v-ref的用法
  * 参考文档：https://blog.csdn.net/qq_26642611/article/details/104493828
  * 参考文档1：https://blog.csdn.net/weixin_46074961/article/details/119634379?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-119634379-blog-105531726.pc_relevant_3mothn_strategy_and_data_recovery&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-119634379-blog-105531726.pc_relevant_3mothn_strategy_and_data_recovery&utm_relevant_index=1
@@ -37,10 +37,10 @@
  * this.$els.mycom  特别注意：在模板中v-el:
  * this.$refs.myson
  *
- * 三、vue2.0中
+ * 三、vue 2.0中
  * ref="mySon" this.$refs.mySon可以获取子组件实例
  * 而且模板中的v-el、el都已经无法使用了；并不能仿照在模板中使用ref,然后this.$refs获取的方式；
- * 
+ *
  * 获取组件实例或者元素的dom的方法：
  * 3.1 如果是个子组件，需要使用类似：this.$refs.mySon.$el获取dom
  * 3.2 如果是某个子元素，直接this.$refs.myDv拿到的就是该元素的dom
