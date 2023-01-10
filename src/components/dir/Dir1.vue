@@ -7,7 +7,7 @@
     <!-- 点击按钮，再次回到左侧，待实现 -->
     <!-- <button @click="toLeft">div盒子定位到距离左侧200px</button> -->
     <!-- div盒子是距离顶部还是左侧200px -->
-    <div v-pin:[direction]="200" class="box">我距离谁200px?给我一个参数</div>
+    <div v-pin:[direction]="val" class="box">我距离谁200px?给我一个参数</div>
   </div>
 </template>
 <script>
@@ -22,19 +22,29 @@
  *
  * 测试验证：direction初始值为left(没有设置top)；当toTop方法执行后，el.style.[binding.arg]=el.style.top=200+"px";
  * 而且这种变化，只能出现一次；如果，再改变direction值，界面就没有变化了
+ * 
+ * 根据传入的参数，设置动态指令：
+ * 这种定位，正好可以演示：v-pin:[direction]="val"
+ * 1.direction和val变化，业务逻辑都在toTop方法中实现
+ * 2.direction属于传入的参数，binding.arg拿到
+ * val属于属性值，binding.value中获取
+ * 3.动态指令中binding/inserted 和update中业务逻辑一致，这和Dir.vue中不带参数的指令是一样的 
  *
  */
 export default {
   name: 'Dir1',
   data() {
     return {
-      direction: 'left'
+      direction: 'left',
+      // 定义变量val，存储v-pin:[direction]属性值
+      val: 200,
     };
   },
   methods: {
     toTop() {
       // (left,top) 按钮点击后，(200,0)变成了(200,200)
       this.direction = 'top';
+      this.val += 200;
     },
     // switchDir() {
     //   // 来回在left和top之间切换
