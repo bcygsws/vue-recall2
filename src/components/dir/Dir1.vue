@@ -55,16 +55,17 @@ export default {
         // // binding.arg获取动态参数direction
         if (binding.arg) {
           let s = binding.arg;
+          console.log(s);
           el.style.position = 'absolute';
           el.style[s] = binding.value + 'px';
         }
       },
       // inserted: function (el, binding) {},
       update: function (el, binding) {
-        let s = binding.arg;
-        el.style[s] = binding.value + 'px';
         console.log(binding);
+        let s = binding.arg;
         console.log(s);
+        el.style[s] = binding.value + 'px';
       },
     },
   },

@@ -26,6 +26,8 @@ export default {
     };
   },
   methods: {
+    // 1.更改data中color的业务逻辑
+    // 2.inserted和update钩子中都是一个赋值操作；el.style.color=binding.value;观察到两个阶段中打印的bindind对象值不同
     changeColor() {
       // 改变颜色值
       this.color = 'green';
