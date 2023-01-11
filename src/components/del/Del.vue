@@ -54,7 +54,7 @@
  * 参考文档2：https://blog.csdn.net/qq_39594951/article/details/93618375
  * 区别：
  * 1.delete删除的只是数组中的值，仍然在内存中中占据位置，显示empty或者undefined，其他元素的键值还是不变的
- * 2.$delete或Vue.delete会删除数组元素在内存中国的占位，数组的键也改变了
+ * 2.$delete或Vue.delete会删除数组元素在内存中的占位，数组的键也改变了
  * 3.$delete或者Vue.delete用于避开vue不能监测到property被删除的限制，但是这个方法很少被用到
  * 换句话vue.delete的作用是vue能够监测到property被删除的限制
  *
@@ -89,6 +89,12 @@ export default {
        *
        * Vue.set的参数列表(这是全局写法，非全局this.$set)
        * Vue.set(target[,properName/index[,value]])
+       *
+       * this.$set()可表现为三种形态：
+       * 1.替形如：delete this.a[1]这种操作更新视图
+       * 2.更改数组中的元素和对象的属性值
+       * 3.添加数组中的元素和增加对象的键值对
+       *
        * target类型Object|Array
        * properName/index类型string|number
        * value可以是任意类型
@@ -97,15 +103,18 @@ export default {
        * 页面还是删除前的，即视图没有更新
        * 这里只使用了第一个参数Object|Array
        *
-       *
        */
       this.$set(this.a);
       console.log(this.a);
     },
     handleAdd() {
+      // this.$set的三种形态：
+      // a.数组中，原本索引0的元素存在，这就是一个更改
       this.$set(this.a, 0, 'Hello,add data!');
+      // b.数组中，原本索引4的元素不存在，这就是一个添加操作
       this.$set(this.a, 4, '我是新增的元素');
       console.log(this.a);
+      // c.上面已经演示，用以踢delete this.a[1]这种语句更新视图
     },
     handleB() {
       // Vue.delete(target,properName/index)
@@ -141,6 +150,13 @@ export default {
       // 方式二
       this.$set(this.obj2, 'pages', 345);
       console.log(this.obj2);
+      
+      // 测试：$set只能为响应式对象添加属性，原因是vue检测不到普通对象添加的新属性;obj3没有在data函数中定义
+
+      // this.obj3.pages = 'add ordinary property';
+      // // 更新视图
+      // this.$set(this.obj3);
+      // console.log(this.obj3);
     },
   },
 };
