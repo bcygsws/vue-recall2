@@ -10,7 +10,7 @@
     <span v-if="flag" ref="sp" class="sp">何事秋风悲画扇</span>
     <button @click="handleSwitch">点按钮，获取span标签的长度</button><br />
     <!-- keep-alive内置组件演示，三个生命周期钩子 -->
-    <button @click="switchFn">点击按钮，切换要缓存的组件</button>
+    <button @click="switchFn">点击按钮，切换要缓存的组件</button>    
     <keep-alive>
       <!-- component内置组件，根据is的属性值来选择缓存的组件，注意：属性值要和组件名称一致 -->
       <component :is="num"></component>
@@ -28,6 +28,7 @@ import Third from './Third.vue';
  * this.$nextTick(cb)
  * vue中DOM传的异步渲染
  * 参考文档：https://blog.csdn.net/qq_44552416/article/details/107952313
+ * 
  * 回顾：三大系列
  * 一、offset系列:用于获取盒子的实际尺寸(offsetWidth=content+padding+border)
  * 或者相对于最近的定位父盒子之间的距离(参照定位的盒子)
