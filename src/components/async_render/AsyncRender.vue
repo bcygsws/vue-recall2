@@ -10,7 +10,7 @@
     <span v-if="flag" ref="sp" class="sp">何事秋风悲画扇</span>
     <button @click="handleSwitch">点按钮，获取span标签的长度</button><br />
     <!-- keep-alive内置组件演示，三个生命周期钩子 -->
-    <button @click="switchFn">点击按钮，切换要缓存的组件</button>    
+    <button @click="switchFn">点击按钮，切换要缓存的组件</button>
     <keep-alive>
       <!-- component内置组件，根据is的属性值来选择缓存的组件，注意：属性值要和组件名称一致 -->
       <component :is="num"></component>
@@ -28,7 +28,7 @@ import Third from './Third.vue';
  * this.$nextTick(cb)
  * vue中DOM传的异步渲染
  * 参考文档：https://blog.csdn.net/qq_44552416/article/details/107952313
- * 
+ *
  * 回顾：三大系列
  * 一、offset系列:用于获取盒子的实际尺寸(offsetWidth=content+padding+border)
  * 或者相对于最近的定位父盒子之间的距离(参照定位的盒子)
@@ -125,7 +125,7 @@ export default {
   },
   methods: {
     handleSwitch() {
-      // 点击按钮，显示隐藏的span标签，并获取它的尺寸
+      // 点击按钮，显示隐藏的span标签，并获取它的尺寸；v-if是惰性的，只有v-if条件为true时才渲染
       this.flag = true;
       // 打印显示后，span标签的尺寸
 
@@ -153,7 +153,10 @@ export default {
       });
     },
     switchFn() {
-      // 点击按钮，切换要缓存的组件
+      // 1.点击按钮，切换要缓存的组件
+      // 2.更改了data函数中的num值，所以切换时，当前组件中的更新前后两个钩子执行了
+      // 3.点击按钮，把缓存组件从First切换到Second；那么钩子执行顺序：当前组件的beforeUpdate，
+      // 然后First组件的缓存离开钩子deactivated钩子，然后Second组件中进入缓存的钩子activated，然后是当前组件的updated钩子
       const arr = ['first', 'second', 'third'];
       const index = arr.indexOf(this.num);
       if (index < 2) {
@@ -197,6 +200,7 @@ export default {
      *
      */
     console.log('mounted钩子执行了');
+    // 特别注意:改变了data中的数组arr，而且是在mounted阶段；所以，初始化时，更新前后这两个钩子(beforeUpdate和updated)会执行了
     this.arr.push(4);
     // this.$nextTick(() => {
     //   const list = document.getElementsByTagName('li');
@@ -211,27 +215,29 @@ export default {
   },
   // keep-alive生命周期狗子函数activated和deactivated;在子组件中观看activated和deactivated钩子的执行
   /**
-   * 
+   *
    * @ 观察到缓存组件显示时，会触发组件的更新钩子，beforeUpdate、activated、updated的执行
-   * 
-   * 
-  */
- /* 
+   *
+   * 特别要注意：是哪个组件中的钩子触发了，再观看控制台中打印钩子的顺序
+   *
+   *
+   */
+  /* 
 
  first组件初始渲染时执行顺序
     beforeCreate钩子执行
     created钩子执行
     beforeMount钩子执行了
-    first组件中activated钩子触发
+    first组件中activated钩子触发   <特殊>： First.vue组件中的钩子，其他都是当前页面AsyncRender.vue文件中的钩子执行了
     mounted钩子执行了
     beforeUpdate钩子执行了
     updated钩子执行了
 
     切换过程中，钩子的执行顺序first到second
-    beforeUpdate钩子执行了
-    first组件中deactivated钩子触发
-    second组件中activated钩子触发
-    updated钩子执行了
+    beforeUpdate钩子执行了    当前组件
+    first组件中deactivated钩子触发   First.vue组件
+    second组件中activated钩子触发    Second.vue组件
+    updated钩子执行了        当前组件
  */
   // activated() {
   //   console.log(100); // 被缓存的组件显示出来的时候触发
