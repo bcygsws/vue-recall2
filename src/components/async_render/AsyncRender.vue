@@ -33,7 +33,7 @@ import Third from './Third.vue';
  * 一、offset系列:用于获取盒子的实际尺寸(offsetWidth=content+padding+border)
  * 或者相对于最近的定位父盒子之间的距离(参照定位的盒子)
  * offsetLeft和offsetTop：子盒子padding外部相对于最近的定位父盒子的水平和垂直方向的距离
- * .offsetParent 获取定位的那个父盒子(DOM对象)
+ * .offsetParent 获取最近的那个定位了的那个父盒子(DOM对象)；不一定是直接的父盒子
  *
  * 二、scroll系列
  * scrollWidth和scrollHeight
