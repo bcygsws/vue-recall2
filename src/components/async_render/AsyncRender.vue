@@ -128,7 +128,6 @@ export default {
       // 点击按钮，显示隐藏的span标签，并获取它的尺寸；v-if是惰性的，只有v-if条件为true时才渲染
       this.flag = true;
       // 打印显示后，span标签的尺寸
-
       // 直接获取，会报错：Error in v-on handler: "TypeError: Cannot read properties of undefined (reading 'offsetWidth')"
       // 原因是：点击按钮后，v-if是惰性的，当flag为真值是，伴随着v-if代码块dom的渲染；dom更新是异步的过程，只有组件更新阶段钩子
       // updated执行完成后，才能重新获取更新后的DOM
