@@ -9,7 +9,7 @@ module.exports = {
   },
   rules: {
     // 不检查单双引号
-    singleQuote: 0,
+    // singleQuote: 0,
     // 设置函数局末必须有分号，否则报错。要注意顺序，结果集是一个数组'error'在前，'always'在后
     semi: ['error', 'always'],
     // 一行结束不能有空格，关闭

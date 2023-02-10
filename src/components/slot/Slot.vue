@@ -64,14 +64,15 @@
  *
  *
  */
-import ChildOne from './ChildOne.vue';
-import Child from './Child.vue';
+import ChildOne from "./ChildOne.vue";
+import Child from "./Child.vue";
+
 export default {
   data() {
     return {};
   },
   components: {
-    'child-one': ChildOne,
+    "child-one": ChildOne,
     child: Child
   }
 };
@@ -82,9 +83,11 @@ export default {
     li {
       list-style: none;
       /* nth-child表示的是第几个子元素，nth-child(2n)可以表示第2个、第4个子元素等等…… */
+
       &:nth-child(2n) {
         background-color: red;
       }
+
       &:nth-child(2n + 1) {
         background-color: orange;
       }
