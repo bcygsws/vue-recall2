@@ -8,14 +8,8 @@ module.exports = {
     parser: 'babel-eslint'
   },
   rules: {
-    /*
-     * 引号类型,为单引号；不是单引号，会给出警告；
-     * 'off'或0，关闭规则；
-     * 'warn'或1，打开规则的作为警告，不影响代码退出；
-     * 'error'或2,把规则作为一个错误(退出代码触发时为1)
-     *
-     * */
-    // quotes: [1, 'single'],
+    // 不检查单双引号
+    // singleQuote: 0,
     // 设置函数局末必须有分号，否则报错。要注意顺序，结果集是一个数组'error'在前，'always'在后
     semi: ['error', 'always'],
     // 一行结束不能有空格，关闭

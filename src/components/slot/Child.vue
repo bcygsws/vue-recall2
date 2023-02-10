@@ -5,8 +5,13 @@
   </div>
 </template>
 <script>
+/**
+ *
+ * Prettier插件格式化
+ * 默认ctrl+shift+alt+p，修改成了shift+alt+f；并移除了默认的shift+alt+F
+ *
+ * */
 export default {
-  name: "Child",
   data() {
     return {
       list: [

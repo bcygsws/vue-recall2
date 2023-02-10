@@ -3,41 +3,27 @@
     <h3>这是插槽的使用组件</h3>
     <!-- 引入child-one子组件 -->
     <child-one>
-      <!-- 可以交换下面两个模板的位置，不影响结果；原因是父组件中只提供内容，子组件child-one中slot标签的
-      相对位置才决定视图的顺序 -->
-      <template v-slot:bro>
-        <div>新栽杨柳三千里，引得春风度玉关。</div>
-      </template>
       <template v-slot:son>
         <div>
           有限光阴过隙，无情岁月飞梭。春花秋月暗消磨，相看一年又过。-节选自张抡《西江月》
         </div>
       </template>
-      <!-- 已经具名的插槽，如果在子组件ChildOne中没有slot name="first" 是不会填充到子组件中的占位符中的 -->
-      <template v-slot:first>
-        <div>太匆匆，无奈朝来寒雨晚来风</div>
+      <template v-slot:bro>
+        <div>新栽杨柳三千里，引得春风度玉关。</div>
       </template>
-      <!-- 这两个匿名模板都会填充到ChildOne组件的同一个没有name属性或者name属性值为slot的占位符中 -->
-      <!-- 匿名插槽1 -->
       <template>
         <div>
           少年听雨歌楼上，红烛昏罗帐。壮年听雨客舟中，江阔云低、断雁叫西风。
         </div>
       </template>
-      <!-- 匿名插槽2 -->
-      <template>
-        <div>楚天千里清秋，水随天去秋无际；遥岑远目，献愁供恨，玉簪螺髻；</div>
-      </template>
       <!-- <template v-slot:default>
         <div>一身转战三千里，一剑曾当百万师</div>
       </template> -->
     </child-one>
-    <!-- 作用域插槽，子组件slot中绑定一个变量提供数据。父组件中使用slot-scope进行接收;vue 2.6+以后，v-slot取代slot-scope -->
+    <!-- 作用域插槽，子组件slot中绑定一个变量提供数据。父组件中使用slot-scope进行接收 -->
     <child>
-      <!--<template slot-scope="user">-->
-      <!-- 给出数据，使用动态绑定的方式，:data="list" -->
-      <template v-slot="user">
-        <!-- user是一个对象,显示在界面上为data键的json格式数据：{ "data": [ { "id": 1, "name": "林黛玉" },
+      <template slot-scope="user">
+        <!-- user是一个对象,显示在界面上为：{ "data": [ { "id": 1, "name": "林黛玉" }, 
         { "id": 2, "name": "贾宝玉" }, { "id": 3, "name": "晴雯" }, { "id": 4, "name": "袭人" } ] } -->
         <div>
           {{ user }}
@@ -46,8 +32,7 @@
     </child>
     <!-- v-for循环渲染在页面中 -->
     <child>
-      <!--<template slot-scope="user1">-->
-      <template v-slot="user1">
+      <template slot-scope="user1">
         <ul class="ul">
           <li v-for="item in user1.data" :key="item.id">
             {{ item.id }}-{{ item.name }}
@@ -71,9 +56,6 @@
  * 匹配没有声明v-slot属性的模板
  * c.如果子组件中有多个匿名插槽，那么被分配到匿名插槽中的填充内容（父组件中，template标签中没有声明v-slot的那些内容），
  * 全都会填充到这些匿名插槽中
- * 1.匿名 slot标签中，无name属性；父组件模板中没有v-slot:default或者有v-slot:default
- * 2.匿名 slot标签中，有name属性；父组件模板中没有v-slot:default或者有v-slot:default
- *
  *
  * 什么是作用域插槽？
  * 作用域插槽，就是带数据的插槽或者叫带参数的插槽。具体说来，就是子组件提供父组件的参数，该参数仅限于插槽中使用。
